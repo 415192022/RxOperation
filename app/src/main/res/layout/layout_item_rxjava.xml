@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="48dp"
-    android:background="@color/colorPrimary"
+    android:background="#FFFFFF"
     android:orientation="vertical">
 
     <View
@@ -20,7 +20,7 @@
         android:layout_marginRight="8dp"
         android:layout_height="wrap_content"
         android:text="热销排行"
-        android:textColor="@android:color/white"
+        android:textColor="@color/colorAccent"
         android:layout_toRightOf="@id/view_line"/>
 
     <View

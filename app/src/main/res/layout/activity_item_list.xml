@@ -6,90 +6,102 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    android:fitsSystemWindows="true"
     android:clickable="true"
+    android:fitsSystemWindows="true"
     tools:context="com.li.pro.view.activity.ActivityMain">
 
-    <android.support.v4.widget.DrawerLayout
-        android:clickable="true"
-        android:id="@+id/dl_nva"
+    <LinearLayout
+        android:background="#FFFFFF"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/ic_toolbar"
-        android:fitsSystemWindows="true"
-        tools:openDrawer="start">
-        <FrameLayout
-            android:id="@+id/fl_home_root"
+        android:orientation="vertical">
+
+        <include
+            layout="@layout/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></include>
+
+        <android.support.v4.widget.DrawerLayout
+            android:id="@+id/dl_nva"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-        tools:context=".flow.MainActivity">
+            android:layout_below="@+id/ic_toolbar"
+            android:clickable="true"
+            android:fitsSystemWindows="true"
+            tools:openDrawer="start">
 
-        </FrameLayout>
-
-
-        <android.support.design.widget.NavigationView
-            android:id="@+id/nav_view"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:background="@color/tab_unselect"
-            >
-            <LinearLayout android:id="@+id/ll_nav_header"
-                xmlns:android="http://schemas.android.com/apk/res/android"
+            <FrameLayout
+                android:id="@+id/fl_home_root"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                >
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="160dp"
-                    android:background="@drawable/shape_nav"
-                    android:gravity="bottom"
-                    android:orientation="vertical"
-                    android:paddingBottom="16dp"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp"
-                    android:paddingTop="16dp"
-                    android:theme="@style/ThemeOverlay.AppCompat.Dark"
-                    >
-                    <ImageView
-                        android:id="@+id/img_nav"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="16dp"
-                        android:src="@android:drawable/sym_def_app_icon"/>
+                tools:context=".flow.MainActivity">
 
-                    <TextView
-                        android:id="@+id/tv_name"
+            </FrameLayout>
+
+
+            <android.support.design.widget.NavigationView
+                android:id="@+id/nav_view"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:background="@color/tab_unselect">
+
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/ll_nav_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="160dp"
+                        android:background="@drawable/shape_nav"
+                        android:gravity="bottom"
+                        android:orientation="vertical"
+                        android:paddingBottom="16dp"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="16dp"
                         android:paddingTop="16dp"
-                        android:text="QQ:415192022\nEmail:15502113227@163.com"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+                        android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-                    <TextView
-                        android:id="@+id/textView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Github:https://github.com/415192022"/>
+                        <ImageView
+                            android:id="@+id/img_nav"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="16dp"
+                            android:src="@android:drawable/sym_def_app_icon" />
+
+                        <TextView
+                            android:id="@+id/tv_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="16dp"
+                            android:text="QQ:415192022\nEmail:15502113227@163.com"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+                        <TextView
+                            android:id="@+id/textView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Github:https://github.com/415192022" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="3dp"
+                        android:background="#FFFFFF" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_nav"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:background="@color/colorPrimary"></android.support.v7.widget.RecyclerView>
+
                 </LinearLayout>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="3dp"
-                    android:background="#FFFFFF"/>
-                <android.support.v7.widget.RecyclerView
-                    android:background="@color/colorPrimary"
-                    android:id="@+id/rv_nav"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    ></android.support.v7.widget.RecyclerView>
-
-            </LinearLayout>
-        </android.support.design.widget.NavigationView>
-
-    </android.support.v4.widget.DrawerLayout>
-
+            </android.support.design.widget.NavigationView>
+        </android.support.v4.widget.DrawerLayout>
+    </LinearLayout>
     <com.li.utils.ui.bottombar.BottomBar
         android:id="@+id/bb_root"
         android:layout_width="match_parent"
@@ -97,8 +109,6 @@
         android:layout_gravity="bottom|end">
 
     </com.li.utils.ui.bottombar.BottomBar>
-
-
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
@@ -109,5 +119,9 @@
         app:layout_anchorGravity="top|right"
         app:srcCompat="@android:drawable/stat_notify_chat" />
 
-
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/fl_mainroot"
+        ></FrameLayout>
 </android.support.design.widget.CoordinatorLayout>

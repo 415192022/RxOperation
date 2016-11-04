@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:fitsSystemWindows="true"
-    tools:context="com.li.pro.view.activity.ActivityRxJava">
+    tools:context="com.li.pro.view.fragment.FragmentRxJava">
 
     <LinearLayout
         android:background="#FFFFFF"
@@ -27,13 +27,14 @@
             android:orientation="horizontal">
 
             <FrameLayout
-                android:background="#00FFFFFF"
+                android:background="#FFFFFF"
                 android:id="@+id/fl_rxjava_left"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"></FrameLayout>
 
             <FrameLayout
+                android:background="#FFFFFF"
                 android:id="@+id/fl_rxjava_right"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
