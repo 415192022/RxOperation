@@ -1,4 +1,4 @@
-package com.li.pro;
+package com.li.pro.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -45,7 +45,9 @@ public class NavRecycleViewAdapter extends RecyclerView.Adapter<NavRecycleViewAd
         }
         return this;
     }
-
+    public void clearAll(){
+        list.clear();
+    }
     public NavRecycleViewAdapter refresh() {
         notifyDataSetChanged();
         return this;

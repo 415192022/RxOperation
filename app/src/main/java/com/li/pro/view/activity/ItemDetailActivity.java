@@ -1,4 +1,4 @@
-package com.li.pro;
+package com.li.pro.view.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -30,11 +30,31 @@ public class ItemDetailActivity extends BaseSwipActivity {
 
     @Override
     public String setToolBarTitle() {
-        return toolBarTitle;
+        return "RxOp";
     }
 
     @Override
     public boolean isSetTransparentBar() {
+        return true;
+    }
+
+    @Override
+    public boolean isShowBackArrow() {
+        return true;
+    }
+
+    @Override
+    public int setLeftCornerLogo() {
+        return 0;
+    }
+
+    @Override
+    public String setActionBarCenterTitle() {
+        return null;
+    }
+
+    @Override
+    public boolean isHideActionBar() {
         return false;
     }
 
@@ -43,5 +63,4 @@ public class ItemDetailActivity extends BaseSwipActivity {
         return false;
     }
 
-    private String toolBarTitle="xxxx";
 }
