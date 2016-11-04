@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.li.fragmentutils.SwipeBackFragment;
+import com.li.fragmentutils.base.BaseFragment;
 import com.li.fragmentutils.base.BaseSwipFragment;
 
 import rxop.li.com.rxoperation.R;
@@ -17,7 +18,7 @@ import rxop.li.com.rxoperation.R;
  * Created by Mingwei Li on 2016/10/29 0029.
  */
 
-public  class HomeFragment extends BaseSwipFragment{
+public  class HomeFragment extends BaseFragment{
     private Button tv_test;
     int i;
     @Override
@@ -34,5 +35,25 @@ public  class HomeFragment extends BaseSwipFragment{
                 tv_test.setText((i+=1)+"");
             }
         });
+    }
+
+    @Override
+    public String setToolBarTitle() {
+        return null;
+    }
+
+    @Override
+    public boolean isHideActionBar() {
+        return false;
+    }
+
+    @Override
+    public boolean isShowBackArrow() {
+        return false;
+    }
+
+    @Override
+    public int setLeftCornerLogo() {
+        return 0;
     }
 }

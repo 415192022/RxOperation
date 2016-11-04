@@ -1,24 +1,21 @@
-package com.li.pro.view.fragment;
+package com.li.pro.view.fragment.rxjava;
 
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.li.fragmentutils.base.BaseFragment;
+import com.li.fragmentutils.base.BaseSwipFragment;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 import rxop.li.com.rxoperation.R;
 
 /**
  * Created by Mingwei Li on 2016/11/4 0004.
  */
-public class FragmentRxBaseOp extends BaseFragment {
+public class FragmentRxBaseOp extends BaseSwipFragment {
     TextView tv_rxbaseshow;
     Button btn_rxbasestar;
 
@@ -44,6 +41,26 @@ public class FragmentRxBaseOp extends BaseFragment {
                 ob().subscribe(sb());
             }
         });
+    }
+
+    @Override
+    public String setToolBarTitle() {
+        return null;
+    }
+
+    @Override
+    public boolean isHideActionBar() {
+        return false;
+    }
+
+    @Override
+    public boolean isShowBackArrow() {
+        return false;
+    }
+
+    @Override
+    public int setLeftCornerLogo() {
+        return 0;
     }
 
     //方式1

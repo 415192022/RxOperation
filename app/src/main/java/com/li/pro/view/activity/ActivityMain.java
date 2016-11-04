@@ -18,6 +18,7 @@ import android.widget.Button;
 
 import com.li.fragmentutils.Fragmentation;
 import com.li.fragmentutils.base.BaseActivity;
+import com.li.pro.view.fragment.rxjava.FragmentRxJava;
 import com.li.pro.view.fragment.HomeFragment;
 import com.li.pro.adapter.NavRecycleViewAdapter;
 import com.li.skipAnimation.main.TransitionsHeleper;
@@ -47,12 +48,12 @@ public class ActivityMain extends BaseActivity implements NavigationView.OnNavig
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         rv_nav = (RecyclerView) navigationView.
 //                getHeaderView(0).
-                findViewById(R.id.rv_nav);
+        findViewById(R.id.rv_nav);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
         rv_nav.setLayoutManager(mLayoutManager);
         NavRecycleViewAdapter.getInstance().init(this).clearAll();
         rv_nav.setAdapter(NavRecycleViewAdapter.getInstance()
-                .init(this).addItem("RXJava", "Retrofit"));
+                .init(this).addItem("RXJava", "开启wifi调试(需要Root)"));
         NavRecycleViewAdapter.getInstance().setOnNavRecycleViewItemClickListener(new NavRecycleViewAdapter.OnNavRecycleViewItemClickListener() {
             @Override
             public void onItemClick(View view, int position, String str) {
@@ -60,7 +61,7 @@ public class ActivityMain extends BaseActivity implements NavigationView.OnNavig
                     case 0:
                         //RxJava
                         drawer.closeDrawers();
-                        startActivity(new Intent(ActivityMain.this, ActivityRxJava.class));
+                        Fragmentation.getInstance(ActivityMain.this).loadRootTransaction(getSupportFragmentManager(), R.id.fl_mainroot, new FragmentRxJava());
                         break;
                 }
             }
@@ -132,12 +133,12 @@ public class ActivityMain extends BaseActivity implements NavigationView.OnNavig
 
     @Override
     public boolean isShowBackArrow() {
-        return true;
+        return false;
     }
 
     @Override
     public int setLeftCornerLogo() {
-        return 0;
+        return R.mipmap.ic_launcher;
     }
 
     @Override

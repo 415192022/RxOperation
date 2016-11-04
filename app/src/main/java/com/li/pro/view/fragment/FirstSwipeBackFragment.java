@@ -25,4 +25,24 @@ public class FirstSwipeBackFragment extends BaseFragment {
     public void initView(View view) {
 
     }
+
+    @Override
+    public String setToolBarTitle() {
+        return "123";
+    }
+
+    @Override
+    public boolean isHideActionBar() {
+        return false;
+    }
+
+    @Override
+    public boolean isShowBackArrow() {
+        return true;
+    }
+
+    @Override
+    public int setLeftCornerLogo() {
+        return 0;
+    }
 }
