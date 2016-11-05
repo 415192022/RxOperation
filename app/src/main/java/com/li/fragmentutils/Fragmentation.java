@@ -205,6 +205,18 @@ public class Fragmentation {
                 .show(showFragment)
                 .commit();
     }
+    /**
+     * show一个Fragment,hide一个Fragment ; 主要用于类似微信主页那种 切换tab的情况
+     *
+     * @param showFragment 需要show的Fragment
+     * @param hideFragment 需要hide的Fragment
+     */
+    public void showHideAllFragment(FragmentManager fragmentManager, SupportFragment showFragment, SupportFragment hideFragment) {
+        fragmentManager.beginTransaction()
+                .hide(hideFragment)
+                .show(showFragment)
+                .commit();
+    }
 
     public void start(FragmentManager fragmentManager, SupportFragment from, SupportFragment to, View sharedElement, String name) {
         String toName = to.getClass().getName();

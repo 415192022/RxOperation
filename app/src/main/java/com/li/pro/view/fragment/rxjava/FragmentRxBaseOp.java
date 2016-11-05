@@ -15,7 +15,7 @@ import rxop.li.com.rxoperation.R;
 /**
  * Created by Mingwei Li on 2016/11/4 0004.
  */
-public class FragmentRxBaseOp extends BaseSwipFragment {
+public class FragmentRxBaseOp extends BaseFragment {
     TextView tv_rxbaseshow;
     Button btn_rxbasestar;
 

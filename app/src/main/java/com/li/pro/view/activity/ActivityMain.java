@@ -22,8 +22,11 @@ import com.li.pro.view.fragment.rxjava.FragmentRxJava;
 import com.li.pro.view.fragment.HomeFragment;
 import com.li.pro.adapter.NavRecycleViewAdapter;
 import com.li.skipAnimation.main.TransitionsHeleper;
+import com.li.utils.AdbUtilS;
 import com.li.utils.ui.bottombar.BottomBar;
 import com.li.utils.ui.bottombar.BottomBarTab;
+
+import java.io.IOException;
 
 import rxop.li.com.rxoperation.R;
 
@@ -62,6 +65,15 @@ public class ActivityMain extends BaseActivity implements NavigationView.OnNavig
                         //RxJava
                         drawer.closeDrawers();
                         Fragmentation.getInstance(ActivityMain.this).loadRootTransaction(getSupportFragmentManager(), R.id.fl_mainroot, new FragmentRxJava());
+                        break;
+                    case 1:
+                        try {
+                            AdbUtilS.getInstance().set(5555);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                         break;
                 }
             }

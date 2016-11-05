@@ -18,16 +18,16 @@ public class FragmentRxJava extends BaseSwipFragment {
 
     @Override
     public void initView(View view) {
+        //加载一个不可替换的Fragment根
         loadRootFragment(R.id.fl_rxjava_left, new FragmentRxJavaList());
-        loadMultipleRootFragment(R.id.fl_rxjava_right, 0, new FragmentRxBaseOp(), new FragmentRxMap());
-//        loadRootFragment(R.id.fl_rxjava_right,new FragmentRxSchedu());
-//        loadRootFragment(R.id.fl_rxjava_right,new FragmentRxFlatMap());
-//        loadRootFragment(R.id.fl_rxjava_right,new FragmentRxmerge());
-//        loadRootFragment(R.id.fl_rxjava_right,new FragmentRxBinding());
-//        loadRootFragment(R.id.fl_rxjava_right,new FragmentRxFilter());
-//        loadRootFragment(R.id.fl_rxjava_right,new FragmentRxTakeDoNextOn());
-//        loadRootFragment(R.id.fl_rxjava_right,new FragmentRxInterval());
-//        loadRootFragment(R.id.fl_rxjava_right,new FragmentRxcToSocredList());
+        //必须先预加载所有Fragment才能通过find找到Fragment对象
+        loadMultipleRootFragment(R.id.fl_rxjava_right, 0,
+                new FragmentRxBaseOp(), new FragmentRxMap(), new FragmentRxSchedu()
+                , new FragmentRxFlatMap(), new FragmentRxmerge(), new FragmentRxBinding(), new FragmentRxFilter()
+                , new FragmentRxTakeDoNextOn(), new FragmentRxInterval(), new FragmentRxcToSocredList()
+        );
+        //加载一个可替换的Fragment根并默认加载哪个Fragment
+        replaceLoadRootFragment(R.id.fl_rxjava_right, new FragmentRxBaseOp(), true);
     }
 
     @Override

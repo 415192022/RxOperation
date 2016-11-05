@@ -2,16 +2,19 @@ package com.li.pro.view.fragment.rxjava;
 
 import android.view.View;
 
+import com.li.fragmentutils.base.BaseFragment;
 import com.li.fragmentutils.base.BaseSwipFragment;
+
+import rxop.li.com.rxoperation.R;
 
 /**
  * Created by Administrator on 2016/11/4 0004.
  */
 
-public class FragmentRxInterval extends BaseSwipFragment {
+public class FragmentRxInterval extends BaseFragment {
     @Override
     public int ftagmentLayout() {
-        return 0;
+        return  R.layout.layout_rx_interval;
     }
 
     @Override
