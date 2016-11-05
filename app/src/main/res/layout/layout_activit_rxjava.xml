@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:fitsSystemWindows="true"
-    tools:context="com.li.pro.view.fragment.FragmentRxJava">
+    tools:context="com.li.pro.view.fragment.rxjava.FragmentRxJava">
 
     <LinearLayout
         android:background="#FFFFFF"

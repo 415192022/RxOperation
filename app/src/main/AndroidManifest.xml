@@ -27,10 +27,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.li.pro.view.activity.ActivityMain" />
         </activity>
-        <activity
-            android:name="com.li.pro.view.activity.ActivityRxJava"
-            android:parentActivityName="com.li.pro.view.activity.ActivityMain"
-            android:theme="@style/AppTheme.NoActionBar.SwipeBack"></activity>
     </application>
 
 </manifest>
