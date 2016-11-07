@@ -11,7 +11,7 @@ import rxop.li.com.rxoperation.R;
  * Created by Administrator on 2016/11/4 0004.
  */
 
-public class FragmentRxcToSocredList extends BaseFragment {
+public class FragmentRxToSocredList extends BaseFragment {
     @Override
     public int ftagmentLayout() {
         return R.layout.layout_rx_tosortedlist;

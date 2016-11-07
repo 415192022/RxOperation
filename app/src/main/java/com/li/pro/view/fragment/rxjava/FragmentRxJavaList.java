@@ -8,7 +8,6 @@ import android.widget.Toast;
 import com.li.fragmentutils.Fragmentation;
 import com.li.fragmentutils.SupportActivity;
 import com.li.fragmentutils.base.BaseFragment;
-import com.li.pro.adapter.NavRecycleViewAdapter;
 import com.li.pro.adapter.RxJavaListAdapter;
 
 import java.util.ArrayList;
@@ -47,44 +46,72 @@ public class FragmentRxJavaList extends BaseFragment {
                     //Rx基础操作
                     case 0:
                         //用当前活动状态的Fragment去替换另一个Fragment
-                        Fragmentation.getInstance((SupportActivity) getActivity()).getActiveFragment(FragmentRxJavaList.this, getFragmentManager()).replaceFragment(findFragment(FragmentRxBaseOp.class), false);
+//                        Fragmentation.getInstance((SupportActivity) getActivity()).getActiveFragment(FragmentRxJavaList.this, getFragmentManager()).replaceFragment(findFragment(FragmentRxBaseOp.class), false);
+                        //隐藏当前活动的Fragment 显示需要显示的Fragment
+                        showHideFragment(findFragment(FragmentRxBaseOp.class), Fragmentation.getInstance((SupportActivity) getActivity()).getActiveFragment(FragmentRxJavaList.this, getFragmentManager()));
                         break;
                     //Rx map操作符
                     case 1:
-                        Fragmentation.getInstance((SupportActivity) getActivity()).getActiveFragment(FragmentRxJavaList.this, getFragmentManager()).replaceFragment(findFragment(FragmentRxMap.class), false);
+                        //用当前活动状态的Fragment去替换另一个Fragment
+//                        Fragmentation.getInstance((SupportActivity) getActivity()).getActiveFragment(FragmentRxJavaList.this, getFragmentManager()).replaceFragment(findFragment(FragmentRxMap.class), false);
+                        //隐藏当前活动的Fragment 显示需要显示的Fragment
+                        showHideFragment(findFragment(FragmentRxMap.class), Fragmentation.getInstance((SupportActivity) getActivity()).getActiveFragment(FragmentRxJavaList.this, getFragmentManager()));
                         break;
                     //线程调度
                     case 2:
-                        Fragmentation.getInstance((SupportActivity) getActivity()).getActiveFragment(FragmentRxJavaList.this, getFragmentManager()).replaceFragment(findFragment(FragmentRxSchedu.class), false);
-
+                        //用当前活动状态的Fragment去替换另一个Fragment
+//                        Fragmentation.getInstance((SupportActivity) getActivity()).getActiveFragment(FragmentRxJavaList.this, getFragmentManager()).replaceFragment(findFragment(FragmentRxSchedu.class), false);
+                        //隐藏当前活动的Fragment 显示需要显示的Fragment
+                        showHideFragment(findFragment(FragmentRxSchedu.class), Fragmentation.getInstance((SupportActivity) getActivity()).getActiveFragment(FragmentRxJavaList.this, getFragmentManager()));
                         break;
                     //Rx flatMap操作符
                     case 3:
-                        Fragmentation.getInstance((SupportActivity) getActivity()).getActiveFragment(FragmentRxJavaList.this, getFragmentManager()).replaceFragment(findFragment(FragmentRxFlatMap.class), false);
+                        //用当前活动状态的Fragment去替换另一个Fragment
+//                        Fragmentation.getInstance((SupportActivity) getActivity()).getActiveFragment(FragmentRxJavaList.this, getFragmentManager()).replaceFragment(findFragment(FragmentRxFlatMap.class), false);
+                        //隐藏当前活动的Fragment 显示需要显示的Fragment
+                        showHideFragment(findFragment(FragmentRxFlatMap.class), Fragmentation.getInstance((SupportActivity) getActivity()).getActiveFragment(FragmentRxJavaList.this, getFragmentManager()));
                         break;
                     //Rx merge操作符
                     case 4:
-                        Fragmentation.getInstance((SupportActivity) getActivity()).getActiveFragment(FragmentRxJavaList.this, getFragmentManager()).replaceFragment(findFragment(FragmentRxmerge.class), false);
+                        //用当前活动状态的Fragment去替换另一个Fragment
+//                        Fragmentation.getInstance((SupportActivity) getActivity()).getActiveFragment(FragmentRxJavaList.this, getFragmentManager()).replaceFragment(findFragment(FragmentRxmerge.class), false);
+                        //隐藏当前活动的Fragment 显示需要显示的Fragment
+                        showHideFragment(findFragment(FragmentRxmerge.class), Fragmentation.getInstance((SupportActivity) getActivity()).getActiveFragment(FragmentRxJavaList.this, getFragmentManager()));
                         break;
                     //RxBinding
                     case 5:
-                        Fragmentation.getInstance((SupportActivity) getActivity()).getActiveFragment(FragmentRxJavaList.this, getFragmentManager()).replaceFragment(findFragment(FragmentRxBinding.class), false);
+                        //用当前活动状态的Fragment去替换另一个Fragment
+//                        Fragmentation.getInstance((SupportActivity) getActivity()).getActiveFragment(FragmentRxJavaList.this, getFragmentManager()).replaceFragment(findFragment(FragmentRxBinding.class), false);
+                        //隐藏当前活动的Fragment 显示需要显示的Fragment
+                        showHideFragment(findFragment(FragmentRxBinding.class), Fragmentation.getInstance((SupportActivity) getActivity()).getActiveFragment(FragmentRxJavaList.this, getFragmentManager()));
                         break;
                     //Rx Filter操作符
                     case 6:
-                        Fragmentation.getInstance((SupportActivity) getActivity()).getActiveFragment(FragmentRxJavaList.this, getFragmentManager()).replaceFragment(findFragment(FragmentRxFilter.class), false);
+                        //用当前活动状态的Fragment去替换另一个Fragment
+//                        Fragmentation.getInstance((SupportActivity) getActivity()).getActiveFragment(FragmentRxJavaList.this, getFragmentManager()).replaceFragment(findFragment(FragmentRxFilter.class), false);
+                        //隐藏当前活动的Fragment 显示需要显示的Fragment
+                        showHideFragment(findFragment(FragmentRxFilter.class), Fragmentation.getInstance((SupportActivity) getActivity()).getActiveFragment(FragmentRxJavaList.this, getFragmentManager()));
                         break;
                     //Rx tacke、DoOnNext操作符
                     case 7:
-                        Fragmentation.getInstance((SupportActivity) getActivity()).getActiveFragment(FragmentRxJavaList.this, getFragmentManager()).replaceFragment(findFragment(FragmentRxTakeDoNextOn.class), false);
+                        //用当前活动状态的Fragment去替换另一个Fragment
+//                        Fragmentation.getInstance((SupportActivity) getActivity()).getActiveFragment(FragmentRxJavaList.this, getFragmentManager()).replaceFragment(findFragment(FragmentRxTakeDoNextOn.class), false);
+                        //隐藏当前活动的Fragment 显示需要显示的Fragment
+                        showHideFragment(findFragment(FragmentRxTakeDoNextOn.class), Fragmentation.getInstance((SupportActivity) getActivity()).getActiveFragment(FragmentRxJavaList.this, getFragmentManager()));
                         break;
                     //Rx interval操作符
                     case 8:
-                        Fragmentation.getInstance((SupportActivity) getActivity()).getActiveFragment(FragmentRxJavaList.this, getFragmentManager()).replaceFragment(findFragment(FragmentRxInterval.class), false);
+                        //用当前活动状态的Fragment去替换另一个Fragment
+//                        Fragmentation.getInstance((SupportActivity) getActivity()).getActiveFragment(FragmentRxJavaList.this, getFragmentManager()).replaceFragment(findFragment(FragmentRxInterval.class), false);
+                        //隐藏当前活动的Fragment 显示需要显示的Fragment
+                        showHideFragment(findFragment(FragmentRxInterval.class), Fragmentation.getInstance((SupportActivity) getActivity()).getActiveFragment(FragmentRxJavaList.this, getFragmentManager()));
                         break;
                     //Rx toSortedList操作符
                     case 9:
-                        Fragmentation.getInstance((SupportActivity) getActivity()).getActiveFragment(FragmentRxJavaList.this, getFragmentManager()).replaceFragment(findFragment(FragmentRxcToSocredList.class), false);
+                        //用当前活动状态的Fragment去替换另一个Fragment
+//                        Fragmentation.getInstance((SupportActivity) getActivity()).getActiveFragment(FragmentRxJavaList.this, getFragmentManager()).replaceFragment(findFragment(FragmentRxToSocredList.class), false);
+//                        隐藏当前活动的Fragment 显示需要显示的Fragment
+                        showHideFragment(findFragment(FragmentRxToSocredList.class), Fragmentation.getInstance((SupportActivity) getActivity()).getActiveFragment(FragmentRxJavaList.this, getFragmentManager()));
                         break;
                 }
             }

@@ -24,15 +24,15 @@ public class FragmentRxJava extends BaseSwipFragment {
         loadMultipleRootFragment(R.id.fl_rxjava_right, 0,
                 new FragmentRxBaseOp(), new FragmentRxMap(), new FragmentRxSchedu()
                 , new FragmentRxFlatMap(), new FragmentRxmerge(), new FragmentRxBinding(), new FragmentRxFilter()
-                , new FragmentRxTakeDoNextOn(), new FragmentRxInterval(), new FragmentRxcToSocredList()
+                , new FragmentRxTakeDoNextOn(), new FragmentRxInterval(), new FragmentRxToSocredList()
         );
-        //加载一个可替换的Fragment根并默认加载哪个Fragment
-        replaceLoadRootFragment(R.id.fl_rxjava_right, new FragmentRxBaseOp(), true);
+//        //加载一个可替换的Fragment根并默认加载哪个Fragment(调用Replace时必须加载,show/hide不用)
+//        replaceLoadRootFragment(R.id.fl_rxjava_right, new FragmentRxBaseOp(), true);
     }
 
     @Override
     public String setToolBarTitle() {
-        return "RxJavaDemo";
+        return "Rx基础操作";
     }
 
     @Override
