@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.li.pro.bean.BeanRxSchedu;
+import com.li.pro.bean.rxjava.BeanRxSchedu;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.li.pro.bean;
+package com.li.pro.bean.rxjava;
 
 import java.util.List;
 

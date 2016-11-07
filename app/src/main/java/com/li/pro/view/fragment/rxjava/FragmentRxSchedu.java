@@ -2,15 +2,14 @@ package com.li.pro.view.fragment.rxjava;
 
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 
 import com.google.gson.Gson;
 import com.li.fragmentutils.base.BaseFragment;
 import com.li.pro.adapter.RxScheduAdpter;
 import com.li.pro.api.URLConst;
-import com.li.pro.bean.BeanRxSchedu;
-import com.li.pro.bean.BeanRxScheduBase;
+import com.li.pro.bean.rxjava.BeanRxSchedu;
+import com.li.pro.bean.rxjava.BeanRxScheduBase;
 
 import java.io.IOException;
 
@@ -20,7 +19,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import rx.Observable;
-import rx.Observer;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
@@ -59,14 +57,13 @@ public class FragmentRxSchedu extends BaseFragment {
             @Override
             public void call(final Subscriber<? super String> subscriber) {
                 OkHttpClient okHttpClient = new OkHttpClient();
-                Request request = new Request.Builder().url(URLConst.URL_GANK_IO_BASE + "福利/10/1").build();
+                Request request = new Request.Builder().url(URLConst.URL_GANK_IO_BASE + "福利/20/1").build();
                 Call call = okHttpClient.newCall(request);
                 call.enqueue(new Callback() {
                     @Override
                     public void onFailure(Call call, IOException e) {
-                        subscriber.onError(e);
-                    }
 
+                    }
                     @Override
                     public void onResponse(Call call, Response response) throws IOException {
                         subscriber.onNext(response.body().string());

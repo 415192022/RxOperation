@@ -1,4 +1,4 @@
-package com.li.pro.bean;
+package com.li.pro.bean.rxjava;
 
 /**
  * Created by Mingwei Li on 2016/11/7 0007.
