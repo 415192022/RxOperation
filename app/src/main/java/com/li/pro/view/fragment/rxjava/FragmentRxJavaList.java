@@ -12,6 +12,10 @@ import com.li.pro.adapter.RxJavaListAdapter;
 
 import java.util.ArrayList;
 
+import rx.Observable;
+import rx.Subscriber;
+import rx.functions.Action1;
+import rx.schedulers.Schedulers;
 import rxop.li.com.rxoperation.R;
 
 /**
@@ -41,7 +45,6 @@ public class FragmentRxJavaList extends BaseFragment {
             @Override
             public void onItemClick(int position, View view) {
                 RxJavaListAdapter.getInstance().setItemChecked(position);
-                Toast.makeText(getActivity(), "" + position, Toast.LENGTH_SHORT).show();
                 switch (position) {
                     //Rx基础操作
                     case 0:
@@ -62,7 +65,19 @@ public class FragmentRxJavaList extends BaseFragment {
                         //用当前活动状态的Fragment去替换另一个Fragment
 //                        Fragmentation.getInstance((SupportActivity) getActivity()).getActiveFragment(FragmentRxJavaList.this, getFragmentManager()).replaceFragment(findFragment(FragmentRxSchedu.class), false);
                         //隐藏当前活动的Fragment 显示需要显示的Fragment
-                        showHideFragment(findFragment(FragmentRxSchedu.class), Fragmentation.getInstance((SupportActivity) getActivity()).getActiveFragment(FragmentRxJavaList.this, getFragmentManager()));
+                        Observable.create(new Observable.OnSubscribe<Object>() {
+                            @Override
+                            public void call(Subscriber<? super Object> subscriber) {
+
+                            }
+                        })
+                                .subscribeOn(Schedulers.io())
+                                .subscribe(new Action1<Object>() {
+                                    @Override
+                                    public void call(Object o) {
+                                        showHideFragment(findFragment(FragmentRxSchedu.class), Fragmentation.getInstance((SupportActivity) getActivity()).getActiveFragment(FragmentRxJavaList.this, getFragmentManager()));
+                                    }
+                                });
                         break;
                     //Rx flatMap操作符
                     case 3:

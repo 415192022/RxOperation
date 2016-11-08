@@ -10,7 +10,7 @@
         android:layout_width="3dp"
         android:visibility="invisible"
         android:layout_height="match_parent"
-        android:background="@color/colorAccent"/>
+        android:background="@color/colorPrimary"/>
 
     <TextView
         android:id="@+id/tv_name"
@@ -24,8 +24,13 @@
         android:layout_toRightOf="@id/view_line"/>
 
     <View
+        android:layout_alignParentRight="true"
+        android:layout_width="0.3dp"
+        android:visibility="invisible"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"/>
+    <View
         android:layout_width="match_parent"
         android:layout_height="0.3dp"
-        android:background="#c9c9c9"/>
-
+        android:background="@color/colorPrimary"/>
 </RelativeLayout>

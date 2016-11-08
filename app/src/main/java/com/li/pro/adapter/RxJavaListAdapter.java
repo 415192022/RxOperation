@@ -2,6 +2,8 @@ package com.li.pro.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
@@ -30,10 +32,13 @@ public class RxJavaListAdapter extends RecyclerView.Adapter<RxJavaListAdapter.My
     private int mLastCheckedPosition = -1;
 
     private static RxJavaListAdapter rxJavaListAdapter;
-    private RxJavaListAdapter(){}
-    public synchronized static RxJavaListAdapter getInstance(){
-        if(null == rxJavaListAdapter){
-            rxJavaListAdapter=new RxJavaListAdapter();
+
+    private RxJavaListAdapter() {
+    }
+
+    public synchronized static RxJavaListAdapter getInstance() {
+        if (null == rxJavaListAdapter) {
+            rxJavaListAdapter = new RxJavaListAdapter();
         }
         return rxJavaListAdapter;
     }
@@ -45,17 +50,19 @@ public class RxJavaListAdapter extends RecyclerView.Adapter<RxJavaListAdapter.My
         return this;
     }
 
-    public RxJavaListAdapter add(String ...strItem) {
-        for (String str:strItem){
+    public RxJavaListAdapter add(String... strItem) {
+        for (String str : strItem) {
             mItems.add(str);
         }
         return this;
     }
-    public RxJavaListAdapter cleanAll(){
+
+    public RxJavaListAdapter cleanAll() {
         mItems.clear();
         return this;
     }
-    public void refresh(){
+
+    public void refresh() {
         notifyDataSetChanged();
     }
 
@@ -75,16 +82,17 @@ public class RxJavaListAdapter extends RecyclerView.Adapter<RxJavaListAdapter.My
         return holder;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         if (!mBooleanArray.get(position)) {
             holder.viewLine.setVisibility(View.INVISIBLE);
-            holder.itemView.setBackgroundResource(R.color.colorAccent);
-            holder.tvName.setTextColor(Color.BLACK);
+//            holder.itemView.setBackgroundColor(Color.WHITE);
+//            holder.tvName.setTextColor(Color.parseColor("#70104E8B"));
         } else {
             holder.viewLine.setVisibility(View.VISIBLE);
-            holder.itemView.setBackgroundColor(Color.WHITE);
-            holder.tvName.setTextColor(mContext.getResources().getColor(R.color.colorAccent));
+//            holder.itemView.setBackgroundColor(Color.parseColor("#70104E8B"));
+//            holder.tvName.setTextColor(Color.WHITE);
         }
         holder.tvName.setText(mItems.get(position));
     }

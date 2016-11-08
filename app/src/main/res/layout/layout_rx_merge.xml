@@ -3,6 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
+    android:background="#FFF"
     >
-
+    <TextView
+        android:text="数据合并操作,来自两个不同的Observer使用merge操作符
+        实现数据压合"
+        android:textColor="@color/colorPrimary"
+        android:id="@+id/tv_rx_merge_show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center"/>
 </android.support.v4.widget.NestedScrollView>

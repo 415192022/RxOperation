@@ -1,4 +1,18 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">RxOperation</string>
     <string name="title_item_detail">Item Detail</string>
+
+    <!--MD Bottom-->
+    <!-- value for the phone mode menu -->
+    <string name="bbn_phone_view_behavior" translatable="false" tools:ignore="UnusedResources">com.li.utils.ui.mdbottom.BottomBehavior</string>
+
+    <!-- behavior for the tablet mode menu -->
+    <string name="bbn_tablet_view_behavior" translatable="false" tools:ignore="UnusedResources">com.li.utils.ui.mdbottom.TabletBehavior</string>
+
+    <!-- this is the default value -->
+    <string name="bbn_default_view_behavior" translatable="false" tools:ignore="UnusedResources">com.li.utils.ui.mdbottom.BottomBehavior</string>
+
+    <!-- default badge provider -->
+    <string name="bbn_badgeProvider" translatable="false" tools:ignore="UnusedResources">com.li.utils.ui.mdbottom.BadgeProvider</string>
+    <!--MD Bottom-->
 </resources>

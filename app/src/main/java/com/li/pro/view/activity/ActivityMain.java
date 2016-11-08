@@ -3,6 +3,7 @@ package com.li.pro.view.activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.CoordinatorLayout;
@@ -15,6 +16,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.li.fragmentutils.Fragmentation;
 import com.li.fragmentutils.base.BaseActivity;
@@ -25,18 +27,23 @@ import com.li.skipAnimation.main.TransitionsHeleper;
 import com.li.utils.AdbUtilS;
 import com.li.utils.ui.bottombar.BottomBar;
 import com.li.utils.ui.bottombar.BottomBarTab;
+import com.li.utils.ui.mdbottom.BottomNavigation;
 
 import java.io.IOException;
 
 import rxop.li.com.rxoperation.R;
 
-public class ActivityMain extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class ActivityMain extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener,BottomNavigation.OnMenuItemSelectionListener {
 
     private CoordinatorLayout cdl_root;
     private RecyclerView rv_nav;
     private NavigationView navigationView;
     private FloatingActionButton fab;
-    private BottomBar bb_root;
+
+    //普通导航栏
+//    private BottomBar bb_root;
+    //MD导航栏
+    private BottomNavigation bn_home_bottombar;
     private DrawerLayout drawer;
 
     @Override
@@ -81,35 +88,43 @@ public class ActivityMain extends BaseActivity implements NavigationView.OnNavig
         NavRecycleViewAdapter.getInstance().refresh();
 
         navigationView.setNavigationItemSelectedListener(this);
-        bb_root = (BottomBar) findViewById(R.id.bb_root);
-        bb_root.addItem(new BottomBarTab(this, R.drawable.ic_home_white_24dp))
-                .addItem(new BottomBarTab(this, R.drawable.ic_discover_white_24dp))
-                .addItem(new BottomBarTab(this, R.drawable.ic_message_white_24dp))
-                .addItem(new BottomBarTab(this, R.drawable.ic_account_circle_white_24dp));
-        bb_root.setOnTabSelectedListener(new BottomBar.OnTabSelectedListener() {
-            @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
-            @Override
-            public void onTabSelected(int position, int prePosition) {
-                bb_root.setCurrentItem(position);
-                HomeFragment homeFragment = Fragmentation.getInstance(ActivityMain.this).findStackFragment(HomeFragment.class, getSupportFragmentManager(), true);
-                Fragmentation.getInstance(ActivityMain.this)
-                        .showHideFragment(getSupportFragmentManager(), homeFragment, homeFragment);
-                ((Button) homeFragment.getView().findViewById(R.id.tv_test)).setText("position：" + position + "\n prePosition" + prePosition);
-                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.dl_nva);
-                if (drawer.isDrawerOpen(GravityCompat.START)) {
-                    drawer.closeDrawer(GravityCompat.START);
-                }
-            }
+        //普通导航栏
+//        bb_root = (BottomBar) findViewById(R.id.bb_root);
+//        bb_root.addItem(new BottomBarTab(this, R.drawable.ic_home_white_24dp))
+//                .addItem(new BottomBarTab(this, R.drawable.ic_discover_white_24dp))
+//                .addItem(new BottomBarTab(this, R.drawable.ic_message_white_24dp))
+//                .addItem(new BottomBarTab(this, R.drawable.ic_account_circle_white_24dp));
+//        bb_root.setOnTabSelectedListener(new BottomBar.OnTabSelectedListener() {
+//            @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
+//            @Override
+//            public void onTabSelected(int position, int prePosition) {
+//                bb_root.setCurrentItem(position);
+//                HomeFragment homeFragment = Fragmentation.getInstance(ActivityMain.this).findStackFragment(HomeFragment.class, getSupportFragmentManager(), true);
+//                Fragmentation.getInstance(ActivityMain.this)
+//                        .showHideFragment(getSupportFragmentManager(), homeFragment, homeFragment);
+//                ((Button) homeFragment.getView().findViewById(R.id.tv_test)).setText("position：" + position + "\n prePosition" + prePosition);
+//                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.dl_nva);
+//                if (drawer.isDrawerOpen(GravityCompat.START)) {
+//                    drawer.closeDrawer(GravityCompat.START);
+//                }
+//            }
+//
+//            @Override
+//            public void onTabUnselected(int position) {
+//
+//            }
+//
+//            @Override
+//            public void onTabReselected(int position) {
+//            }
+//        });
 
-            @Override
-            public void onTabUnselected(int position) {
+        //MD风格导航栏
+        bn_home_bottombar = (BottomNavigation) findViewById(R.id.bn_home_bottombar);
+        bn_home_bottombar.setDefaultSelectedIndex(0);
+        bn_home_bottombar.setOnMenuItemClickListener(this);
+        bn_home_bottombar.getBadgeProvider().show(3);
 
-            }
-
-            @Override
-            public void onTabReselected(int position) {
-            }
-        });
 
 
         //加载默认Fregment
@@ -176,5 +191,24 @@ public class ActivityMain extends BaseActivity implements NavigationView.OnNavig
         } else {
             super.onBackPressed();
         }
+    }
+
+    //被选中时触发
+    @Override
+    public void onMenuItemSelect(@IdRes int itemId, int position) {
+        HomeFragment homeFragment = Fragmentation.getInstance(ActivityMain.this).findStackFragment(HomeFragment.class, getSupportFragmentManager(), true);
+                Fragmentation.getInstance(ActivityMain.this)
+                        .showHideFragment(getSupportFragmentManager(), homeFragment, homeFragment);
+                ((Button) homeFragment.getView().findViewById(R.id.tv_test)).setText("position：" + position + "\n prePosition" + position);
+                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.dl_nva);
+                if (drawer.isDrawerOpen(GravityCompat.START)) {
+                    drawer.closeDrawer(GravityCompat.START);
+                }
+        bn_home_bottombar.getBadgeProvider().remove(itemId);
+    }
+
+    //被选中时再次点击触发
+    @Override
+    public void onMenuItemReselect(@IdRes int itemId, int position) {
     }
 }
