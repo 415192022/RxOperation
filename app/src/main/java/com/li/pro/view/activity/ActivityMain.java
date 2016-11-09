@@ -33,7 +33,7 @@ import java.io.IOException;
 
 import rxop.li.com.rxoperation.R;
 
-public class ActivityMain extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener,BottomNavigation.OnMenuItemSelectionListener {
+public class ActivityMain extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener, BottomNavigation.OnMenuItemSelectionListener {
 
     private CoordinatorLayout cdl_root;
     private RecyclerView rv_nav;
@@ -126,7 +126,6 @@ public class ActivityMain extends BaseActivity implements NavigationView.OnNavig
         bn_home_bottombar.getBadgeProvider().show(3);
 
 
-
         //加载默认Fregment
         if (savedInstanceState == null) {
             loadRootFragment(R.id.fl_home_root, new HomeFragment());
@@ -197,18 +196,21 @@ public class ActivityMain extends BaseActivity implements NavigationView.OnNavig
     @Override
     public void onMenuItemSelect(@IdRes int itemId, int position) {
         HomeFragment homeFragment = Fragmentation.getInstance(ActivityMain.this).findStackFragment(HomeFragment.class, getSupportFragmentManager(), true);
-                Fragmentation.getInstance(ActivityMain.this)
-                        .showHideFragment(getSupportFragmentManager(), homeFragment, homeFragment);
-                ((Button) homeFragment.getView().findViewById(R.id.tv_test)).setText("position：" + position + "\n prePosition" + position);
-                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.dl_nva);
-                if (drawer.isDrawerOpen(GravityCompat.START)) {
-                    drawer.closeDrawer(GravityCompat.START);
-                }
+        Fragmentation.getInstance(ActivityMain.this)
+                .showHideFragment(getSupportFragmentManager(), homeFragment, homeFragment);
+        ((Button) homeFragment.getView().findViewById(R.id.tv_test)).setText("position：" + position + "\n prePosition" + position);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.dl_nva);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        }
         bn_home_bottombar.getBadgeProvider().remove(itemId);
     }
 
     //被选中时再次点击触发
     @Override
     public void onMenuItemReselect(@IdRes int itemId, int position) {
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        }
     }
 }
