@@ -30,9 +30,6 @@ import rxop.li.com.rxoperation.R;
 
 import static android.view.WindowManager.LayoutParams;
 
-/**
- * Created by alessandro on 4/2/16.
- */
 public final class MiscUtils {
 
     private MiscUtils() { }

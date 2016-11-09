@@ -52,14 +52,8 @@ import java.util.Map;
 
 import rxop.li.com.rxoperation.R;
 
-import static android.util.Log.INFO;
-import static android.util.Log.VERBOSE;
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 
-/**
- * Created by alessandro crugnola on 4/2/16.
- * BottomNavigation
- */
 public class BottomNavigation extends FrameLayout implements OnItemClickListener {
     private static final String TAG = BottomNavigation.class.getSimpleName();
 

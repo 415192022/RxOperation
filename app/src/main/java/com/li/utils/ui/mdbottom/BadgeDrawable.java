@@ -8,9 +8,6 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.SystemClock;
 
-/**
- * Created by crugnola on 4/12/16.
- */
 public class BadgeDrawable extends Drawable {
     private static final String TAG = BadgeDrawable.class.getSimpleName();
     public static final float FADE_DURATION = 100f;

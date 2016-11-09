@@ -15,10 +15,6 @@ import static android.util.Log.INFO;
 import static android.util.Log.VERBOSE;
 import static com.li.utils.ui.mdbottom.MiscUtils.log;
 
-/**
- * Created by alessandro on 4/10/16 at 2:12 PM.
- * Project: Material-BottomNavigation
- */
 @Keep
 public class TabletBehavior extends VerticalScrollingBehavior<BottomNavigation> {
     private static final String TAG = TabletBehavior.class.getSimpleName();

@@ -15,10 +15,6 @@ import android.view.animation.Interpolator;
 import rxop.li.com.rxoperation.R;
 
 
-/**
- * Created by alessandro on 4/3/16 at 10:55 PM.
- * Project: MaterialBottomNavigation
- */
 @SuppressLint("ViewConstructor")
 public class BottomNavigationTabletItemView extends BottomNavigationItemViewAbstract {
     private static final String TAG = BottomNavigationTabletItemView.class.getSimpleName();

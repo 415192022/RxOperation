@@ -14,9 +14,6 @@ import java.lang.ref.SoftReference;
 import rxop.li.com.rxoperation.R;
 
 
-/**
- * Created by crugnola on 4/6/16.
- */
 abstract class BottomNavigationItemViewAbstract extends View {
     public static final float ALPHA_MAX = 255f;
     private BottomNavigationItem item;

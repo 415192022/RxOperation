@@ -15,11 +15,6 @@ import java.util.List;
 
 import rxop.li.com.rxoperation.R;
 
-
-/**
- * Created by alessandro crugnola on 4/3/16 at 7:59 PM.
- * Project: MaterialBottomNavigation
- */
 class MenuParser {
 
     private static final String TAG = MenuParser.class.getSimpleName();

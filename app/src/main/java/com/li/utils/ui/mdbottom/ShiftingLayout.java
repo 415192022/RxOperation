@@ -12,10 +12,6 @@ import android.widget.Toast;
 import rxop.li.com.rxoperation.R;
 
 
-/**
- * Created by crugnola on 4/4/16.
- * MaterialBottomNavigation
- */
 public class ShiftingLayout extends ViewGroup implements ItemsLayoutContainer {
     private static final String TAG = ShiftingLayout.class.getSimpleName();
     public static final double ROUND_DECIMALS = 10d;

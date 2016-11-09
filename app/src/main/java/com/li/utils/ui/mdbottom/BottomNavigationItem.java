@@ -4,9 +4,6 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 
-/**
- * Created by alessandro on 4/3/16.
- */
 public class BottomNavigationItem {
     private final int id;
     private final int iconResource;

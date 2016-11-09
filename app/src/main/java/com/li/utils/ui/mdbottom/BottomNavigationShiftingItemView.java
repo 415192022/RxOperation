@@ -17,10 +17,6 @@ import rxop.li.com.rxoperation.R;
 import static android.util.Log.INFO;
 import static android.util.Log.VERBOSE;
 
-/**
- * Created by alessandro on 4/3/16 at 10:55 PM.
- * Project: MaterialBottomNavigation
- */
 @SuppressLint ("ViewConstructor")
 public class BottomNavigationShiftingItemView extends BottomNavigationItemViewAbstract {
     private static final String TAG = BottomNavigationShiftingItemView.class.getSimpleName();

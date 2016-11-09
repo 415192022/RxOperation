@@ -30,10 +30,6 @@ import static android.util.Log.WARN;
 import static com.li.utils.ui.mdbottom.BottomNavigation.PENDING_ACTION_ANIMATE_ENABLED;
 import static com.li.utils.ui.mdbottom.BottomNavigation.PENDING_ACTION_NONE;
 
-/**
- * Created by alessandro crugnola on 4/2/16.
- * alessandro.crugnola@gmail.com
- */
 @Keep
 public class BottomBehavior extends VerticalScrollingBehavior<BottomNavigation> {
     private static final String TAG = BottomBehavior.class.getSimpleName();

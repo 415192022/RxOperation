@@ -20,7 +20,6 @@ import rxop.li.com.rxoperation.R;
 import static android.util.Log.DEBUG;
 
 /**
- * Created by alessandro on 4/3/16 at 10:55 PM.
  * Project: MaterialBottomNavigation
  */
 @SuppressLint ("ViewConstructor")

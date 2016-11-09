@@ -11,7 +11,6 @@ import rxop.li.com.rxoperation.R;
 
 
 /**
- * Created by alessandro crugnola on 4/12/16.
  * BadgeProvider
  */
 @Keep
