@@ -3,9 +3,6 @@ package com.li.utils.ui.preload;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 
-/**
- * Created by f.champigny on 30/08/16.
- */
 public abstract class ViewState<V extends View> {
     V view;
     Drawable background;

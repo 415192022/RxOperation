@@ -11,6 +11,7 @@ import com.li.fragmentutils.SupportActivity;
 import com.li.fragmentutils.base.BaseFragment;
 import com.li.pro.adapter.RxJavaListAdapter;
 import com.li.pro.view.activity.ActivityMain;
+import com.li.utils.ui.preload.PreLoader;
 
 import java.util.ArrayList;
 
@@ -58,7 +59,6 @@ public class FragmentRxJavaList extends BaseFragment {
 //                        Fragmentation.getInstance((SupportActivity) getActivity()).getActiveFragment(FragmentRxJavaList.this, getFragmentManager()).replaceFragment(findFragment(FragmentRxBaseOp.class), false);
                         //方式2、隐藏当前活动的Fragment 显示需要显示的Fragment(需要ParentFragment预加载)
                         showHideFragment(findFragment(FragmentRxBaseOp.class), Fragmentation.getInstance((SupportActivity) getActivity()).getActiveFragment(FragmentRxJavaList.this, getFragmentManager()));
-
                         //方式3：无需预加载，在要显示的时候加载(可提高APP性能)
 //                        Fragmentation.getInstance((ActivityMain) getActivity()).findStackFragment(FragmentRxJava.class, getFragmentManager(), true);
 //                        showHideFragment(findFragment(FragmentRxBaseOp.class), Fragmentation.getInstance((SupportActivity) getActivity()).getActiveFragment(FragmentRxJavaList.this, getFragmentManager()));

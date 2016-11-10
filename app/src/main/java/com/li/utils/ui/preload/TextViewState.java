@@ -4,9 +4,6 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.widget.TextView;
 
-/**
- * Created by f.champigny on 30/08/16.
- */
 public class TextViewState extends ViewState<TextView> {
     ColorStateList textColor;
 

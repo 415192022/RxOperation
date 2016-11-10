@@ -4,6 +4,9 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
+/**
+ * ADB命令相关
+ */
 public class AdbUtilS {
 	private static AdbUtilS adbUtilS;
 	private AdbUtilS(){}

@@ -17,9 +17,6 @@ import android.view.animation.LinearInterpolator;
 
 import java.lang.ref.WeakReference;
 
-/**
- * Created by f.champigny on 30/08/16.
- */
 public class GreyDrawable extends Drawable {
     public final static int DEFAULT_GREY = Color.argb(50, 200, 200, 200);
     public final static int DARKER_GREY = Color.argb(160, 180, 180, 180);

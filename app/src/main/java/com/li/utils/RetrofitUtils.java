@@ -7,6 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by LMW on 2016/6/7.
+ * Retrofit二次封装
  */
 public class RetrofitUtils {
     private static RetrofitUtils retrofitUtils;

@@ -11,9 +11,8 @@ import java.util.HashMap;
 
 
 /**
- * Created by Administrator on 2016/11/10 0010.
+ * 预加载缩略图
  */
-
 public class PreLoader {
     private final Context context;
 

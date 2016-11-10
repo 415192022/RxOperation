@@ -1,14 +1,21 @@
 package com.li.pro.adapter;
 
 import android.content.Context;
+import android.graphics.drawable.Animatable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.controller.BaseControllerListener;
+import com.facebook.drawee.controller.ControllerListener;
+import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.facebook.imagepipeline.image.ImageInfo;
 import com.li.pro.bean.rxjava.BeanRxSchedu;
+import com.li.utils.ui.preload.PreLoader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,10 +76,25 @@ public class RxScheduAdpter extends RecyclerView.Adapter<RxScheduAdpter.ViewHold
         View view = LayoutInflater.from(context).inflate(R.layout.layout_rx_schedu_item, parent, false);
         return new ViewHolder(view);
     }
-
     @Override
     public void onBindViewHolder(RxScheduAdpter.ViewHolder holder, int position) {
-        holder.sdv_rx_schedu_item_show.setImageURI(beanRxScheduList.get(position).getUrl());
+        ControllerListener controllerListener =new BaseControllerListener<ImageInfo>(){
+            @Override
+            public void onFailure(String id, Throwable throwable) {
+                super.onFailure(id, throwable);
+            }
+            @Override
+            public void onFinalImageSet(String id, ImageInfo imageInfo, Animatable animatable) {
+                super.onFinalImageSet(id, imageInfo, animatable);
+            }
+
+        };
+        DraweeController draweeController= Fresco.newDraweeControllerBuilder()
+                .setControllerListener(controllerListener)
+                .setUri(beanRxScheduList.get(position).getUrl())
+                .build();
+        holder.sdv_rx_schedu_item_show.setController(draweeController);
+//        holder.sdv_rx_schedu_item_show.setImageURI(beanRxScheduList.get(position).getUrl());
         holder.tv_rx_schedu_item_detail.setText(beanRxScheduList.get(position).getWho());
     }
 

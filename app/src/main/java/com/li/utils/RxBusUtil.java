@@ -25,6 +25,7 @@ import rx.subjects.Subject;
 
 /**
  * RxBus
+ * 基于RxJava封装的RxBus
  */
 public class RxBusUtil {
     private static volatile RxBusUtil defaultInstance;

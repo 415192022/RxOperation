@@ -5,9 +5,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 
-/**
- * Created by f.champigny on 30/08/16.
- */
 public class ImageViewState extends ViewState<ImageView> {
     Drawable source;
 

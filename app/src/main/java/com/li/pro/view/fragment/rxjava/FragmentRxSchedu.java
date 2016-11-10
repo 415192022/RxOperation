@@ -60,20 +60,17 @@ public class FragmentRxSchedu extends BaseLazyFragment {
         Observable.create(new Observable.OnSubscribe<String>() {
             @Override
             public void call(final Subscriber<? super String> subscriber) {
-                final PreLoader preLoader=PreLoader.with(getActivity()).on(R.layout.layout_rx_schedu_item).start();
                 OkHttpClient okHttpClient = new OkHttpClient();
                 Request request = new Request.Builder().url(URLConst.URL_GANK_IO_BASE + "福利/20/1").build();
                 Call call = okHttpClient.newCall(request);
                 call.enqueue(new Callback() {
                     @Override
                     public void onFailure(Call call, IOException e) {
-                        preLoader.stop();
                     }
 
                     @Override
                     public void onResponse(Call call, Response response) throws IOException {
                         subscriber.onNext(response.body().string());
-                        preLoader.stop();
                     }
                 });
             }
