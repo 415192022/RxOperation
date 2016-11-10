@@ -67,7 +67,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingTop="16dp"
-                            android:src="@android:drawable/sym_def_app_icon" />
+                            android:src="@mipmap/ic_mail_white_24dp" />
 
                         <TextView
                             android:id="@+id/tv_name"
@@ -110,16 +110,6 @@
     </com.li.utils.ui.bottombar.BottomBar>
 
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical|center_horizontal"
-        android:layout_margin="@dimen/fab_margin"
-        app:layout_anchor="@+id/dl_nva"
-        app:layout_anchorGravity="top|right"
-        app:srcCompat="@android:drawable/stat_notify_chat" />
-
     <com.li.utils.ui.mdbottom.BottomNavigation
         android:id="@+id/bn_home_bottombar"
         android:layout_width="match_parent"
@@ -134,6 +124,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/fl_mainroot"
-        ></FrameLayout>
+        >
 
+
+    </FrameLayout>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:layout_margin="@dimen/fab_margin"
+        app:layout_anchor="@+id/dl_nva"
+        app:layout_anchorGravity="top|right"
+        app:srcCompat="@android:drawable/stat_notify_chat" />
 </android.support.design.widget.CoordinatorLayout>

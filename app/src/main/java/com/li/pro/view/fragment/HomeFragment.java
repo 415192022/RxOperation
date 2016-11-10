@@ -2,15 +2,12 @@ package com.li.pro.view.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.view.LayoutInflater;
+import android.support.design.widget.TabLayout;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.Toast;
 
-import com.li.fragmentutils.SwipeBackFragment;
-import com.li.fragmentutils.base.BaseFragment;
-import com.li.fragmentutils.base.BaseSwipFragment;
+import com.li.fragmentutils.base.BaseLazyFragment;
+import com.li.pro.adapter.FragmentHomeVPAdapter;
+import com.li.utils.ui.widget.XViewPager;
 
 import rxop.li.com.rxoperation.R;
 
@@ -18,23 +15,34 @@ import rxop.li.com.rxoperation.R;
  * Created by Mingwei Li on 2016/10/29 0029.
  */
 
-public  class HomeFragment extends BaseFragment{
-    private Button tv_test;
-    int i;
+public class HomeFragment extends BaseLazyFragment {
+    private XViewPager xvp_fragment_home;
+
     @Override
     public int ftagmentLayout() {
-        return R.layout.layout_base_fragment;
+        return R.layout.layout_fragment_home;
     }
+
     @Override
     public void initView(View view) {
-        tv_test= (Button) view.findViewById(R.id.tv_test);
-        tv_test.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getActivity(), "!!!!!!!!!!!!", Toast.LENGTH_SHORT).show();
-                tv_test.setText((i+=1)+"");
-            }
-        });
+        xvp_fragment_home = (XViewPager) view.findViewById(R.id.xvp_fragment_home);
+        xvp_fragment_home.
+                setAdapter(FragmentHomeVPAdapter.
+                        getInstance(getActivity(), getFragmentManager()).
+                        init().
+                        addFragments(
+                                new FragmentCAll(),
+                                new FragmentCApp(),
+                                new FragmentCExResource(),
+                                new FragmentCFront(),
+                                new FragmentCIos(),
+                                new FragmentCRecommand(),
+                                new FragmentCRelaxVideo(),
+                                new FragmentCWelfare(),
+                                new FragmentCAndroid()).
+                        addTitle("全部", "App", "拓展资源", "前端", "IOS", "推荐", "休息视频", "福利", "Android")
+                );
+        ((TabLayout)view.findViewById(R.id.tl_main)).setupWithViewPager(xvp_fragment_home);
     }
 
     @Override
@@ -44,7 +52,7 @@ public  class HomeFragment extends BaseFragment{
 
     @Override
     public boolean isHideActionBar() {
-        return false;
+        return true;
     }
 
     @Override
@@ -55,5 +63,10 @@ public  class HomeFragment extends BaseFragment{
     @Override
     public int setLeftCornerLogo() {
         return 0;
+    }
+
+    @Override
+    protected void initLazyView(@Nullable Bundle savedInstanceState) {
+
     }
 }

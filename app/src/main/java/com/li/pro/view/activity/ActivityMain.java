@@ -9,35 +9,34 @@ import android.support.annotation.RequiresApi;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 
 import com.li.fragmentutils.Fragmentation;
+import com.li.fragmentutils.SupportFragment;
 import com.li.fragmentutils.base.BaseActivity;
 import com.li.fragmentutils.base.BaseLazyFragment;
-import com.li.pro.view.fragment.rxjava.FragmentRxJava;
-import com.li.pro.view.fragment.HomeFragment;
+import com.li.fragmentutils.base.BaseLazySwipFragment;
 import com.li.pro.adapter.NavRecycleViewAdapter;
+import com.li.pro.view.fragment.HomeFragment;
+import com.li.pro.view.fragment.HomeFragment2;
+import com.li.pro.view.fragment.rxjava.FragmentRxJava;
 import com.li.skipAnimation.main.TransitionsHeleper;
 import com.li.utils.AdbUtilS;
 import com.li.utils.ui.mdbottom.BottomNavigation;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-import rx.Observable;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.functions.Func1;
-import rx.schedulers.Schedulers;
 import rxop.li.com.rxoperation.R;
 
-public class ActivityMain extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener, BottomNavigation.OnMenuItemSelectionListener,BaseLazyFragment.OnBackToFirstListener {
+public class ActivityMain extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener, BottomNavigation.OnMenuItemSelectionListener, BaseLazySwipFragment.OnBackToFirstListener,BaseLazyFragment.OnBackToFirstListener {
 
     private CoordinatorLayout cdl_root;
     private RecyclerView rv_nav;
@@ -48,6 +47,8 @@ public class ActivityMain extends BaseActivity implements NavigationView.OnNavig
 //    private BottomBar bb_root;
     //MD导航栏
     private BottomNavigation bn_home_bottombar;
+
+    private TabLayout tl_main;
     private DrawerLayout drawer;
 
     @Override
@@ -58,6 +59,7 @@ public class ActivityMain extends BaseActivity implements NavigationView.OnNavig
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void doBusiness(Bundle savedInstanceState) {
+
         drawer = (DrawerLayout) findViewById(R.id.dl_nva);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         rv_nav = (RecyclerView) navigationView.
@@ -129,10 +131,13 @@ public class ActivityMain extends BaseActivity implements NavigationView.OnNavig
         bn_home_bottombar.setOnMenuItemClickListener(this);
         bn_home_bottombar.getBadgeProvider().show(3);
 
-
         //加载默认Fregment
         if (savedInstanceState == null) {
-            loadRootFragment(R.id.fl_home_root, new HomeFragment());
+            HomeFragment homeFragment=new HomeFragment();
+            HomeFragment2 homeFragment2=new HomeFragment2();
+            loadMultipleRootFragment( R.id.fl_home_root, 0, homeFragment, homeFragment2);
+            fragments.add(homeFragment);
+            fragments.add(homeFragment2);
         }
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -178,7 +183,7 @@ public class ActivityMain extends BaseActivity implements NavigationView.OnNavig
 
     @Override
     public boolean isHideActionBar() {
-        return false;
+        return true;
     }
 
 
@@ -196,18 +201,20 @@ public class ActivityMain extends BaseActivity implements NavigationView.OnNavig
         }
     }
 
+    List<SupportFragment> fragments = new ArrayList<>();
+
+    int prePosition = 0;
+
     //被选中时触发
     @Override
     public void onMenuItemSelect(@IdRes int itemId, int position) {
-        HomeFragment homeFragment = Fragmentation.getInstance(ActivityMain.this).findStackFragment(HomeFragment.class, getSupportFragmentManager(), true);
-        Fragmentation.getInstance(ActivityMain.this)
-                .showHideFragment(getSupportFragmentManager(), homeFragment, homeFragment);
-        ((Button) homeFragment.getView().findViewById(R.id.tv_test)).setText("position：" + position + "\n prePosition" + position);
+        showHideFragment(fragments.get(position), fragments.get(prePosition));
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.dl_nva);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         }
         bn_home_bottombar.getBadgeProvider().remove(itemId);
+        prePosition = position;
     }
 
     //被选中时再次点击触发
