@@ -1,10 +1,13 @@
 package com.li.pro.view.fragment.rxjava;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.li.fragmentutils.base.BaseFragment;
+import com.li.fragmentutils.base.BaseLazyFragment;
 import com.li.fragmentutils.base.BaseSwipFragment;
 
 import rx.Observable;
@@ -15,7 +18,7 @@ import rxop.li.com.rxoperation.R;
 /**
  * Created by Mingwei Li on 2016/11/4 0004.
  */
-public class FragmentRxBaseOp extends BaseFragment {
+public class FragmentRxBaseOp extends BaseLazyFragment {
     TextView tv_rxbaseshow;
     Button btn_rxbasestar;
 
@@ -108,4 +111,8 @@ public class FragmentRxBaseOp extends BaseFragment {
     }
 
 
+    @Override
+    protected void initLazyView(@Nullable Bundle savedInstanceState) {
+
+    }
 }

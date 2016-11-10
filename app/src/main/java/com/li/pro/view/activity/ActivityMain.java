@@ -16,24 +16,28 @@ import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.li.fragmentutils.Fragmentation;
 import com.li.fragmentutils.base.BaseActivity;
+import com.li.fragmentutils.base.BaseLazyFragment;
 import com.li.pro.view.fragment.rxjava.FragmentRxJava;
 import com.li.pro.view.fragment.HomeFragment;
 import com.li.pro.adapter.NavRecycleViewAdapter;
 import com.li.skipAnimation.main.TransitionsHeleper;
 import com.li.utils.AdbUtilS;
-import com.li.utils.ui.bottombar.BottomBar;
-import com.li.utils.ui.bottombar.BottomBarTab;
 import com.li.utils.ui.mdbottom.BottomNavigation;
 
 import java.io.IOException;
 
+import rx.Observable;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.functions.Func1;
+import rx.schedulers.Schedulers;
 import rxop.li.com.rxoperation.R;
 
-public class ActivityMain extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener, BottomNavigation.OnMenuItemSelectionListener {
+public class ActivityMain extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener, BottomNavigation.OnMenuItemSelectionListener,BaseLazyFragment.OnBackToFirstListener {
 
     private CoordinatorLayout cdl_root;
     private RecyclerView rv_nav;
@@ -69,11 +73,11 @@ public class ActivityMain extends BaseActivity implements NavigationView.OnNavig
             public void onItemClick(View view, int position, String str) {
                 switch (position) {
                     case 0:
-                        //RxJava
-                        drawer.closeDrawers();
                         Fragmentation.getInstance(ActivityMain.this).loadRootTransaction(getSupportFragmentManager(), R.id.fl_mainroot, new FragmentRxJava());
+                        drawer.closeDrawers();
                         break;
                     case 1:
+                        //开启ADB wifi调试
                         try {
                             AdbUtilS.getInstance().set(5555);
                         } catch (IOException e) {
@@ -212,5 +216,10 @@ public class ActivityMain extends BaseActivity implements NavigationView.OnNavig
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         }
+    }
+
+    @Override
+    public void onBackToFirstFragment() {
+
     }
 }

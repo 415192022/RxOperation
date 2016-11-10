@@ -18,6 +18,10 @@ import com.li.fragmentutils.helper.OnEnterAnimEndListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import rx.Observable;
+import rx.functions.Action1;
+import rx.functions.Func1;
+import rx.schedulers.Schedulers;
 
 
 /**
@@ -199,7 +203,7 @@ public class Fragmentation {
      * @param showFragment 需要show的Fragment
      * @param hideFragment 需要hide的Fragment
      */
-    public void showHideFragment(FragmentManager fragmentManager, SupportFragment showFragment, SupportFragment hideFragment) {
+    public void showHideFragment(final FragmentManager fragmentManager, final SupportFragment showFragment, final SupportFragment hideFragment) {
         fragmentManager.beginTransaction()
                 .hide(hideFragment)
                 .show(showFragment)

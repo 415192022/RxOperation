@@ -1,15 +1,19 @@
 package com.li.pro.view.fragment.rxjava;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.google.gson.Gson;
 import com.li.fragmentutils.base.BaseFragment;
+import com.li.fragmentutils.base.BaseLazyFragment;
 import com.li.pro.adapter.RxScheduAdpter;
 import com.li.pro.api.URLConst;
 import com.li.pro.bean.rxjava.BeanRxSchedu;
 import com.li.pro.bean.rxjava.BeanRxScheduBase;
+import com.li.utils.ui.preload.PreLoader;
 
 import java.io.IOException;
 
@@ -31,7 +35,7 @@ import rxop.li.com.rxoperation.R;
  * okhttp + RxJava
  */
 
-public class FragmentRxSchedu extends BaseFragment {
+public class FragmentRxSchedu extends BaseLazyFragment {
     private RecyclerView rv_rxschedushow;
 
     @Override
@@ -56,23 +60,24 @@ public class FragmentRxSchedu extends BaseFragment {
         Observable.create(new Observable.OnSubscribe<String>() {
             @Override
             public void call(final Subscriber<? super String> subscriber) {
+                final PreLoader preLoader=PreLoader.with(getActivity()).on(R.layout.layout_rx_schedu_item).start();
                 OkHttpClient okHttpClient = new OkHttpClient();
                 Request request = new Request.Builder().url(URLConst.URL_GANK_IO_BASE + "福利/20/1").build();
                 Call call = okHttpClient.newCall(request);
                 call.enqueue(new Callback() {
                     @Override
                     public void onFailure(Call call, IOException e) {
-
+                        preLoader.stop();
                     }
+
                     @Override
                     public void onResponse(Call call, Response response) throws IOException {
                         subscriber.onNext(response.body().string());
+                        preLoader.stop();
                     }
                 });
             }
         })
-                .subscribeOn(AndroidSchedulers.mainThread())
-                .observeOn(Schedulers.io())
                 .flatMap(new Func1<String, Observable<BeanRxSchedu>>() {
                     @Override
                     public Observable<BeanRxSchedu> call(String s) {
@@ -85,6 +90,8 @@ public class FragmentRxSchedu extends BaseFragment {
                         return beanRxSchedu;
                     }
                 })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<BeanRxSchedu>() {
                     @Override
                     public void call(BeanRxSchedu beanRxSchedu) {
@@ -112,5 +119,10 @@ public class FragmentRxSchedu extends BaseFragment {
     @Override
     public int setLeftCornerLogo() {
         return 0;
+    }
+
+    @Override
+    protected void initLazyView(@Nullable Bundle savedInstanceState) {
+
     }
 }
