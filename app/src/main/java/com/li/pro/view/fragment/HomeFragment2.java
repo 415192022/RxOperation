@@ -1,10 +1,8 @@
 package com.li.pro.view.fragment;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.View;
 
-import com.li.fragmentutils.base.BaseLazyFragment;
+import com.li.fragmentutils.base.BaseFragment;
 import com.li.utils.ui.widget.XViewPager;
 
 import rxop.li.com.rxoperation.R;
@@ -13,7 +11,7 @@ import rxop.li.com.rxoperation.R;
  * Created by Mingwei Li on 2016/10/29 0029.
  */
 
-public class HomeFragment2 extends BaseLazyFragment {
+public class HomeFragment2 extends BaseFragment {
     private XViewPager xvp_fragment_home;
 
     @Override
@@ -45,8 +43,4 @@ public class HomeFragment2 extends BaseLazyFragment {
         return 0;
     }
 
-    @Override
-    protected void initLazyView(@Nullable Bundle savedInstanceState) {
-
-    }
 }

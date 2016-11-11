@@ -135,7 +135,9 @@ public class ActivityMain extends BaseActivity implements NavigationView.OnNavig
         if (savedInstanceState == null) {
             HomeFragment homeFragment=new HomeFragment();
             HomeFragment2 homeFragment2=new HomeFragment2();
-            loadMultipleRootFragment( R.id.fl_home_root, 0, homeFragment, homeFragment2);
+            loadRootFragment( R.id.fl_home_root,homeFragment);
+            loadRootFragment( R.id.fl_home_root,homeFragment2);
+//            loadMultipleRootFragment( R.id.fl_home_root, 0, homeFragment, homeFragment2);
             fragments.add(homeFragment);
             fragments.add(homeFragment2);
         }

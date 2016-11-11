@@ -14,7 +14,7 @@
         android:title="Cloud Sync" />
     <item
         android:id="@+id/bbn_item2"
-        android:color="@color/colorAccent"
+        android:color="@color/colorPrimary"
         android:icon="@drawable/ic_discover_white_24dp"
         android:title="Chromecast" />
     <item
@@ -24,7 +24,7 @@
         android:title="Mail" />
     <item
         android:id="@+id/bbn_item4"
-        android:color="@color/colorAccent"
+        android:color="@color/colorPrimary"
         android:icon="@drawable/ic_message_white_24dp"
         android:title="List" />
 
