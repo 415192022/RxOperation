@@ -25,6 +25,8 @@ import com.li.fragmentutils.base.BaseLazySwipFragment;
 import com.li.pro.adapter.NavRecycleViewAdapter;
 import com.li.pro.view.fragment.HomeFragment;
 import com.li.pro.view.fragment.HomeFragment2;
+import com.li.pro.view.fragment.HomeFragment3;
+import com.li.pro.view.fragment.HomeFragment4;
 import com.li.pro.view.fragment.rxjava.FragmentRxJava;
 import com.li.skipAnimation.main.TransitionsHeleper;
 import com.li.utils.AdbUtilS;
@@ -135,11 +137,17 @@ public class ActivityMain extends BaseActivity implements NavigationView.OnNavig
         if (savedInstanceState == null) {
             HomeFragment homeFragment=new HomeFragment();
             HomeFragment2 homeFragment2=new HomeFragment2();
-            loadRootFragment( R.id.fl_home_root,homeFragment);
+            HomeFragment3 homeFragment3=new HomeFragment3();
+            HomeFragment4 homeFragment4=new HomeFragment4();
+            loadRootFragment( R.id.fl_home_root,homeFragment4);
+            loadRootFragment( R.id.fl_home_root,homeFragment3);
             loadRootFragment( R.id.fl_home_root,homeFragment2);
+            loadRootFragment( R.id.fl_home_root,homeFragment);
 //            loadMultipleRootFragment( R.id.fl_home_root, 0, homeFragment, homeFragment2);
             fragments.add(homeFragment);
             fragments.add(homeFragment2);
+            fragments.add(homeFragment3);
+            fragments.add(homeFragment4);
         }
 
         fab = (FloatingActionButton) findViewById(R.id.fab);

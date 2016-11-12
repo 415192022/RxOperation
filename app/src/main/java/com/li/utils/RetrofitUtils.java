@@ -14,6 +14,10 @@ public class RetrofitUtils {
     private RetrofitUtils() {
     }
 
+    /**
+     * 1
+     * @return
+     */
     public static RetrofitUtils getInstance() {
         if (null == retrofitUtils) {
             synchronized (RetrofitUtils.class) {
@@ -37,7 +41,10 @@ public class RetrofitUtils {
         }
         return okHttpClient;
     }
-
+    /**
+     * 2
+     * @return
+     */
     public Retrofit getRetrofit(String baseURL) {
 
         if (null == retrofit) {
@@ -57,12 +64,13 @@ public class RetrofitUtils {
     }
 
     /**
+     * 3
      * 得到service对象
      * @param baseURL
      * @param <T>
      * @return
      */
-    public <T> T retrofitCtreate(String baseURL,Class<T> clzz) {
+    public <T> T c(String baseURL,Class<T> clzz) {
         return  getRetrofit(baseURL).create(clzz);
     }
 

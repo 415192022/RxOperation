@@ -13,12 +13,12 @@ import rxop.li.com.rxoperation.R;
  * Created by Mingwei Li on 2016/10/29 0029.
  */
 
-public class HomeFragment2 extends BaseLazyFragment {
+public class HomeFragment3 extends BaseLazyFragment {
     private XViewPager xvp_fragment_home;
 
     @Override
     public int ftagmentLayout() {
-        return R.layout.layout_fragment_home2;
+        return R.layout.layout_fragment_home3;
     }
 
     @Override

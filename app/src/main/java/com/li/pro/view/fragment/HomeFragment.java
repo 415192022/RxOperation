@@ -1,9 +1,11 @@
 package com.li.pro.view.fragment;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.view.View;
 
-import com.li.fragmentutils.base.BaseFragment;
+import com.li.fragmentutils.base.BaseLazyFragment;
 import com.li.pro.adapter.FragmentHomeVPAdapter;
 import com.li.utils.ui.widget.XViewPager;
 
@@ -13,7 +15,7 @@ import rxop.li.com.rxoperation.R;
  * Created by Mingwei Li on 2016/10/29 0029.
  */
 
-public class HomeFragment extends BaseFragment {
+public class HomeFragment extends BaseLazyFragment {
     private XViewPager xvp_fragment_home;
 
     @Override
@@ -63,4 +65,8 @@ public class HomeFragment extends BaseFragment {
         return 0;
     }
 
+    @Override
+    protected void initLazyView(@Nullable Bundle savedInstanceState) {
+
+    }
 }

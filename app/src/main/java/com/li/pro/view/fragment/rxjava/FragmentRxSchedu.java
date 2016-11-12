@@ -7,13 +7,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.google.gson.Gson;
-import com.li.fragmentutils.base.BaseFragment;
 import com.li.fragmentutils.base.BaseLazyFragment;
 import com.li.pro.adapter.RxScheduAdpter;
 import com.li.pro.api.URLConst;
 import com.li.pro.bean.rxjava.BeanRxSchedu;
 import com.li.pro.bean.rxjava.BeanRxScheduBase;
-import com.li.utils.ui.preload.PreLoader;
 
 import java.io.IOException;
 
@@ -61,7 +59,7 @@ public class FragmentRxSchedu extends BaseLazyFragment {
             @Override
             public void call(final Subscriber<? super String> subscriber) {
                 OkHttpClient okHttpClient = new OkHttpClient();
-                Request request = new Request.Builder().url(URLConst.URL_GANK_IO_BASE + "福利/20/1").build();
+                Request request = new Request.Builder().url(URLConst.URL_GANK_IO_BASE + "data/福利/20/1").build();
                 Call call = okHttpClient.newCall(request);
                 call.enqueue(new Callback() {
                     @Override
