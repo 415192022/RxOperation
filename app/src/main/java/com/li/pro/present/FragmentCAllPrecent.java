@@ -39,7 +39,6 @@ public class FragmentCAllPrecent {
     /**
      * 获得All分类内容
      *
-     * @param data
      * @param count
      * @param page
      */
@@ -47,6 +46,7 @@ public class FragmentCAllPrecent {
         fragmentCAllimpl.getFragmentCAll(count, page).flatMap(new Func1<BeanHomeBase, Observable<BeanHomeResults>>() {
             @Override
             public Observable<BeanHomeResults> call(BeanHomeBase beanHomeBase) {
+                System.out.print("beanHomeBase "+beanHomeBase);
                 return Observable.from(beanHomeBase.getResults());}}).
                 subscribeOn(Schedulers.newThread()).
                 observeOn(AndroidSchedulers.mainThread()).

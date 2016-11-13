@@ -5,6 +5,6 @@ package com.li.pro.api;
  */
 
 public class URLConst {
-    public static final String URL_GANK_IO_BASE="http://gank.io/api/";
+    public static final String URL_GANK_IO_BASE="http://gank.io/api/data/";
 
 }

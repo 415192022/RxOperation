@@ -31,8 +31,8 @@ public class HomeFragment extends BaseLazyFragment {
                         getInstance(getActivity(), getFragmentManager()).
                         init().
                         addFragments(
-                                new FragmentCAll(),
                                 new FragmentCApp(),
+                                new FragmentCAll(),
                                 new FragmentCExResource(),
                                 new FragmentCFront(),
                                 new FragmentCIos(),

@@ -36,7 +36,6 @@ public class FragmentCAll extends BaseLazyFragment implements IFragmentCAllView 
     public void initView(View view) {
 
         xsrl_home_all= (XSwipeRefreshLayout) view.findViewById(R.id.xsrl_home_all);
-        xsrl_home_all.refreshDrawableState();
         rv_home_all= (RecyclerView) view.findViewById(R.id.rv_home_all);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getActivity());
         rv_home_all.setLayoutManager(linearLayoutManager);

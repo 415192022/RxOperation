@@ -11,6 +11,6 @@ import rx.Observable;
  */
 
 public interface IFragmentCAll {
-    @GET("data/all/{number}/{page}")
+    @GET("all/{number}/{page}")
     Observable<BeanHomeBase> getFragmentCAll(@Path("number") int number, @Path("page") int page);
 }
