@@ -2,8 +2,6 @@ package com.li.pro.model;
 
 import com.li.pro.bean.home.BeanHomeBase;
 
-import retrofit2.http.GET;
-import retrofit2.http.Path;
 import rx.Observable;
 
 /**
@@ -11,6 +9,5 @@ import rx.Observable;
  */
 
 public interface IFragmentCAll {
-    @GET("all/{number}/{page}")
-    Observable<BeanHomeBase> getFragmentCAll(@Path("number") int number, @Path("page") int page);
+    Observable<BeanHomeBase> getFragmentCAll(int number,int page);
 }

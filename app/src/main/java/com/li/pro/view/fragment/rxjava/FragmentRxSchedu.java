@@ -59,7 +59,7 @@ public class FragmentRxSchedu extends BaseLazyFragment {
             @Override
             public void call(final Subscriber<? super String> subscriber) {
                 OkHttpClient okHttpClient = new OkHttpClient();
-                Request request = new Request.Builder().url(URLConst.URL_GANK_IO_BASE + "data/福利/20/1").build();
+                Request request = new Request.Builder().url(URLConst.URL_GANK_IO_BASE + "福利/20/1").build();
                 Call call = okHttpClient.newCall(request);
                 call.enqueue(new Callback() {
                     @Override

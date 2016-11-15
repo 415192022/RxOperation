@@ -1,6 +1,6 @@
 package com.li.pro.view.ifragment;
 
-import com.li.pro.bean.home.BeanHomeResults;
+import com.li.pro.bean.home.BeanHomeBase;
 
 /**
  * Created by Administrator on 2016/11/11 0011.
@@ -8,7 +8,7 @@ import com.li.pro.bean.home.BeanHomeResults;
 
 public interface IFragmentCAllView {
     void getFragmentCAllStart();
-    void getFragmentCAll(BeanHomeResults beanHomeResults);
+    void getFragmentCAll(BeanHomeBase beanHomeBase);
     void getFragmentCAllComplete();
     void getFragmentCAllError();
 }

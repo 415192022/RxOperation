@@ -46,17 +46,16 @@ public class RetrofitUtils {
      * @return
      */
     public Retrofit getRetrofit(String baseURL) {
-
         if (null == retrofit) {
             synchronized (Retrofit.class) {
                 if (null == retrofit) {
                     //构建Retrofit
-                    retrofit = new Retrofit.Builder()
-                            .client(getOkHttpInstance())
-                            .baseUrl(baseURL)
-                            .addConverterFactory(GsonConverterFactory.create())
-                            .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                            .build();
+                    retrofit = new Retrofit.Builder().
+                            client(getOkHttpInstance()).
+                            baseUrl(baseURL).
+                            addConverterFactory(GsonConverterFactory.create()).
+                            addCallAdapterFactory(RxJavaCallAdapterFactory.create()).
+                            build();
                 }
             }
         }
@@ -70,7 +69,7 @@ public class RetrofitUtils {
      * @param <T>
      * @return
      */
-    public <T> T c(String baseURL,Class<T> clzz) {
+    public <T> T retrofitCtreate(String baseURL,Class<T> clzz) {
         return  getRetrofit(baseURL).create(clzz);
     }
 

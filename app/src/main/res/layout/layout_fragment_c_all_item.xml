@@ -10,7 +10,7 @@
     app:cardCornerRadius="2dp">
 
     <LinearLayout
-        android:id="@+id/ll_fragment_c_item"
+        android:id="@+id/ll_fragment_c_all_item"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="10dp"

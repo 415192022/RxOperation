@@ -3,7 +3,7 @@ package com.li.pro.adapter;
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentPagerAdapter;
 
 import com.li.fragmentutils.SupportFragment;
 
@@ -14,7 +14,7 @@ import java.util.List;
  * Created by Administrator on 2016/11/10 0010.
  */
 
-public class FragmentHomeVPAdapter extends FragmentStatePagerAdapter {
+public class FragmentHomeVPAdapter extends FragmentPagerAdapter {
     private Context mContext;
     private List<String> titles;
     private List<SupportFragment> supportFragments;

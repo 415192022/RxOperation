@@ -27,22 +27,21 @@ public class HomeFragment extends BaseLazyFragment {
     public void initView(View view) {
         xvp_fragment_home = (XViewPager) view.findViewById(R.id.xvp_fragment_home);
         xvp_fragment_home.
-                setAdapter(FragmentHomeVPAdapter.
-                        getInstance(getActivity(), getFragmentManager()).
-                        init().
-                        addFragments(
-                                new FragmentCApp(),
-                                new FragmentCAll(),
-                                new FragmentCExResource(),
-                                new FragmentCFront(),
-                                new FragmentCIos(),
-                                new FragmentCRecommand(),
-                                new FragmentCRelaxVideo(),
-                                new FragmentCWelfare(),
-                                new FragmentCAndroid()).
-                        addTitle("全部", "App", "拓展资源", "前端", "IOS", "推荐", "休息视频", "福利", "Android")
+                setAdapter(FragmentHomeVPAdapter.getInstance(getActivity(), getFragmentManager()).
+                                init().
+                                addFragments(
+                                        new FragmentCAll(),
+                                        new FragmentCApp(),
+                                        new FragmentCExResource(),
+                                        new FragmentCFront(),
+                                        new FragmentCIos(),
+                                        new FragmentCRecommand(),
+                                        new FragmentCRelaxVideo(),
+                                        new FragmentCWelfare(),
+                                        new FragmentCAndroid()).
+                                addTitle("全部", "App", "拓展资源", "前端", "IOS", "推荐", "休息视频", "福利", "Android")
                 );
-        ((TabLayout)view.findViewById(R.id.tl_main)).setupWithViewPager(xvp_fragment_home);
+        ((TabLayout) view.findViewById(R.id.tl_main)).setupWithViewPager(xvp_fragment_home);
     }
 
     @Override
