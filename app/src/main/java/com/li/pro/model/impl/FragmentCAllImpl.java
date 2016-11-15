@@ -20,9 +20,7 @@ public class FragmentCAllImpl implements IFragmentCAll {
         return RetrofitUtils.
                 getInstance().
                 retrofitCtreate(URLConst.URL_GANK_IO_BASE, IFragmentCAllApiService.class).
-                getFragmentCAll(number, page).
-                subscribeOn(Schedulers.io()).
-                observeOn(AndroidSchedulers.mainThread())
+                getFragmentCAll(number, page)
                 ;
     }
 }

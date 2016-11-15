@@ -1,10 +1,15 @@
 package com.li.pro.present;
 
 import com.li.pro.bean.home.BeanHomeBase;
+import com.li.pro.bean.home.BeanHomeResults;
 import com.li.pro.model.impl.FragmentCAllImpl;
 import com.li.pro.view.ifragment.IFragmentCAllView;
 
-import rx.functions.Action1;
+import rx.Observable;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Func1;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by Mingwei Li on 2016/11/11 0011.
@@ -40,10 +45,41 @@ public class FragmentCAllPrecent {
     public void getFragmentCAllData(int count, int page) {
         fragmentCAllimpl.
                 getFragmentCAll(count, page).
-                subscribe(new Action1<BeanHomeBase>() {
+                unsubscribeOn(Schedulers.io()).
+                flatMap(new Func1<BeanHomeBase, Observable<BeanHomeResults>>() {
                     @Override
-                    public void call(BeanHomeBase beanHomeBase) {
-                        iFragmentCAllView.getFragmentCAll(beanHomeBase);
+                    public Observable<BeanHomeResults> call(BeanHomeBase beanHomeBase) {
+                        return Observable.from(beanHomeBase.getResults());
+                    }
+                }).
+                map(new Func1<BeanHomeResults, BeanHomeResults>() {
+                    @Override
+                    public BeanHomeResults call(BeanHomeResults beanHomeResults) {
+                        return beanHomeResults;
+                    }
+                }).
+                subscribeOn(Schedulers.newThread()).
+                observeOn(AndroidSchedulers.mainThread()).
+                subscribe(new Subscriber<BeanHomeResults>() {
+                    @Override
+                    public void onStart() {
+                        super.onStart();
+                        iFragmentCAllView.getFragmentCAllStart();
+                    }
+
+                    @Override
+                    public void onCompleted() {
+                        iFragmentCAllView.getFragmentCAllComplete();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        iFragmentCAllView.getFragmentCAllError();
+                    }
+
+                    @Override
+                    public void onNext(BeanHomeResults beanHomeResults) {
+                        iFragmentCAllView.getFragmentCAll(beanHomeResults);
                     }
                 })
         ;

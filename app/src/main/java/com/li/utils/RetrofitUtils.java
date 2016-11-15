@@ -4,6 +4,7 @@ import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 /**
  * Created by LMW on 2016/6/7.
@@ -11,11 +12,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class RetrofitUtils {
     private static RetrofitUtils retrofitUtils;
+
     private RetrofitUtils() {
     }
 
     /**
      * 1
+     *
      * @return
      */
     public static RetrofitUtils getInstance() {
@@ -41,8 +44,10 @@ public class RetrofitUtils {
         }
         return okHttpClient;
     }
+
     /**
      * 2
+     *
      * @return
      */
     public Retrofit getRetrofit(String baseURL) {
@@ -53,7 +58,11 @@ public class RetrofitUtils {
                     retrofit = new Retrofit.Builder().
                             client(getOkHttpInstance()).
                             baseUrl(baseURL).
+                            //增加返回值为String的支持
+                            addConverterFactory(ScalarsConverterFactory.create()).
+                            //增加返回值为Gson的支持(以实体类返回)
                             addConverterFactory(GsonConverterFactory.create()).
+                            //增加返回值为Oservable<T>的支持
                             addCallAdapterFactory(RxJavaCallAdapterFactory.create()).
                             build();
                 }
@@ -65,12 +74,13 @@ public class RetrofitUtils {
     /**
      * 3
      * 得到service对象
+     *
      * @param baseURL
      * @param <T>
      * @return
      */
-    public <T> T retrofitCtreate(String baseURL,Class<T> clzz) {
-        return  getRetrofit(baseURL).create(clzz);
+    public <T> T retrofitCtreate(String baseURL, Class<T> clzz) {
+        return getRetrofit(baseURL).create(clzz);
     }
 
 }
