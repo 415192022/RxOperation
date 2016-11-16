@@ -9,7 +9,7 @@
 ####7、沉浸式状态栏
 ####8、ADB开启Wifi调试 
 ####9、图文预加载结构缩略图
-####10、ViewPager+Fragment => LazyLoad
+####10、ViewPager+Fragment => LazyLoad 
 ####    不断更新中.....
 >联系作者： 
 ###### QQ:415192022
