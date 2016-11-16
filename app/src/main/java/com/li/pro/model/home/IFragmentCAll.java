@@ -1,4 +1,4 @@
-package com.li.pro.model;
+package com.li.pro.model.home;
 
 import com.li.pro.bean.home.BeanHomeBase;
 

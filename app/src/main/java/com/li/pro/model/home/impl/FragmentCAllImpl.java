@@ -1,14 +1,12 @@
-package com.li.pro.model.impl;
+package com.li.pro.model.home.impl;
 
 import com.li.pro.api.URLConst;
-import com.li.pro.apiservice.IFragmentCAllApiService;
+import com.li.pro.apiservice.home.IFragmentCAllApiService;
 import com.li.pro.bean.home.BeanHomeBase;
-import com.li.pro.model.IFragmentCAll;
+import com.li.pro.model.home.IFragmentCAll;
 import com.li.utils.RetrofitUtils;
 
 import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by Administrator on 2016/11/11 0011.

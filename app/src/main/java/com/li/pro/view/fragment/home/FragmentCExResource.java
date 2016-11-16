@@ -1,10 +1,8 @@
-package com.li.pro.view.fragment;
+package com.li.pro.view.fragment.home;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.View;
 
-import com.li.fragmentutils.base.BaseLazyFragment;
+import com.li.fragmentutils.base.BaseFragment;
 
 import rxop.li.com.rxoperation.R;
 
@@ -12,15 +10,11 @@ import rxop.li.com.rxoperation.R;
  * Created by Administrator on 2016/11/10 0010.
  */
 
-public class FragmentCRecommand extends BaseLazyFragment {
-    @Override
-    protected void initLazyView(@Nullable Bundle savedInstanceState) {
-
-    }
+public class FragmentCExResource extends BaseFragment {
 
     @Override
     public int ftagmentLayout() {
-        return R.layout.layout_fragment_c_recommand;
+        return R.layout.layout_fragment_c_exresource;
     }
 
     @Override

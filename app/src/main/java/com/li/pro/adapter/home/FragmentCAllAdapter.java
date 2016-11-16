@@ -11,6 +11,7 @@ import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.li.pro.bean.home.BeanHomeResults;
+import com.li.utils.ui.preload.PreLoader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +37,9 @@ public class FragmentCAllAdapter extends RecyclerView.Adapter<FragmentCAllAdapte
         }
         return fragmentCAllAdapter;
     }
+    public static FragmentCAllAdapter newInstance(){
+        return new FragmentCAllAdapter();
+    }
 
     public FragmentCAllAdapter init(Context context) {
         this.context = context;
@@ -59,6 +63,7 @@ public class FragmentCAllAdapter extends RecyclerView.Adapter<FragmentCAllAdapte
 
     @Override
     public FragmentCAllAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        PreLoader.getInstance(context).on(parent);
         return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.layout_fragment_c_all_item, parent, false));
     }
 

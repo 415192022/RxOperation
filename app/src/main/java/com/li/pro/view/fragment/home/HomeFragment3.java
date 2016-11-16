@@ -1,31 +1,26 @@
-package com.li.pro.view.fragment;
+package com.li.pro.view.fragment.home;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.View;
 
-import com.li.fragmentutils.base.BaseLazyFragment;
+import com.li.fragmentutils.base.BaseFragment;
+import com.li.utils.ui.widget.XViewPager;
 
 import rxop.li.com.rxoperation.R;
 
 /**
- * Created by Administrator on 2016/11/10 0010.
+ * Created by Mingwei Li on 2016/10/29 0029.
  */
 
-public class FragmentCFront extends BaseLazyFragment {
-    @Override
-    protected void initLazyView(@Nullable Bundle savedInstanceState) {
-
-    }
+public class HomeFragment3 extends BaseFragment {
+    private XViewPager xvp_fragment_home;
 
     @Override
     public int ftagmentLayout() {
-        return R.layout.layout_fragment_c_front;
+        return R.layout.layout_fragment_home3;
     }
 
     @Override
     public void initView(View view) {
-
     }
 
     @Override
@@ -35,7 +30,7 @@ public class FragmentCFront extends BaseLazyFragment {
 
     @Override
     public boolean isHideActionBar() {
-        return false;
+        return true;
     }
 
     @Override
@@ -47,4 +42,5 @@ public class FragmentCFront extends BaseLazyFragment {
     public int setLeftCornerLogo() {
         return 0;
     }
+
 }

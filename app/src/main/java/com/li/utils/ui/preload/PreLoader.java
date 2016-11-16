@@ -19,6 +19,7 @@ public class PreLoader {
     private HashMap<View, ViewState> viewsState;
 
     boolean fadein = true;
+    private static PreLoader preLoader;
 
     public PreLoader(Context context) {
         this.context = context;
@@ -29,6 +30,13 @@ public class PreLoader {
         return new PreLoader(context);
     }
 
+    public static synchronized PreLoader getInstance(Context context) {
+        if (null == preLoader) {
+            preLoader = with(context);
+        }
+        return preLoader;
+    }
+
     public PreLoader on(int... viewsId) {
         if (context instanceof Activity) {
             Activity activity = (Activity) context;
@@ -36,12 +44,12 @@ public class PreLoader {
                 add(activity.findViewById(view));
             }
         }
-        return this;
+        return preLoader;
     }
 
     public PreLoader fadein(boolean fadein) {
         this.fadein = fadein;
-        return this;
+        return preLoader;
     }
 
     private void add(View view) {
@@ -64,27 +72,27 @@ public class PreLoader {
     public PreLoader on(View... views) {
         for (View view : views)
             add(view);
-        return this;
+        return preLoader;
     }
 
     public PreLoader except(View... views) {
         for (View view : views) {
             this.viewsState.remove(view);
         }
-        return this;
+        return preLoader;
     }
 
     public PreLoader start() {
         for (ViewState viewState : viewsState.values()) {
             viewState.start(fadein);
         }
-        return this;
+        return preLoader;
     }
 
     public PreLoader stop() {
         for (ViewState viewState : viewsState.values()) {
             viewState.stop();
         }
-        return this;
+        return preLoader;
     }
 }

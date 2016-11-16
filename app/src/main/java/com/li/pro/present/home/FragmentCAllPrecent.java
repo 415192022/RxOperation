@@ -1,9 +1,9 @@
-package com.li.pro.present;
+package com.li.pro.present.home;
 
 import com.li.pro.bean.home.BeanHomeBase;
 import com.li.pro.bean.home.BeanHomeResults;
-import com.li.pro.model.impl.FragmentCAllImpl;
-import com.li.pro.view.ifragment.IFragmentCAllView;
+import com.li.pro.model.home.impl.FragmentCAllImpl;
+import com.li.pro.view.ifragment.home.IFragmentCAllView;
 
 import rx.Observable;
 import rx.Subscriber;

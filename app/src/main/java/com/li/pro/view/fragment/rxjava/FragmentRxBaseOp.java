@@ -1,14 +1,10 @@
 package com.li.pro.view.fragment.rxjava;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.li.fragmentutils.base.BaseFragment;
 import com.li.fragmentutils.base.BaseLazyFragment;
-import com.li.fragmentutils.base.BaseSwipFragment;
 
 import rx.Observable;
 import rx.Subscriber;
@@ -23,7 +19,7 @@ public class FragmentRxBaseOp extends BaseLazyFragment {
     Button btn_rxbasestar;
 
     //方式1
-   public void start() {
+    public void start() {
         //建立观察者与被观察者的关系
         ob().subscribe(sb());
     }
@@ -83,6 +79,7 @@ public class FragmentRxBaseOp extends BaseLazyFragment {
             }
         }).subscribeOn(AndroidSchedulers.mainThread());
     }
+
     //方式1
     //创建观察者
     public Subscriber sb() {
@@ -111,8 +108,4 @@ public class FragmentRxBaseOp extends BaseLazyFragment {
     }
 
 
-    @Override
-    protected void initLazyView(@Nullable Bundle savedInstanceState) {
-
-    }
 }

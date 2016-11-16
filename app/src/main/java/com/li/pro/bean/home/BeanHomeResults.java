@@ -7,7 +7,7 @@ import java.util.List;
  * 主页
  */
 
-public class BeanHomeResults extends BeanHomeBase {
+public class BeanHomeResults extends BeanHomeBase{
     private String _id;
     private String createdAt;
     private String desc;

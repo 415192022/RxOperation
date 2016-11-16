@@ -1,4 +1,4 @@
-package com.li.pro.view.fragment;
+package com.li.pro.view.fragment.home;
 
 import android.os.Bundle;
 import android.view.View;

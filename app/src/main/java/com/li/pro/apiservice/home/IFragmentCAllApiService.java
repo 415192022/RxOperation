@@ -1,4 +1,4 @@
-package com.li.pro.apiservice;
+package com.li.pro.apiservice.home;
 
 import com.li.pro.bean.home.BeanHomeBase;
 

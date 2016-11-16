@@ -1,7 +1,5 @@
 package com.li.pro.view.fragment.rxjava;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -44,6 +42,12 @@ public class FragmentRxSchedu extends BaseLazyFragment {
     @Override
     public void initView(View view) {
         rv_rxschedushow = (RecyclerView) view.findViewById(R.id.rv_rxschedushow);
+
+
+    }
+
+    @Override
+    protected void lazyFetchData() {
         GridLayoutManager glm = new GridLayoutManager(getActivity(), 2);
         rv_rxschedushow.setLayoutManager(glm);
         rv_rxschedushow.hasFixedSize();
@@ -96,6 +100,7 @@ public class FragmentRxSchedu extends BaseLazyFragment {
         ;
     }
 
+
     @Override
     public String setToolBarTitle() {
         return null;
@@ -116,8 +121,4 @@ public class FragmentRxSchedu extends BaseLazyFragment {
         return 0;
     }
 
-    @Override
-    protected void initLazyView(@Nullable Bundle savedInstanceState) {
-
-    }
 }

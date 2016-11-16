@@ -1,4 +1,4 @@
-package com.li.pro.view.ifragment;
+package com.li.pro.view.ifragment.home;
 
 import com.li.pro.bean.home.BeanHomeResults;
 
@@ -8,7 +8,10 @@ import com.li.pro.bean.home.BeanHomeResults;
 
 public interface IFragmentCAllView {
     void getFragmentCAllStart();
+
     void getFragmentCAll(BeanHomeResults beanHomeResults);
+
     void getFragmentCAllComplete();
+
     void getFragmentCAllError();
 }
