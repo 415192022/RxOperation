@@ -10,10 +10,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.v7.widget.RecyclerView
+        <com.li.utils.ui.widget.XRecyclerView
             android:id="@+id/rv_home_all"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+            android:layout_height="match_parent"></com.li.utils.ui.widget.XRecyclerView>
     </com.li.utils.ui.widget.XSwipeRefreshLayout>
 
 </FrameLayout>

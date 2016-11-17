@@ -7,7 +7,7 @@ import com.li.fragmentutils.base.BaseLazyFragment;
 import rxop.li.com.rxoperation.R;
 
 /**
- * Created by Administrator on 2016/11/10 0010.
+ * Created by Mingwei Li on 2016/11/10 0010.
  */
 
 public class FragmentCAndroid extends BaseLazyFragment {

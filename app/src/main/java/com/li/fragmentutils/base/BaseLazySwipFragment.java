@@ -6,7 +6,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 
 /**
- * Created by Administrator on 2016/11/9 0009.
+ * Created by Mingwei Li on 2016/11/9 0009.
  */
 
 public abstract class BaseLazySwipFragment extends BaseSwipFragment {

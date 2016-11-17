@@ -8,65 +8,16 @@ import android.view.View;
 import com.li.pro.view.fragment.home.FragmentCAll;
 
 /**
- * Created by Administrator on 2016/11/9 0009.
+ * Created by Mingwei Li on 2016/11/9 0009.
  */
 
 public abstract class BaseLazyFragment extends BaseFragment {
     protected OnBackToFirstListener _mBackToFirstListener;
-    private boolean isViewPrepared; // 标识fragment视图已经初始化完毕
-    private boolean hasFetchData; // 标识已经触发过懒加载数据
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        isViewPrepared=true;
-        lazyFetchDataIfPrepared();
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        hasFetchData=false;
-        isViewPrepared=false;
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnBackToFirstListener) {
-            _mBackToFirstListener = (OnBackToFirstListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnBackToFirstListener");
-        }
-    }
 
     @Override
     public void onDetach() {
         super.onDetach();
         _mBackToFirstListener = null;
-    }
-
-
-    /**
-     * 懒加载
-     */
-    protected  void lazyFetchData(){};
-
-    private void lazyFetchDataIfPrepared() {
-// 用户可见fragment && 没有加载过数据 && 视图已经准备完毕
-        if (getUserVisibleHint() && !hasFetchData && isViewPrepared) {
-            hasFetchData = true; //已加载过数据
-            lazyFetchData();
-        }
-    }
-
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if (isVisibleToUser) {//当当前为显示页面时
-            lazyFetchDataIfPrepared();
-        }
     }
 
     /**
@@ -91,4 +42,59 @@ public abstract class BaseLazyFragment extends BaseFragment {
     public interface OnBackToFirstListener {
         void onBackToFirstFragment();
     }
+
+
+    //==========================lazy==============================================
+
+    private boolean isViewPrepared; // 标识fragment视图已经初始化完毕
+    private boolean hasFetchData; // 标识已经触发过懒加载数据
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        isViewPrepared = true;
+        lazyFetchDataIfPrepared();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        hasFetchData = false;
+        isViewPrepared = false;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnBackToFirstListener) {
+            _mBackToFirstListener = (OnBackToFirstListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnBackToFirstListener");
+        }
+    }
+
+    /**
+     * 懒加载
+     */
+    protected void lazyFetchData() {
+    }
+
+    private void lazyFetchDataIfPrepared() {
+// 用户可见fragment && 没有加载过数据 && 视图已经准备完毕
+        if (getUserVisibleHint() && !hasFetchData && isViewPrepared) {
+            hasFetchData = true; //已加载过数据
+            lazyFetchData();
+        }
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {//当当前为显示页面时
+            lazyFetchDataIfPrepared();
+        }
+    }
+
+
 }

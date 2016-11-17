@@ -1,5 +1,6 @@
 package com.li.pro.adapter.home;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -27,6 +28,7 @@ public class FragmentCAllAdapter extends RecyclerView.Adapter<FragmentCAllAdapte
     private List<BeanHomeResults> beanHomeResultses = new ArrayList<>();
     private Context context;
     private static FragmentCAllAdapter fragmentCAllAdapter;
+    private ObjectAnimator objectAnimator;
 
     private FragmentCAllAdapter() {
     }
@@ -43,6 +45,9 @@ public class FragmentCAllAdapter extends RecyclerView.Adapter<FragmentCAllAdapte
 
     public FragmentCAllAdapter init(Context context) {
         this.context = context;
+        objectAnimator = new ObjectAnimator();
+        objectAnimator.setDuration(200);
+        objectAnimator.setPropertyName("alpha");
         return this;
     }
 
@@ -69,6 +74,9 @@ public class FragmentCAllAdapter extends RecyclerView.Adapter<FragmentCAllAdapte
 
     @Override
     public void onBindViewHolder(FragmentCAllAdapter.ViewHolder holder, int position) {
+//        objectAnimator.setFloatValues(0f,1f);
+//        objectAnimator.setTarget(holder.itemView);
+//        objectAnimator.start();
         if (null != beanHomeResultses.get(position).getImages() && null != beanHomeResultses.get(position) && null != beanHomeResultses && beanHomeResultses.get(position).getImages().size() > 0) {
             DraweeController draweeController = Fresco.newDraweeControllerBuilder().
                     setAutoPlayAnimations(true).
@@ -87,6 +95,7 @@ public class FragmentCAllAdapter extends RecyclerView.Adapter<FragmentCAllAdapte
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+        public View itemView;
         public SimpleDraweeView sdv_fragment_c_all;
         public TextView tv_fragment_c_all_title;
         public TextView tv_fragment_c_all_authro;
@@ -94,6 +103,7 @@ public class FragmentCAllAdapter extends RecyclerView.Adapter<FragmentCAllAdapte
 
         public ViewHolder(View itemView) {
             super(itemView);
+            this.itemView=itemView;
             sdv_fragment_c_all = (SimpleDraweeView) itemView.findViewById(R.id.sdv_fragment_c_all);
             tv_fragment_c_all_title = (TextView) itemView.findViewById(R.id.tv_fragment_c_all_title);
             tv_fragment_c_all_authro = (TextView) itemView.findViewById(R.id.tv_fragment_c_all_authro);

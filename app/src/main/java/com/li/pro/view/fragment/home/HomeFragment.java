@@ -24,6 +24,7 @@ public class HomeFragment extends BaseLazyFragment {
     @Override
     public void initView(View view) {
         xvp_fragment_home = (XViewPager) view.findViewById(R.id.xvp_fragment_home);
+        xvp_fragment_home.setOffscreenPageLimit(9);
         xvp_fragment_home.setAdapter(
                 FragmentHomeVPAdapter.
                         getInstance(getActivity(), getFragmentManager()).init().

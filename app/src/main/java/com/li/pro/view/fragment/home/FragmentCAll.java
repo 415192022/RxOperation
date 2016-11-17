@@ -17,7 +17,7 @@ import com.li.utils.ui.widget.XSwipeRefreshLayout;
 import rxop.li.com.rxoperation.R;
 
 /**
- * Created by Administrator on 2016/11/10 0010.
+ * Created by Mingwei Li on 2016/11/10 0010.
  */
 
 public class FragmentCAll extends BaseLazyFragment implements IFragmentCAllView, SwipeRefreshLayout.OnRefreshListener {
@@ -71,6 +71,7 @@ public class FragmentCAll extends BaseLazyFragment implements IFragmentCAllView,
     public void getFragmentCAllComplete() {
         PreLoader.getInstance(getActivity()).stop();
         xsrl_home_all.setRefreshing(false);
+        FragmentCAllAdapter.getInstance().refresh();
     }
 
     @Override

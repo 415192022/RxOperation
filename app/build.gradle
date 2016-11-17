@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'com.android.application' // or apply plugin: ‘Java’
+apply plugin: 'me.tatarka.retrolambda'
 android {
     compileSdkVersion 24
     buildToolsVersion "24.0.3"
@@ -16,6 +17,12 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    compileOptions {
+//        targetCompatibility 1.8
+//        sourceCompatibility 1.8
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
@@ -71,4 +78,6 @@ dependencies {
     //OkHttp
     compile 'com.squareup.okio:okio:1.5.0'
     //\OkHttp
+
+
 }

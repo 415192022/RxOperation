@@ -4,7 +4,6 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Toast;
 
 import com.li.fragmentutils.base.BaseLazyFragment;
 import com.li.pro.adapter.home.FragmentCAllAdapter;
@@ -17,7 +16,7 @@ import com.li.utils.ui.widget.XSwipeRefreshLayout;
 import rxop.li.com.rxoperation.R;
 
 /**
- * Created by Administrator on 2016/11/10 0010.
+ * Created by Mingwei Li on 2016/11/10 0010.
  */
 
 public class FragmentCApp extends BaseLazyFragment implements IFragmentCAppView, SwipeRefreshLayout.OnRefreshListener {
@@ -33,11 +32,23 @@ public class FragmentCApp extends BaseLazyFragment implements IFragmentCAppView,
     @Override
     public void initView(View view) {
         xsrl_home_app = (XSwipeRefreshLayout) view.findViewById(R.id.xsrl_home_app);
-
+        xsrl_home_app.setOnRefreshListener(this);
+        xsrl_home_app.setColorSchemeResources(R.color.colorAccent, R.color.colorPrimary);
+        xsrl_home_app.setRefreshing(true);
 
         rv_home_app = (RecyclerView) view.findViewById(R.id.rv_home_app);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        rv_home_app.setLayoutManager(linearLayoutManager);
+        rv_home_app.setHasFixedSize(true);
 
 
+    }
+
+    @Override
+    protected void lazyFetchData() {
+        fragmentCAllAdapter = FragmentCAllAdapter.newInstance().init(getActivity());
+        rv_home_app.setAdapter(fragmentCAllAdapter);
+        FragmentCAppPrecent.getInstance().with(this).getFragmentCAppData(10, 1);
     }
 
 
@@ -90,20 +101,5 @@ public class FragmentCApp extends BaseLazyFragment implements IFragmentCAppView,
         FragmentCAppPrecent.getInstance().with(this).getFragmentCAppData(10, 1);
     }
 
-    @Override
-    protected void lazyFetchData() {
-        Toast.makeText(getActivity(),"initLazyView App",Toast.LENGTH_SHORT);
-        xsrl_home_app.setOnRefreshListener(this);
-        xsrl_home_app.setColorSchemeResources(R.color.colorAccent, R.color.colorPrimary);
-        xsrl_home_app.setRefreshing(true);
 
-
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-        rv_home_app.setLayoutManager(linearLayoutManager);
-        rv_home_app.setHasFixedSize(true);
-
-        fragmentCAllAdapter = FragmentCAllAdapter.newInstance().init(getActivity());
-        rv_home_app.setAdapter(fragmentCAllAdapter);
-        FragmentCAppPrecent.getInstance().with(this).getFragmentCAppData(10, 1);
-    }
 }

@@ -8,7 +8,7 @@
 
     <!--MD Bottom-->
     <!-- default BottomNavigation height -->
-    <dimen name="bbn_bottom_navigation_height">56dp</dimen>
+    <dimen name="bbn_bottom_navigation_height">50dp</dimen>
 
     <!-- default BottomNavigation width (for tablets) -->
     <dimen name="bbn_bottom_navigation_width">72dp</dimen>
