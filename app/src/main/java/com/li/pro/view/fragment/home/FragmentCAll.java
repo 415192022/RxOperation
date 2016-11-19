@@ -2,7 +2,6 @@ package com.li.pro.view.fragment.home;
 
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Toast;
 
@@ -11,8 +10,10 @@ import com.li.pro.adapter.home.FragmentCAllAdapter;
 import com.li.pro.bean.home.BeanHomeResults;
 import com.li.pro.present.home.FragmentCAllPrecent;
 import com.li.pro.view.ifragment.home.IFragmentCAllView;
+import com.li.utils.T;
 import com.li.utils.ui.preload.PreLoader;
-import com.li.utils.ui.widget.XSwipeRefreshLayout;
+import com.li.utils.ui.widget.SwipeRefreshLoadMore;
+import com.li.utils.ui.widget.XRecyclerView;
 
 import rxop.li.com.rxoperation.R;
 
@@ -20,9 +21,9 @@ import rxop.li.com.rxoperation.R;
  * Created by Mingwei Li on 2016/11/10 0010.
  */
 
-public class FragmentCAll extends BaseLazyFragment implements IFragmentCAllView, SwipeRefreshLayout.OnRefreshListener {
-    private RecyclerView rv_home_all;
-    private XSwipeRefreshLayout xsrl_home_all;
+public class FragmentCAll extends BaseLazyFragment implements IFragmentCAllView, SwipeRefreshLayout.OnRefreshListener,SwipeRefreshLoadMore.OnLoadListener {
+    private XRecyclerView rv_home_all;
+    private SwipeRefreshLoadMore xsrl_home_all;
 
     @Override
     public int ftagmentLayout() {
@@ -31,8 +32,8 @@ public class FragmentCAll extends BaseLazyFragment implements IFragmentCAllView,
 
     @Override
     public void initView(View view) {
-        xsrl_home_all = (XSwipeRefreshLayout) view.findViewById(R.id.xsrl_home_all);
-        rv_home_all = (RecyclerView) view.findViewById(R.id.rv_home_all);
+        xsrl_home_all = (SwipeRefreshLoadMore) view.findViewById(R.id.xsrl_home_all);
+        rv_home_all = (XRecyclerView) view.findViewById(R.id.rv_home_all);
     }
 
 
@@ -82,14 +83,19 @@ public class FragmentCAll extends BaseLazyFragment implements IFragmentCAllView,
     public void onRefresh() {
         FragmentCAllPrecent.getInstance().with(this).getFragmentCAllData(10, 1);
     }
-
+    @Override
+    public void onLoad() {
+        T.getInstance(getActivity()).showToast("加载更多");
+    }
 
     @Override
     protected void lazyFetchData() {
         Toast.makeText(getActivity(),  "initLazyView", Toast.LENGTH_SHORT);
         xsrl_home_all.setOnRefreshListener(this);
+        xsrl_home_all.setOnLoadListener(this);
         xsrl_home_all.setColorSchemeResources(R.color.colorAccent, R.color.colorPrimary);
         xsrl_home_all.setRefreshing(true);
+        xsrl_home_all.setLoading(true);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         rv_home_all.setLayoutManager(linearLayoutManager);
@@ -99,4 +105,6 @@ public class FragmentCAll extends BaseLazyFragment implements IFragmentCAllView,
         rv_home_all.setAdapter(fragmentCAllAdapter);
         FragmentCAllPrecent.getInstance().with(this).getFragmentCAllData(10, 1);
     }
+
+
 }

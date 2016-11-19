@@ -6,6 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
+import com.li.utils.T;
+
 /**
  * Created by Administrator on 2016/11/17 0017.
  */
@@ -49,6 +51,13 @@ public class XRecyclerView extends RecyclerView  {
 
         return super.onInterceptTouchEvent(ev);
     }
+
+    @Override
+    public void onScreenStateChanged(int screenState) {
+        super.onScreenStateChanged(screenState);
+        T.getInstance(context).showToast(screenState+"");
+    }
+
     private OnScrollViewScrollListener mOnScrollViewScrollListener = null;
     public void setOnScrollListener(OnScrollViewScrollListener listener) {
         this.mOnScrollViewScrollListener = listener;
