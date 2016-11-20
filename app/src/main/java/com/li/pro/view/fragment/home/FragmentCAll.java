@@ -95,7 +95,7 @@ public class FragmentCAll extends BaseLazyFragment implements IFragmentCAllView,
         xsrl_home_all.setOnLoadListener(this);
         xsrl_home_all.setColorSchemeResources(R.color.colorAccent, R.color.colorPrimary);
         xsrl_home_all.setRefreshing(true);
-        xsrl_home_all.setLoading(true);
+        xsrl_home_all.setLoading(false);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         rv_home_all.setLayoutManager(linearLayoutManager);

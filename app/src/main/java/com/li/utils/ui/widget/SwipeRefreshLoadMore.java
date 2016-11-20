@@ -2,14 +2,16 @@ package com.li.utils.ui.widget;
 
 import android.content.Context;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.widget.AbsListView;
 import android.widget.ListView;
+
+import com.li.utils.T;
 
 import rxop.li.com.rxoperation.R;
 
@@ -24,7 +26,7 @@ public class SwipeRefreshLoadMore extends SwipeRefreshLayout {
     private final int mScaledTouchSlop;
     private final View mFooterView;
     private ListView mListView;
-    private RecyclerView mRecyclerView;
+    private XRecyclerView xRecyclerView;
     private OnLoadListener mOnLoadListener;
 
     /**
@@ -35,8 +37,7 @@ public class SwipeRefreshLoadMore extends SwipeRefreshLayout {
     public SwipeRefreshLoadMore(Context context, AttributeSet attrs) {
         super(context, attrs);
         // 填充底部加载布局
-//        mFooterView = View.inflate(context, R.layout.view_footer, null);
-        mFooterView = LayoutInflater.from(context).inflate(R.layout.view_footer, null, false);
+        mFooterView = View.inflate(context, R.layout.view_footer, null);
 
         // 表示控件移动的最小距离，手移动的距离大于这个距离才能拖动控件
         mScaledTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
@@ -46,25 +47,32 @@ public class SwipeRefreshLoadMore extends SwipeRefreshLayout {
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
-        // 获取ListView,设置ListView的布局位置
-        // 判断容器有多少个孩子
+        T.getInstance(getContext()).showToast("changed" + changed + "\ntop" + top + "\nbottom");
+//        if (mListView == null) {
+//            // 判断容器有多少个孩子
+//            if (getChildCount() > 0) {
+//                // 判断第一个孩子是不是ListView
+//                if (getChildAt(0) instanceof ListView) {
+//                    // 创建ListView对象
+//                    mListView = (ListView) getChildAt(0);
+//
+//                    // 设置ListView的滑动监听
+//                    setListViewOnScroll();
+//                }
+//            }
+//        }
+//        if (null == mRecyclerView) {
         if (getChildCount() > 0) {
-            // 判断第一个孩子是不是ListView
-            if (getChildAt(0) instanceof ListView) {
+            // 判断第一个孩子是不是RecyclerView
+            if (getChildAt(0) instanceof XRecyclerView) {
                 // 创建ListView对象
-                mListView = (ListView) getChildAt(0);
-                // 设置ListView的滑动监听
-                setListViewOnScroll();
-            }
-            //判断是不是RecyclerView
-            if (getChildAt(0) instanceof RecyclerView) {
-                // 创建RecyclerView对象
-                mRecyclerView = (RecyclerView) getChildAt(0);
+                xRecyclerView = (XRecyclerView) getChildAt(0);
+
                 // 设置ListView的滑动监听
                 setRecyclerViewOnScroll();
             }
-        } else {
         }
+//        }
     }
 
     /**
@@ -115,10 +123,11 @@ public class SwipeRefreshLoadMore extends SwipeRefreshLayout {
         boolean condition2 = false;
         if (mListView != null && mListView.getAdapter() != null) {
             condition2 = mListView.getLastVisiblePosition() == (mListView.getAdapter().getCount() - 1);
-        } else if (null != mRecyclerView && null != mRecyclerView.getAdapter()) {
-            condition2 = mRecyclerView.getChildCount() - 1 == (mRecyclerView.getAdapter().getItemCount() - 1);
+        } else if (null != xRecyclerView && null != xRecyclerView.getAdapter()) {
+            LinearLayoutManager linearLayoutManager = (LinearLayoutManager) xRecyclerView.getLayoutManager();
+            condition2 = linearLayoutManager.findLastVisibleItemPosition() + 1 == (xRecyclerView.getAdapter().getItemCount());
+            System.out.print(linearLayoutManager.findLastVisibleItemPosition() + "========>" + xRecyclerView.getAdapter().getItemCount());
         }
-
         if (condition2) {
             System.out.println("是最后一个条目");
         }
@@ -163,13 +172,13 @@ public class SwipeRefreshLoadMore extends SwipeRefreshLayout {
                 mDownY = 0;
                 mUpY = 0;
             }
-        } else if (null != mRecyclerView) {
+        } else if (null != xRecyclerView) {
             if (isLoading) {
                 // 显示布局
-                mRecyclerView.addView(mFooterView);
+                xRecyclerView.addView(mFooterView);
             } else {
                 // 隐藏布局
-                mRecyclerView.removeView(mFooterView);
+                xRecyclerView.removeView(mFooterView);
                 // 重置滑动的坐标
                 mDownY = 0;
                 mUpY = 0;
@@ -207,7 +216,7 @@ public class SwipeRefreshLoadMore extends SwipeRefreshLayout {
     }
 
     private void setRecyclerViewOnScroll() {
-        mRecyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+        xRecyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
