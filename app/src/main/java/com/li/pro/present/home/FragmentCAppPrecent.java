@@ -35,6 +35,7 @@ public class FragmentCAppPrecent {
         this.fragmentCAppView = iFragmentCAppView;
         return this;
     }
+
     /**
      * 获得All分类内容
      *

@@ -10,6 +10,7 @@ import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 import android.widget.AbsListView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 
 /**
@@ -165,10 +166,11 @@ public class SwipeRefreshLoadMore extends SwipeRefreshLayout {
             if (isLoading) {
                 // 显示布局
 //                mListView.addFooterView(mFooterView);
+                Toast.makeText(getContext(), "加载中....", Toast.LENGTH_SHORT).show();
             } else {
                 // 隐藏布局
 //                mListView.removeFooterView(mFooterView);
-
+                Toast.makeText(getContext(), "加载完毕!", Toast.LENGTH_SHORT).show();
                 // 重置滑动的坐标
                 mDownY = 0;
                 mUpY = 0;
@@ -177,9 +179,11 @@ public class SwipeRefreshLoadMore extends SwipeRefreshLayout {
             if (isLoading) {
                 // 显示布局
 //                xRecyclerView.addView(mFooterView);
+                Toast.makeText(getContext(), "加载中....", Toast.LENGTH_SHORT).show();
             } else {
                 // 隐藏布局
 //                xRecyclerView.removeView(mFooterView);
+                Toast.makeText(getContext(), "加载完毕!", Toast.LENGTH_SHORT).show();
                 // 重置滑动的坐标
                 mDownY = 0;
                 mUpY = 0;

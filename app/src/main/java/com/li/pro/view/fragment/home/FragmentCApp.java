@@ -11,7 +11,7 @@ import com.li.pro.bean.home.BeanHomeResults;
 import com.li.pro.present.home.FragmentCAppPrecent;
 import com.li.pro.view.ifragment.home.IFragmentCAppView;
 import com.li.utils.ui.preload.PreLoader;
-import com.li.utils.ui.widget.XSwipeRefreshLayout;
+import com.li.utils.ui.widget.SwipeRefreshLoadMore;
 
 import rxop.li.com.rxoperation.R;
 
@@ -19,9 +19,9 @@ import rxop.li.com.rxoperation.R;
  * Created by Mingwei Li on 2016/11/10 0010.
  */
 
-public class FragmentCApp extends BaseLazyFragment implements IFragmentCAppView, SwipeRefreshLayout.OnRefreshListener {
+public class FragmentCApp extends BaseLazyFragment implements IFragmentCAppView, SwipeRefreshLayout.OnRefreshListener,SwipeRefreshLoadMore.OnLoadListener {
     private RecyclerView rv_home_app;
-    private XSwipeRefreshLayout xsrl_home_app;
+    private SwipeRefreshLoadMore swipeRefreshLoadMore;
     FragmentCAllAdapter fragmentCAllAdapter;
 
     @Override
@@ -31,10 +31,11 @@ public class FragmentCApp extends BaseLazyFragment implements IFragmentCAppView,
 
     @Override
     public void initView(View view) {
-        xsrl_home_app = (XSwipeRefreshLayout) view.findViewById(R.id.xsrl_home_app);
-        xsrl_home_app.setOnRefreshListener(this);
-        xsrl_home_app.setColorSchemeResources(R.color.colorAccent, R.color.colorPrimary);
-        xsrl_home_app.setRefreshing(true);
+        swipeRefreshLoadMore = (SwipeRefreshLoadMore) view.findViewById(R.id.xsrl_home_app);
+        swipeRefreshLoadMore.setOnRefreshListener(this);
+        swipeRefreshLoadMore.setColorSchemeResources(R.color.colorAccent, R.color.colorPrimary);
+        swipeRefreshLoadMore.setRefreshing(true);
+        swipeRefreshLoadMore.setOnLoadListener(this);
 
         rv_home_app = (RecyclerView) view.findViewById(R.id.rv_home_app);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
@@ -88,7 +89,7 @@ public class FragmentCApp extends BaseLazyFragment implements IFragmentCAppView,
     @Override
     public void getFragmentCAppComplete() {
         PreLoader.getInstance(getActivity()).stop();
-        xsrl_home_app.setRefreshing(false);
+        swipeRefreshLoadMore.setRefreshing(false);
     }
 
     @Override
@@ -98,8 +99,13 @@ public class FragmentCApp extends BaseLazyFragment implements IFragmentCAppView,
 
     @Override
     public void onRefresh() {
+        fragmentCAllAdapter.clearAllData().refresh();
         FragmentCAppPrecent.getInstance().with(this).getFragmentCAppData(10, 1);
     }
 
 
+    @Override
+    public void onLoad() {
+
+    }
 }
