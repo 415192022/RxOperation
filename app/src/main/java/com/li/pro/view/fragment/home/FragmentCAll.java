@@ -21,7 +21,7 @@ import rxop.li.com.rxoperation.R;
  * Created by Mingwei Li on 2016/11/10 0010.
  */
 
-public class FragmentCAll extends BaseLazyFragment implements IFragmentCAllView, SwipeRefreshLayout.OnRefreshListener,SwipeRefreshLoadMore.OnLoadListener {
+public class FragmentCAll extends BaseLazyFragment implements IFragmentCAllView, SwipeRefreshLayout.OnRefreshListener, SwipeRefreshLoadMore.OnLoadListener {
     private XRecyclerView rv_home_all;
     private SwipeRefreshLoadMore xsrl_home_all;
 
@@ -59,8 +59,9 @@ public class FragmentCAll extends BaseLazyFragment implements IFragmentCAllView,
 
     @Override
     public void getFragmentCAllStart() {
-        FragmentCAllAdapter.getInstance().clearAllData().refresh();
+//        FragmentCAllAdapter.getInstance().clearAllData().refresh();
         PreLoader.getInstance(getActivity()).start();
+        xsrl_home_all.setLoading(true);
     }
 
     @Override
@@ -72,6 +73,7 @@ public class FragmentCAll extends BaseLazyFragment implements IFragmentCAllView,
     public void getFragmentCAllComplete() {
         PreLoader.getInstance(getActivity()).stop();
         xsrl_home_all.setRefreshing(false);
+        xsrl_home_all.setLoading(false);
         FragmentCAllAdapter.getInstance().refresh();
     }
 
@@ -79,18 +81,23 @@ public class FragmentCAll extends BaseLazyFragment implements IFragmentCAllView,
     public void getFragmentCAllError() {
     }
 
+    int page = 1;
     @Override
     public void onRefresh() {
-        FragmentCAllPrecent.getInstance().with(this).getFragmentCAllData(10, 1);
+        FragmentCAllAdapter.getInstance().clearAllData().refresh();
+        page = 1;
+        FragmentCAllPrecent.getInstance().with(this).getFragmentCAllData(10, page);
     }
+
     @Override
     public void onLoad() {
         T.getInstance(getActivity()).showToast("加载更多");
+        FragmentCAllPrecent.getInstance().with(this).getFragmentCAllData(10, page++);
     }
 
     @Override
     protected void lazyFetchData() {
-        Toast.makeText(getActivity(),  "initLazyView", Toast.LENGTH_SHORT);
+        Toast.makeText(getActivity(), "initLazyView", Toast.LENGTH_SHORT);
         xsrl_home_all.setOnRefreshListener(this);
         xsrl_home_all.setOnLoadListener(this);
         xsrl_home_all.setColorSchemeResources(R.color.colorAccent, R.color.colorPrimary);
