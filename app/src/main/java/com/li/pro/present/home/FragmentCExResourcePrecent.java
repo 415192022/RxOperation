@@ -2,8 +2,8 @@ package com.li.pro.present.home;
 
 import com.li.pro.bean.home.BeanHomeBase;
 import com.li.pro.bean.home.BeanHomeResults;
-import com.li.pro.model.home.impl.FragmentCAppImpl;
-import com.li.pro.view.ifragment.home.IFragmentCAppView;
+import com.li.pro.model.home.impl.FragmentCExResourceImpl;
+import com.li.pro.view.ifragment.home.IFragmentCExResourceView;
 
 import rx.Observable;
 import rx.Subscriber;
@@ -15,24 +15,24 @@ import rx.schedulers.Schedulers;
  * Created by Mingwei Li on 2016/11/15 0015.
  */
 
-public class FragmentCAppPrecent {
-    private static FragmentCAppPrecent fragmentCAppPrecent;
-    private FragmentCAppImpl fragmentCAllimpl;
-    private IFragmentCAppView fragmentCAppView;
+public class FragmentCExResourcePrecent {
+    private static FragmentCExResourcePrecent fragmentCAppPrecent;
+    private FragmentCExResourceImpl fragmentCExResource;
+    private IFragmentCExResourceView fragmentCExResourceView;
 
-    private FragmentCAppPrecent() {
+    private FragmentCExResourcePrecent() {
     }
 
-    public synchronized static FragmentCAppPrecent getInstance() {
+    public synchronized static FragmentCExResourcePrecent getInstance() {
         if (null == fragmentCAppPrecent) {
-            fragmentCAppPrecent = new FragmentCAppPrecent();
+            fragmentCAppPrecent = new FragmentCExResourcePrecent();
         }
         return fragmentCAppPrecent;
     }
 
-    public FragmentCAppPrecent with(IFragmentCAppView iFragmentCAppView) {
-        fragmentCAllimpl = new FragmentCAppImpl();
-        this.fragmentCAppView = iFragmentCAppView;
+    public FragmentCExResourcePrecent with(IFragmentCExResourceView iFragmentCExResourceView) {
+        fragmentCExResource = new FragmentCExResourceImpl();
+        this.fragmentCExResourceView = iFragmentCExResourceView;
         return this;
     }
 
@@ -42,8 +42,8 @@ public class FragmentCAppPrecent {
      * @param count
      * @param page
      */
-    public void getFragmentCAppData(int count, int page) {
-        fragmentCAllimpl.
+    public void getFragmentCExResourceData(int count, int page) {
+        fragmentCExResource.
                 getFragmentCApp(count, page).
                 unsubscribeOn(Schedulers.io()).
                 flatMap(new Func1<BeanHomeBase, Observable<BeanHomeResults>>() {
@@ -64,22 +64,22 @@ public class FragmentCAppPrecent {
                     @Override
                     public void onStart() {
                         super.onStart();
-                        fragmentCAppView.getFragmentCAppStart();
+                        fragmentCExResourceView.getFragmentCExResourceStart();
                     }
 
                     @Override
                     public void onCompleted() {
-                        fragmentCAppView.getFragmentCAppComplete();
+                        fragmentCExResourceView.getFragmentCExResourceComplete();
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        fragmentCAppView.getFragmentCAppError();
+                        fragmentCExResourceView.getFragmentCExResourceError();
                     }
 
                     @Override
                     public void onNext(BeanHomeResults beanHomeResults) {
-                        fragmentCAppView.getFragmentCApp(beanHomeResults);
+                        fragmentCExResourceView.getFragmentCExResource(beanHomeResults);
                     }
                 })
         ;

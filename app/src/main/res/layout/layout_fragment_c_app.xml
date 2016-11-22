@@ -9,11 +9,11 @@
         android:id="@+id/xsrl_home_app"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <android.support.v7.widget.RecyclerView
+        <com.li.utils.ui.widget.XRecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/rv_home_app"
-            ></android.support.v7.widget.RecyclerView>
+            ></com.li.utils.ui.widget.XRecyclerView>
     </com.li.utils.ui.widget.SwipeRefreshLoadMore>
 
 </FrameLayout>

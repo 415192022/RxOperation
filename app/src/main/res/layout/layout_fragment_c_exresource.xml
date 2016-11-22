@@ -2,13 +2,18 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     android:background="#FFF"
-    >
+    android:gravity="center">
 
-    <android.support.v7.widget.RecyclerView
+    <com.li.utils.ui.widget.SwipeRefreshLoadMore
+        android:id="@+id/srlm_fragment_c_exresource"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/rv_rxschedushow"
-        ></android.support.v7.widget.RecyclerView>
+        android:layout_height="match_parent">
+
+        <com.li.utils.ui.widget.XRecyclerView
+            android:id="@+id/xrv_fragment_c_exresource"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></com.li.utils.ui.widget.XRecyclerView>
+    </com.li.utils.ui.widget.SwipeRefreshLoadMore>
+
 </FrameLayout>

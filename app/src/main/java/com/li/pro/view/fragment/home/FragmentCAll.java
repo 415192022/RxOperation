@@ -11,7 +11,6 @@ import com.li.pro.bean.home.BeanHomeResults;
 import com.li.pro.present.home.FragmentCAllPrecent;
 import com.li.pro.view.ifragment.home.IFragmentCAllView;
 import com.li.utils.T;
-import com.li.utils.ui.preload.PreLoader;
 import com.li.utils.ui.widget.SwipeRefreshLoadMore;
 import com.li.utils.ui.widget.XRecyclerView;
 
@@ -60,7 +59,8 @@ public class FragmentCAll extends BaseLazyFragment implements IFragmentCAllView,
     @Override
     public void getFragmentCAllStart() {
 //        FragmentCAllAdapter.getInstance().clearAllData().refresh();
-        PreLoader.getInstance(getActivity()).start();
+//        PreLoader.getInstance(getActivity()).start();
+        xsrl_home_all.setRefreshing(true);
         xsrl_home_all.setLoading(true);
     }
 
@@ -71,7 +71,7 @@ public class FragmentCAll extends BaseLazyFragment implements IFragmentCAllView,
 
     @Override
     public void getFragmentCAllComplete() {
-        PreLoader.getInstance(getActivity()).stop();
+//        PreLoader.getInstance(getActivity()).stop();
         xsrl_home_all.setRefreshing(false);
         xsrl_home_all.setLoading(false);
         FragmentCAllAdapter.getInstance().refresh();
