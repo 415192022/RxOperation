@@ -68,7 +68,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingTop="16dp"
-                            android:src="@android:drawable/sym_def_app_icon" />
+                            android:src="@android:drawable/sym_def_app_icon"
+                            />
 
                         <TextView
                             android:id="@+id/tv_name"

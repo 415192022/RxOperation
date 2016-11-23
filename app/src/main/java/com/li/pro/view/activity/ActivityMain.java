@@ -131,7 +131,7 @@ public class ActivityMain extends BaseActivity implements NavigationView.OnNavig
         bn_home_bottombar = (BottomNavigation) findViewById(R.id.bn_home_bottombar);
         bn_home_bottombar.setDefaultSelectedIndex(0);
         bn_home_bottombar.setOnMenuItemClickListener(this);
-        bn_home_bottombar.getBadgeProvider().show(3);
+//        bn_home_bottombar.getBadgeProvider().show();
 
         //加载默认Fregment
         if (savedInstanceState == null) {

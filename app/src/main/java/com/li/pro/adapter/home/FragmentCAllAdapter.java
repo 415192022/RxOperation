@@ -2,6 +2,7 @@ package com.li.pro.adapter.home;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +12,10 @@ import android.widget.TextView;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.li.fragmentutils.Fragmentation;
+import com.li.fragmentutils.SupportActivity;
 import com.li.pro.bean.home.BeanHomeResults;
+import com.li.pro.view.fragment.home.FragmentCAdapterDetails;
 import com.li.utils.ui.preload.PreLoader;
 
 import java.util.ArrayList;
@@ -39,7 +43,8 @@ public class FragmentCAllAdapter extends RecyclerView.Adapter<FragmentCAllAdapte
         }
         return fragmentCAllAdapter;
     }
-    public static FragmentCAllAdapter newInstance(){
+
+    public static FragmentCAllAdapter newInstance() {
         return new FragmentCAllAdapter();
     }
 
@@ -74,6 +79,16 @@ public class FragmentCAllAdapter extends RecyclerView.Adapter<FragmentCAllAdapte
 
     @Override
     public void onBindViewHolder(FragmentCAllAdapter.ViewHolder holder, int position) {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentCAdapterDetails fragmentCAdapterDetails = new FragmentCAdapterDetails();
+                Bundle bundle=new Bundle();
+                bundle.putString("URL",beanHomeResultses.get(position).getUrl());
+                fragmentCAdapterDetails.setArguments(bundle);
+                Fragmentation.getInstance((SupportActivity) context).loadRootTransaction(((SupportActivity) context).getSupportFragmentManager(), R.id.fl_mainroot, fragmentCAdapterDetails);
+            }
+        });
 //        objectAnimator.setFloatValues(0f,1f);
 //        objectAnimator.setTarget(holder.itemView);
 //        objectAnimator.start();
@@ -103,7 +118,7 @@ public class FragmentCAllAdapter extends RecyclerView.Adapter<FragmentCAllAdapte
 
         public ViewHolder(View itemView) {
             super(itemView);
-            this.itemView=itemView;
+            this.itemView = itemView;
             sdv_fragment_c_all = (SimpleDraweeView) itemView.findViewById(R.id.sdv_fragment_c_all);
             tv_fragment_c_all_title = (TextView) itemView.findViewById(R.id.tv_fragment_c_all_title);
             tv_fragment_c_all_authro = (TextView) itemView.findViewById(R.id.tv_fragment_c_all_authro);

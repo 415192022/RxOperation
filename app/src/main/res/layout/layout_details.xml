@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.design.widget.CoordinatorLayout
+        android:background="#FFF"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include layout="@layout/toolbar_details"></include>
+
+
+        <android.support.v4.widget.NestedScrollView
+            android:id="@+id/main_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none"
+            app:behavior_overlapTop="50dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    app:cardElevation="4dp"
+                    app:contentPaddingTop="6dp">
+
+                    <ImageView
+                        android:id="@+id/iv_owner"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:layout_marginLeft="10dp"
+                        android:src="@mipmap/ic_launcher" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_desc"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:padding="10dp"
+                            tools:text="Server-side Swift. The Perfect library, application server, connectors and example apps. (For mobile back-end development, website and web app development, and more...)" />
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp">
+
+                            <TextView
+                                android:id="@+id/tv_language"
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:layout_marginLeft="10dp"
+                                android:gravity="center_vertical"
+                                android:textStyle="bold"
+                                tools:text="Java" />
+
+                        </FrameLayout>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_repo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:layout_marginLeft="50dp"
+                        android:ellipsize="end"
+                        android:gravity="center_vertical"
+                        android:scrollHorizontally="true"
+                        android:singleLine="true"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="18sp"
+                        tools:text="apple/swift" />
+
+                </android.support.v7.widget.CardView>
+
+                <WebView
+                    android:background="#FFF"
+                    android:id="@+id/wv_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ProgressBar
+                        android:id="@+id/pb_detail"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:progressDrawable="@drawable/progressbar" />
+                </WebView>
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+
+    </android.support.design.widget.CoordinatorLayout>
+</FrameLayout>
