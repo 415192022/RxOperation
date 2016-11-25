@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
+import com.li.fragmentutils.anim.FragmentAnimator;
+
 /**
  * Created by Mingwei Li on 2016/11/9 0009.
  */
@@ -15,33 +17,44 @@ public abstract class BaseLazySwipFragment extends BaseSwipFragment {
     private boolean hasFetchData; // 标识已经触发过懒加载数据
 
     @Override
+    protected FragmentAnimator onCreateFragmentAnimator() {
+        FragmentAnimator fragmentAnimator = _mActivity.getFragmentAnimator();
+        fragmentAnimator.setEnter(0);
+        fragmentAnimator.setExit(0);
+        return fragmentAnimator;
+    }
+
+    @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        isViewPrepared=true;
+        isViewPrepared = true;
         lazyFetchDataIfPrepared();
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        hasFetchData=false;
-        isViewPrepared=false;
+        hasFetchData = false;
+        isViewPrepared = false;
+    }
+
+    public void onMMAttach(Context context) {
     }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
+    public void onMAttach(Context context) {
         if (context instanceof BaseLazyFragment.OnBackToFirstListener) {
             _mBackToFirstListener = (BaseLazyFragment.OnBackToFirstListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnBackToFirstListener");
         }
+        onMMAttach(context);
     }
 
+
     @Override
-    public void onDetach() {
-        super.onDetach();
+    public void onMDetach() {
         _mBackToFirstListener = null;
     }
 
@@ -49,7 +62,10 @@ public abstract class BaseLazySwipFragment extends BaseSwipFragment {
     /**
      * 懒加载
      */
-    protected  void lazyFetchData(){};
+    protected void lazyFetchData() {
+    }
+
+    ;
 
     private void lazyFetchDataIfPrepared() {
 // 用户可见fragment && 没有加载过数据 && 视图已经准备完毕
@@ -67,20 +83,20 @@ public abstract class BaseLazySwipFragment extends BaseSwipFragment {
         }
     }
 
-//    /**
-//     * 处理回退事件
-//     *
-//     * @return
-//     */
+    /**
+     * 处理回退事件
+     *
+     * @return
+     */
 //    @Override
 //    public boolean onBackPressedSupport() {
 //        if (getChildFragmentManager().getBackStackEntryCount() > 1) {
 //            popChild();
 //        } else {
-//            if (this instanceof FragmentCAll) {   // 如果是 第一个Fragment 则退出app
+//            if (this instanceof HomeFragment) {   // 如果是 第一个Fragment 则退出app
 //                _mActivity.finish();
 //            } else {                                    // 如果不是,则回到第一个Fragment
-//                _mBackToFirstListener.onBackToFirstFragment();
+//            _mBackToFirstListener.onBackToFirstFragment();
 //            }
 //        }
 //        return true;
@@ -89,4 +105,9 @@ public abstract class BaseLazySwipFragment extends BaseSwipFragment {
     public interface OnBackToFirstListener {
         void onBackToFirstFragment();
     }
+
+    protected void onMAttach() {
+    }
+
+    ;
 }

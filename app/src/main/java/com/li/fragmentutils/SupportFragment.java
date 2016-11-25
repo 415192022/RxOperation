@@ -54,6 +54,11 @@ public class SupportFragment extends Fragment implements ISupportFragment {
 
     private int mContainerId;   // 该Fragment所处的Container的id
 
+    public void onMAttach(Context context) {
+    }
+
+    ;
+
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -64,12 +69,15 @@ public class SupportFragment extends Fragment implements ISupportFragment {
         } else {
             throw new RuntimeException(activity.toString() + "must extends SupportActivity!");
         }
+        onMAttach(activity);
+    }
+
+    public void onMCreate(@Nullable Bundle savedInstanceState) {
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         Bundle bundle = getArguments();
         if (bundle != null) {
             mIsRoot = bundle.getBoolean(Fragmentation.ARG_IS_ROOT, false);
@@ -91,9 +99,8 @@ public class SupportFragment extends Fragment implements ISupportFragment {
             // 恢复 Fragment
             processRestoreInstanceState(savedInstanceState);
         }
-
-
         initAnim();
+        onMCreate(savedInstanceState);
     }
 
     private void processRestoreInstanceState(Bundle savedInstanceState) {
@@ -117,7 +124,6 @@ public class SupportFragment extends Fragment implements ISupportFragment {
 
     private void initAnim() {
         handleNoAnim();
-
         mNoAnim = AnimationUtils.loadAnimation(_mActivity, R.anim.no_anim);
         mEnterAnim = AnimationUtils.loadAnimation(_mActivity, mFragmentAnimator.getEnter());
         mExitAnim = AnimationUtils.loadAnimation(_mActivity, mFragmentAnimator.getExit());
@@ -162,6 +168,10 @@ public class SupportFragment extends Fragment implements ISupportFragment {
         return mContainerId;
     }
 
+    public Animation onMCreateAnimation(int transit, boolean enter, int nextAnim) {
+        return super.onCreateAnimation(transit, enter, nextAnim);
+    }
+
     @Override
     public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
         if (_mActivity.mPopMulitpleNoAnim || mLocking) {
@@ -190,20 +200,20 @@ public class SupportFragment extends Fragment implements ISupportFragment {
                 return mExitAnim;
             }
         }
-        return super.onCreateAnimation(transit, enter, nextAnim);
+        return onMCreateAnimation(transit, enter, nextAnim);
     }
-
+    public void onMSaveInstanceState(Bundle outState){}
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putParcelable(Fragmentation.FRAGMENTATION_STATE_SAVE_ANIMATOR, mFragmentAnimator);
         outState.putBoolean(Fragmentation.FRAGMENTATION_STATE_SAVE_IS_HIDDEN, isHidden());
+        onMSaveInstanceState(outState);
     }
-
+    public void onMActivityCreated(@Nullable Bundle savedInstanceState){}
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
         View view = getView();
         initFragmentBackground(view);
         // 防止某种情况 上一个Fragment仍可点击问题
@@ -218,7 +228,7 @@ public class SupportFragment extends Fragment implements ISupportFragment {
         } else if (mEnterAnimFlag) {
             _mActivity.setFragmentClickable(true);
         }
-
+        onMActivityCreated(savedInstanceState);
     }
 
     protected void initFragmentBackground(View view) {
@@ -307,13 +317,14 @@ public class SupportFragment extends Fragment implements ISupportFragment {
             mIMM = (InputMethodManager) _mActivity.getSystemService(Context.INPUT_METHOD_SERVICE);
         }
     }
-
+    public void onMPause(){}
     @Override
     public void onPause() {
         super.onPause();
         if (mNeedHideSoft) {
             hideSoftInput();
         }
+        onMPause();
     }
 
 

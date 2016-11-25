@@ -3,12 +3,14 @@ package com.li.pro.view.fragment.home;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
+import android.widget.FrameLayout;
 
 import com.li.fragmentutils.base.BaseLazyFragment;
 import com.li.pro.adapter.home.FragmentCAllAdapter;
 import com.li.pro.bean.home.BeanHomeResults;
 import com.li.pro.present.home.FragmentCAppPrecent;
 import com.li.pro.view.ifragment.home.IFragmentCAppView;
+import com.li.utils.ui.preload.PreLoader;
 import com.li.utils.ui.widget.SwipeRefreshLoadMore;
 import com.li.utils.ui.widget.XRecyclerView;
 
@@ -22,6 +24,7 @@ public class FragmentCApp extends BaseLazyFragment implements IFragmentCAppView,
     private XRecyclerView xRecyclerView;
     private SwipeRefreshLoadMore swipeRefreshLoadMore;
     private FragmentCAllAdapter fragmentCAllAdapter;
+    private FrameLayout fl_fragmentcapp_nodata_error;
 
     @Override
     public int ftagmentLayout() {
@@ -42,6 +45,7 @@ public class FragmentCApp extends BaseLazyFragment implements IFragmentCAppView,
         xRecyclerView.setLayoutManager(linearLayoutManager);
         xRecyclerView.setHasFixedSize(true);
 
+        fl_fragmentcapp_nodata_error = (FrameLayout) view.findViewById(R.id.fl_fragmentcapp_nodata_error);
 
     }
 
@@ -79,7 +83,7 @@ public class FragmentCApp extends BaseLazyFragment implements IFragmentCAppView,
     @Override
     public void getFragmentCAppStart() {
         //预加载效果开始
-//        PreLoader.getInstance(getActivity()).start();
+        PreLoader.getInstance(getActivity()).start();
         swipeRefreshLoadMore.setRefreshing(true);
         swipeRefreshLoadMore.setLoading(true);
     }
@@ -92,14 +96,18 @@ public class FragmentCApp extends BaseLazyFragment implements IFragmentCAppView,
 
     @Override
     public void getFragmentCAppComplete() {
+        fl_fragmentcapp_nodata_error.setVisibility(View.GONE);
         //预加载效果停止
-//        PreLoader.getInstance(getActivity()).stop();
+        PreLoader.getInstance(getActivity()).stop();
         swipeRefreshLoadMore.setRefreshing(false);
         swipeRefreshLoadMore.setLoading(false);
     }
 
     @Override
     public void getFragmentCAppError() {
+        fl_fragmentcapp_nodata_error.setVisibility(View.VISIBLE);
+        //预加载效果停止
+        PreLoader.getInstance(getActivity()).stop();
         swipeRefreshLoadMore.setRefreshing(false);
         swipeRefreshLoadMore.setLoading(false);
     }

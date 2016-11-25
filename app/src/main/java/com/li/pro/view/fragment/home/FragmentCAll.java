@@ -3,6 +3,7 @@ package com.li.pro.view.fragment.home;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.li.fragmentutils.base.BaseLazyFragment;
@@ -11,6 +12,7 @@ import com.li.pro.bean.home.BeanHomeResults;
 import com.li.pro.present.home.FragmentCAllPrecent;
 import com.li.pro.view.ifragment.home.IFragmentCAllView;
 import com.li.utils.T;
+import com.li.utils.ui.preload.PreLoader;
 import com.li.utils.ui.widget.SwipeRefreshLoadMore;
 import com.li.utils.ui.widget.XRecyclerView;
 
@@ -23,6 +25,7 @@ import rxop.li.com.rxoperation.R;
 public class FragmentCAll extends BaseLazyFragment implements IFragmentCAllView, SwipeRefreshLayout.OnRefreshListener, SwipeRefreshLoadMore.OnLoadListener {
     private XRecyclerView rv_home_all;
     private SwipeRefreshLoadMore xsrl_home_all;
+    private FrameLayout fl_fragmentcall_nodata_error;
 
     @Override
     public int ftagmentLayout() {
@@ -33,6 +36,7 @@ public class FragmentCAll extends BaseLazyFragment implements IFragmentCAllView,
     public void initView(View view) {
         xsrl_home_all = (SwipeRefreshLoadMore) view.findViewById(R.id.xsrl_home_all);
         rv_home_all = (XRecyclerView) view.findViewById(R.id.rv_home_all);
+        fl_fragmentcall_nodata_error = (FrameLayout) view.findViewById(R.id.fl_fragmentcall_nodata_error);
     }
 
 
@@ -58,8 +62,7 @@ public class FragmentCAll extends BaseLazyFragment implements IFragmentCAllView,
 
     @Override
     public void getFragmentCAllStart() {
-//        FragmentCAllAdapter.getInstance().clearAllData().refresh();
-//        PreLoader.getInstance(getActivity()).start();
+        PreLoader.getInstance(getActivity()).start();
         xsrl_home_all.setRefreshing(true);
         xsrl_home_all.setLoading(true);
     }
@@ -71,17 +74,23 @@ public class FragmentCAll extends BaseLazyFragment implements IFragmentCAllView,
 
     @Override
     public void getFragmentCAllComplete() {
-//        PreLoader.getInstance(getActivity()).stop();
+        PreLoader.getInstance(getActivity()).stop();
         xsrl_home_all.setRefreshing(false);
         xsrl_home_all.setLoading(false);
         FragmentCAllAdapter.getInstance().refresh();
+        fl_fragmentcall_nodata_error.setVisibility(View.GONE);
     }
 
     @Override
     public void getFragmentCAllError() {
+        //预加载效果停止
+        PreLoader.getInstance(getActivity()).stop();
+        fl_fragmentcall_nodata_error.setBackgroundResource(R.drawable.error_view);
+        fl_fragmentcall_nodata_error.setVisibility(View.VISIBLE);
     }
 
     int page = 1;
+
     @Override
     public void onRefresh() {
         FragmentCAllAdapter.getInstance().clearAllData().refresh();

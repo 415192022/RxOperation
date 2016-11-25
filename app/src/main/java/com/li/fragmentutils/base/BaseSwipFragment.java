@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.li.fragmentutils.SwipeBackFragment;
+import com.li.utils.SystemBarHelper;
 
 import rxop.li.com.rxoperation.R;
 
@@ -20,17 +21,23 @@ import rxop.li.com.rxoperation.R;
 
 public abstract class BaseSwipFragment extends SwipeBackFragment {
     private OnLockDrawLayoutListener mListener;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=inflater.inflate(ftagmentLayout(),container,false);
+        View view = inflater.inflate(ftagmentLayout(), container, false);
         initView(view);
-        Toolbar toolBar= (Toolbar) view.findViewById(R.id.detail_toolbar);
-        if(null != toolBar){
+        Toolbar toolBar = (Toolbar) view.findViewById(R.id.detail_toolbar);
+        if (null != toolBar) {
             toolBar.setTitle(setToolBarTitle());
         }
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolBar);
         // Show the Up button in the action bar.
+
+        //状态栏透明
+        SystemBarHelper.immersiveStatusBar(getActivity());
+        //状态栏间隔高度
+//        SystemBarHelper.setHeightAndPadding(getActivity(), view.findViewById(R.id.app_bar));
         ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         if (actionBar != null) {
             //是否显示返回箭头
@@ -52,6 +59,7 @@ public abstract class BaseSwipFragment extends SwipeBackFragment {
         }
         return attachToSwipeBack(view);
     }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -68,15 +76,20 @@ public abstract class BaseSwipFragment extends SwipeBackFragment {
         }
     }
 
+    public void onMDetach() {
+    }
+
     @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
+        onMDetach();
     }
 
     public interface OnLockDrawLayoutListener {
         void onLockDrawLayout(boolean lock);
     }
+
     //设置布局
     public abstract int ftagmentLayout();
 
@@ -94,4 +107,6 @@ public abstract class BaseSwipFragment extends SwipeBackFragment {
 
     //设置左上角logo
     public abstract int setLeftCornerLogo();
+
+
 }

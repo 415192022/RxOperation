@@ -8,6 +8,7 @@ import com.li.pro.adapter.home.FragmentCAllAdapter;
 import com.li.pro.bean.home.BeanHomeResults;
 import com.li.pro.present.home.FragmentCExResourcePrecent;
 import com.li.pro.view.ifragment.home.IFragmentCExResourceView;
+import com.li.utils.ui.preload.PreLoader;
 import com.li.utils.ui.widget.SwipeRefreshLoadMore;
 import com.li.utils.ui.widget.XRecyclerView;
 
@@ -73,6 +74,8 @@ public class FragmentCExResource extends BaseLazyFragment implements IFragmentCE
 
     @Override
     public void getFragmentCExResourceStart() {
+        //预加载效果开始
+        PreLoader.getInstance(getActivity()).start();
         srlm_fragment_c_exresource.setRefreshing(true);
         srlm_fragment_c_exresource.setLoading(true);
     }
@@ -84,12 +87,16 @@ public class FragmentCExResource extends BaseLazyFragment implements IFragmentCE
 
     @Override
     public void getFragmentCExResourceComplete() {
+        //预加载效果停止
+        PreLoader.getInstance(getActivity()).stop();
         srlm_fragment_c_exresource.setRefreshing(false);
         srlm_fragment_c_exresource.setLoading(false);
     }
 
     @Override
     public void getFragmentCExResourceError() {
+        //预加载效果停止
+        PreLoader.getInstance(getActivity()).stop();
         srlm_fragment_c_exresource.setRefreshing(false);
         srlm_fragment_c_exresource.setLoading(false);
     }

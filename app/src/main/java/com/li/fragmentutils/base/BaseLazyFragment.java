@@ -15,8 +15,7 @@ public abstract class BaseLazyFragment extends BaseFragment {
     protected OnBackToFirstListener _mBackToFirstListener;
 
     @Override
-    public void onDetach() {
-        super.onDetach();
+    public void onMDetach() {
         _mBackToFirstListener = null;
     }
 
@@ -64,8 +63,7 @@ public abstract class BaseLazyFragment extends BaseFragment {
     }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
+    public void onMAttach(Context context) {
         if (context instanceof OnBackToFirstListener) {
             _mBackToFirstListener = (OnBackToFirstListener) context;
         } else {

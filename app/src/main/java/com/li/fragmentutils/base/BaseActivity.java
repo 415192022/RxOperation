@@ -11,6 +11,7 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.li.fragmentutils.SupportActivity;
+import com.li.utils.SystemBarHelper;
 
 import rxop.li.com.rxoperation.R;
 
@@ -39,6 +40,11 @@ public abstract class BaseActivity extends SupportActivity {
         if (toolbar != null) {
             toolbar.setTitle(setToolBarTitle());
         }
+        //状态栏透明
+        SystemBarHelper.immersiveStatusBar(this);
+        //状态栏间隔高度
+        SystemBarHelper.setHeightAndPadding(this, findViewById(R.id.app_bar));
+
         setSupportActionBar(toolbar);
         // Show the Up button in the action bar.
         ActionBar actionBar = getSupportActionBar();

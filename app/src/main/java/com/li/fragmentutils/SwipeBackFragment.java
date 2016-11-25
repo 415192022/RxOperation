@@ -13,11 +13,11 @@ public class SwipeBackFragment extends SupportFragment {
     private SwipeBackLayout mSwipeBackLayout;
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
+    public void onMCreate(@Nullable Bundle savedInstanceState) {
+        super.onMCreate(savedInstanceState);
         onFragmentCreate();
     }
+
 
     private void onFragmentCreate() {
         mSwipeBackLayout = new SwipeBackLayout(_mActivity);

@@ -1,7 +1,6 @@
 package com.li.fragmentutils.base;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
@@ -10,10 +9,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.li.fragmentutils.SupportFragment;
-import com.li.fragmentutils.SwipeBackFragment;
+import com.li.utils.SystemBarHelper;
 
 import rxop.li.com.rxoperation.R;
 
@@ -23,7 +21,6 @@ import rxop.li.com.rxoperation.R;
 
 public abstract class BaseFragment extends SupportFragment {
     private OnLockDrawLayoutListener mListener;
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -45,6 +42,10 @@ public abstract class BaseFragment extends SupportFragment {
             if (isHideActionBar()) {
                 actionBar.hide();
             }
+            //状态栏透明
+            SystemBarHelper.immersiveStatusBar(getActivity());
+//            //状态栏间隔高度
+//            SystemBarHelper.setHeightAndPadding(getActivity(), view.findViewById(R.id.app_bar));
             //在使用v7包的时候显示icon和标题需指定一下属性。
             actionBar.setDisplayShowHomeEnabled(true);
             //设置ActionBar logo
@@ -58,8 +59,7 @@ public abstract class BaseFragment extends SupportFragment {
     }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
+    public void onMAttach(Context context) {
         if (context instanceof OnLockDrawLayoutListener) {
             mListener = (OnLockDrawLayoutListener) context;
         }
@@ -72,11 +72,12 @@ public abstract class BaseFragment extends SupportFragment {
             mListener.onLockDrawLayout(false);
         }
     }
-
+    public void onMDetach(){}
     @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
+        onMDetach();
     }
 
     public interface OnLockDrawLayoutListener {

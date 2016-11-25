@@ -9,4 +9,8 @@
     <!-- id for the items layout container -->
     <item name="bbn_layoutManager" type="id" />
     <!--MD Bottom-->
+
+    <!--透明状态栏-->
+    <item name="statusbar_view" type="id"/>
+    <item name="translucent_view" type="id"/>
 </resources>

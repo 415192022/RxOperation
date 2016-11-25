@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#70104E8B</color>
-    <color name="colorPrimaryDark">#701C86EE</color>
-    <color name="colorAccent">#104E8B</color>
+    <color name="colorPrimary">#00BBD3</color>
+    <color name="colorPrimaryDark">#02A8F3</color>
+    <color name="colorAccent">#6498FE</color>
 
     <color name="tab_unselect">#c9c9c9</color>
 
@@ -23,4 +23,35 @@
     <color name="bbn_topShadowEndColor">#AA000000</color>
     <color name="bbn_topShadowCenterColor">#66000000</color>
     <!--MD Bottom-->
+
+
+
+    <color name="blue_deep">#00BBD3</color>
+    <color name="blue">#6498FE</color>
+    <color name="light_blue">#02A8F3</color>
+    <color name="white">#FFFFFF</color>
+    <color name="white_pressed">#f1f1f1</color>
+    <color name="semi_transparent_white">#AAFFFFFF</color>
+    <color name="red">#f1310f</color>
+    <color name="black">#000000</color>
+    <color name="purple">#9B26AF</color>
+    <color name="cyan">#00BBD3</color>
+    <color name="green">#4BAE4F</color>
+    <color name="light_green">#45CB7F</color>
+    <color name="yellow">#FEEA3A</color>
+    <color name="orange">#FE9700</color>
+    <color name="brown">#785447</color>
+    <color name="gray">#D4D4D4</color>
+    <color name="teal">#009587</color>
+    <color name="pink">#FF4081</color>
+    <color name="pink_pressed">#FF71B8</color>
+    <color name="background">#EAEEF4</color>
+    <color name="gray_text">#9C9C9C</color>
+    <color name="black_semi_transparent">#B2000000</color>
+
+    <color name="orange_red">#F86E4D</color>
+    <color name="light_purple">#694485</color>
+
+    <color name="bottom_bar">#C5CAE9</color>
+    <color name="dark_purple">#171142</color>
 </resources>

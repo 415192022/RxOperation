@@ -2,6 +2,7 @@ package com.li.pro.view.fragment.rxjava;
 
 import android.view.View;
 
+import com.li.fragmentutils.anim.FragmentAnimator;
 import com.li.fragmentutils.base.BaseLazySwipFragment;
 
 import rxop.li.com.rxoperation.R;
@@ -11,6 +12,15 @@ import rxop.li.com.rxoperation.R;
  */
 
 public class FragmentRxJava extends BaseLazySwipFragment {
+    @Override
+    protected FragmentAnimator onCreateFragmentAnimator() {
+        // 设置默认Fragment动画  默认竖向(和安卓5.0以上的动画相同)
+//        return super.onCreateFragmentAnimator();
+        // 设置横向(和安卓4.x动画相同)
+//        return new DefaultHorizontalAnicmator();
+        // 设置自定义动画
+        return new FragmentAnimator(R.anim.h_fragment_enter, R.anim.h_fragment_exit, R.anim.h_fragment_pop_enter, R.anim.h_fragment_pop_exit);
+    }
     @Override
     public int ftagmentLayout() {
         return R.layout.layout_activit_rxjava;
@@ -62,5 +72,4 @@ public class FragmentRxJava extends BaseLazySwipFragment {
 //        //加载一个可替换的Fragment根并默认加载哪个Fragment(调用Replace时必须加载,show/hide不用)
 //        replaceLoadRootFragment(R.id.fl_rxjava_right, new FragmentRxBaseOp(), true);
     }
-
 }

@@ -40,6 +40,11 @@ public abstract class BaseSwipActivity extends SwipeBackActivity {
             toolbar.setTitle(setToolBarTitle());
         }
         setSupportActionBar(toolbar);
+
+//        //状态栏透明
+//        SystemBarHelper.immersiveStatusBar(this);
+//        //状态栏间隔高度
+//        SystemBarHelper.setHeightAndPadding(this, findViewById(R.id.app_bar));
         // Show the Up button in the action bar.
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {

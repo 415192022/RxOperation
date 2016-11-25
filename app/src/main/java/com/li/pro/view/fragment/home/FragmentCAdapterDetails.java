@@ -1,12 +1,11 @@
 package com.li.pro.view.fragment.home;
 
 import android.view.View;
-import android.webkit.WebView;
 import android.widget.ProgressBar;
 
+import com.li.fragmentutils.anim.FragmentAnimator;
 import com.li.fragmentutils.base.BaseLazySwipFragment;
-import com.li.pro.bean.home.BeanHomeResults;
-import com.li.utils.ui.WebViewHelper;
+import com.li.utils.ui.widget.XProgressWebView;
 
 import rxop.li.com.rxoperation.R;
 
@@ -15,8 +14,16 @@ import rxop.li.com.rxoperation.R;
  */
 
 public class FragmentCAdapterDetails extends BaseLazySwipFragment {
-    private WebView wv_details;
-    BeanHomeResults beanHomeResults;
+
+    @Override
+    protected FragmentAnimator onCreateFragmentAnimator() {
+        // 设置默认Fragment动画  默认竖向(和安卓5.0以上的动画相同)
+//        return super.onCreateFragmentAnimator();
+        // 设置横向(和安卓4.x动画相同)
+//        return new DefaultHorizontalAnicmator();
+        // 设置自定义动画
+        return new FragmentAnimator(R.anim.h_fragment_enter, R.anim.h_fragment_exit, R.anim.h_fragment_pop_enter, R.anim.h_fragment_pop_exit);
+    }
 
     @Override
     protected void lazyFetchData() {
@@ -31,10 +38,7 @@ public class FragmentCAdapterDetails extends BaseLazySwipFragment {
 
     @Override
     public void initView(View view) {
-        new WebViewHelper(
-                (WebView) view.findViewById(R.id.wv_details), (ProgressBar) view.findViewById(R.id.pb_detail))
-                .loadUrl(getArguments().getString("URL")
-                );
+        ((XProgressWebView) view.findViewById(R.id.wv_details)).init().withProgress((ProgressBar) view.findViewById(R.id.pb_detail)).loadUrl(getArguments().getString("URL"));
     }
 
     @Override

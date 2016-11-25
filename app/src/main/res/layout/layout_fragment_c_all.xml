@@ -4,7 +4,12 @@
     android:layout_height="match_parent"
     android:background="#FFF"
     android:gravity="center">
-
+    <FrameLayout
+        android:id="@+id/fl_fragmentcall_nodata_error"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/empty_view"
+        ></FrameLayout>
     <com.li.utils.ui.widget.SwipeRefreshLoadMore
         android:id="@+id/xsrl_home_all"
         android:layout_width="match_parent"
