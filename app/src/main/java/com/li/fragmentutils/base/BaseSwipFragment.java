@@ -37,7 +37,7 @@ public abstract class BaseSwipFragment extends SwipeBackFragment {
         //状态栏透明
         SystemBarHelper.immersiveStatusBar(getActivity());
         //状态栏间隔高度
-//        SystemBarHelper.setHeightAndPadding(getActivity(), view.findViewById(R.id.app_bar));
+        SystemBarHelper.setHeightAndPadding(getActivity(), view.findViewById(R.id.app_bar));
         ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         if (actionBar != null) {
             //是否显示返回箭头

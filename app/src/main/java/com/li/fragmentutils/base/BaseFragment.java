@@ -21,6 +21,7 @@ import rxop.li.com.rxoperation.R;
 
 public abstract class BaseFragment extends SupportFragment {
     private OnLockDrawLayoutListener mListener;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -30,8 +31,8 @@ public abstract class BaseFragment extends SupportFragment {
         if (null != toolBar) {
             toolBar.setTitle(setToolBarTitle());
         }
-        ((AppCompatActivity) getActivity()).setSupportActionBar(toolBar);
         // Show the Up button in the action bar.
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolBar);
         ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         if (actionBar != null) {
             //是否显示返回箭头
@@ -72,7 +73,10 @@ public abstract class BaseFragment extends SupportFragment {
             mListener.onLockDrawLayout(false);
         }
     }
-    public void onMDetach(){}
+
+    public void onMDetach() {
+    }
+
     @Override
     public void onDetach() {
         super.onDetach();

@@ -25,4 +25,11 @@
     <style name="AppTheme.NoActionBar.SwipeBack">
         <item name="android:windowIsTranslucent">true</item>
     </style>
+
+
+
+    //临时
+    <style name="TransparentText" parent="@android:style/TextAppearance">
+        <item name="android:textColor">#00000000</item>
+    </style>
 </resources>

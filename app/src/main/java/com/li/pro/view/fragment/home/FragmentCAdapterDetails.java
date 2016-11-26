@@ -38,7 +38,13 @@ public class FragmentCAdapterDetails extends BaseLazySwipFragment {
 
     @Override
     public void initView(View view) {
-        ((XProgressWebView) view.findViewById(R.id.wv_details)).init().withProgress((ProgressBar) view.findViewById(R.id.pb_detail)).loadUrl(getArguments().getString("URL"));
+        ((XProgressWebView) view.findViewById(R.id.wv_details)).
+                //初始化
+                init().
+                //关联Progress
+                withProgress((ProgressBar) view.findViewById(R.id.pb_detail)).
+                //加载网站
+                loadUrl(getArguments().getString("URL"));
     }
 
     @Override

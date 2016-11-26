@@ -52,5 +52,4 @@ public class XViewPager extends ViewPager {
         }
         return super.onTouchEvent(ev);
     }
-
 }

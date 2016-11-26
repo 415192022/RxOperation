@@ -1,7 +1,6 @@
 package com.li.pro.view.fragment.home;
 
 import android.support.design.widget.TabLayout;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 
@@ -53,31 +52,31 @@ public class HomeFragment extends BaseLazyFragment {
             public void onPageSelected(int position) {
                 switch (position) {
                     case 0:
-                        view.findViewById(R.id.detail_toolbar).setBackgroundColor(ContextCompat.getColor(getContext(), R.color.blue_deep));
+//                        view.findViewById(R.id.detail_toolbar).setBackgroundColor(ContextCompat.getColor(getContext(), R.color.blue_deep));
                         break;
                     case 1:
-                        view.findViewById(R.id.detail_toolbar).setBackgroundColor(ContextCompat.getColor(getContext(), R.color.blue));
+//                        view.findViewById(R.id.detail_toolbar).setBackgroundColor(ContextCompat.getColor(getContext(), R.color.blue));
                         break;
                     case 2:
-                        view.findViewById(R.id.detail_toolbar).setBackgroundColor(ContextCompat.getColor(getContext(), R.color.light_blue));
+//                        view.findViewById(R.id.detail_toolbar).setBackgroundColor(ContextCompat.getColor(getContext(), R.color.light_blue));
                         break;
                     case 3:
-                        view.findViewById(R.id.detail_toolbar).setBackgroundColor(ContextCompat.getColor(getContext(), R.color.cyan));
+//                        view.findViewById(R.id.detail_toolbar).setBackgroundColor(ContextCompat.getColor(getContext(), R.color.cyan));
                         break;
                     case 4:
-                        view.findViewById(R.id.detail_toolbar).setBackgroundColor(ContextCompat.getColor(getContext(), R.color.green));
+//                        view.findViewById(R.id.detail_toolbar).setBackgroundColor(ContextCompat.getColor(getContext(), R.color.green));
                         break;
                     case 5:
-                        view.findViewById(R.id.detail_toolbar).setBackgroundColor(ContextCompat.getColor(getContext(), R.color.light_green));
+//                        view.findViewById(R.id.detail_toolbar).setBackgroundColor(ContextCompat.getColor(getContext(), R.color.light_green));
                         break;
                     case 6:
-                        view.findViewById(R.id.detail_toolbar).setBackgroundColor(ContextCompat.getColor(getContext(), R.color.yellow));
+//                        view.findViewById(R.id.detail_toolbar).setBackgroundColor(ContextCompat.getColor(getContext(), R.color.yellow));
                         break;
                     case 7:
-                        view.findViewById(R.id.detail_toolbar).setBackgroundColor(ContextCompat.getColor(getContext(), R.color.orange));
+//                        view.findViewById(R.id.detail_toolbar).setBackgroundColor(ContextCompat.getColor(getContext(), R.color.orange));
                         break;
                     case 8:
-                        view.findViewById(R.id.detail_toolbar).setBackgroundColor(ContextCompat.getColor(getContext(), R.color.pink_pressed));
+//                        view.findViewById(R.id.detail_toolbar).setBackgroundColor(ContextCompat.getColor(getContext(), R.color.pink_pressed));
                         break;
                 }
             }
@@ -91,12 +90,12 @@ public class HomeFragment extends BaseLazyFragment {
 
     @Override
     public String setToolBarTitle() {
-        return null;
+        return "Home";
     }
 
     @Override
     public boolean isHideActionBar() {
-        return true;
+        return false;
     }
 
     @Override
