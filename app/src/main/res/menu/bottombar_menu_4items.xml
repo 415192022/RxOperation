@@ -11,21 +11,21 @@
         android:id="@+id/bbn_item1"
         android:color="@color/white"
         android:icon="@drawable/ic_home_white_24dp"
-        android:title="Cloud Sync" />
+        android:title="Home" />
     <item
         android:id="@+id/bbn_item2"
         android:color="@color/white"
         android:icon="@drawable/ic_discover_white_24dp"
-        android:title="Chromecast" />
+        android:title="News" />
     <item
         android:id="@+id/bbn_item3"
         android:color="@color/white"
         android:icon="@drawable/ic_account_circle_white_24dp"
-        android:title="Mail" />
+        android:title="Search" />
     <item
         android:id="@+id/bbn_item4"
         android:color="@color/white"
         android:icon="@drawable/ic_message_white_24dp"
-        android:title="List" />
+        android:title="Explre" />
 
 </menu>

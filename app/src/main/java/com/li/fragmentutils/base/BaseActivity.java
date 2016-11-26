@@ -20,6 +20,7 @@ import rxop.li.com.rxoperation.R;
  */
 
 public abstract class BaseActivity extends SupportActivity {
+    private Toolbar toolbar=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +37,7 @@ public abstract class BaseActivity extends SupportActivity {
         doBusiness(savedInstanceState);
 
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
+         toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
         if (toolbar != null) {
             toolbar.setTitle(setToolBarTitle());
         }
@@ -99,7 +100,13 @@ public abstract class BaseActivity extends SupportActivity {
     //设置是否隐藏标题栏
     public abstract boolean isHideActionBar();
 
-//    public FragmentAnimator onCreateFragmentAnimator() {
+    //    public FragmentAnimator onCreateFragmentAnimator() {
 //        return new DefaultHorizontalAnimator();
 //    }
+//设置ToolBar标题文字
+    public void setToolBarTitle(String str) {
+        if (null != toolbar) {
+            toolbar.setTitle(str);
+        }
+    }
 }

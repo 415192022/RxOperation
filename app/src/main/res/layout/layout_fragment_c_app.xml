@@ -9,8 +9,14 @@
         android:id="@+id/fl_fragmentcapp_nodata_error"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/empty_view"
-        ></FrameLayout>
+        >
+        <ImageView
+            android:src="@drawable/empty_view"
+            android:id="@+id/iv_fragmnetcapp_nodata_error"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center" />
+    </FrameLayout>
     <com.li.utils.ui.widget.SwipeRefreshLoadMore
         android:id="@+id/xsrl_home_app"
         android:layout_width="match_parent"

@@ -19,6 +19,8 @@ import rxop.li.com.rxoperation.R;
  */
 
 public abstract class BaseSwipActivity extends SwipeBackActivity {
+    private Toolbar toolbar = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +37,7 @@ public abstract class BaseSwipActivity extends SwipeBackActivity {
         doBusiness(savedInstanceState);
 
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
+        toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
         if (toolbar != null) {
             toolbar.setTitle(setToolBarTitle());
         }
@@ -101,7 +103,13 @@ public abstract class BaseSwipActivity extends SwipeBackActivity {
     //是否支持手势返回
     public abstract boolean isSetSwipBack();
 
-//    public FragmentAnimator onCreateFragmentAnimator() {
+    //    public FragmentAnimator onCreateFragmentAnimator() {
 //        return new DefaultHorizontalAnimator();
 //    }
+//设置ToolBar标题文字
+    protected void setToolBarTitle(String str) {
+        if (null != toolbar) {
+            toolbar.setTitle(str);
+        }
+    }
 }

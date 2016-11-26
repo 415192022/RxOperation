@@ -4,6 +4,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.li.fragmentutils.base.BaseLazyFragment;
@@ -26,6 +27,7 @@ public class FragmentCAll extends BaseLazyFragment implements IFragmentCAllView,
     private XRecyclerView rv_home_all;
     private SwipeRefreshLoadMore xsrl_home_all;
     private FrameLayout fl_fragmentcall_nodata_error;
+    private ImageView iv_fragmnetcall_nodata_error;
 
     @Override
     public int ftagmentLayout() {
@@ -37,6 +39,7 @@ public class FragmentCAll extends BaseLazyFragment implements IFragmentCAllView,
         xsrl_home_all = (SwipeRefreshLoadMore) view.findViewById(R.id.xsrl_home_all);
         rv_home_all = (XRecyclerView) view.findViewById(R.id.rv_home_all);
         fl_fragmentcall_nodata_error = (FrameLayout) view.findViewById(R.id.fl_fragmentcall_nodata_error);
+        iv_fragmnetcall_nodata_error = (ImageView) view.findViewById(R.id.iv_fragmnetcall_nodata_error);
     }
 
 
@@ -85,7 +88,7 @@ public class FragmentCAll extends BaseLazyFragment implements IFragmentCAllView,
     public void getFragmentCAllError() {
         //预加载效果停止
         PreLoader.getInstance(getActivity()).stop();
-        fl_fragmentcall_nodata_error.setBackgroundResource(R.drawable.error_view);
+        iv_fragmnetcall_nodata_error.setImageResource(R.drawable.error_view);
         fl_fragmentcall_nodata_error.setVisibility(View.VISIBLE);
     }
 

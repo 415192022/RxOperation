@@ -4,6 +4,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import com.li.fragmentutils.base.BaseLazyFragment;
 import com.li.pro.adapter.home.FragmentCAllAdapter;
@@ -25,6 +26,7 @@ public class FragmentCApp extends BaseLazyFragment implements IFragmentCAppView,
     private SwipeRefreshLoadMore swipeRefreshLoadMore;
     private FragmentCAllAdapter fragmentCAllAdapter;
     private FrameLayout fl_fragmentcapp_nodata_error;
+    private ImageView iv_fragmnetcapp_nodata_error;
 
     @Override
     public int ftagmentLayout() {
@@ -45,6 +47,7 @@ public class FragmentCApp extends BaseLazyFragment implements IFragmentCAppView,
         xRecyclerView.setLayoutManager(linearLayoutManager);
         xRecyclerView.setHasFixedSize(true);
 
+        iv_fragmnetcapp_nodata_error = (ImageView) view.findViewById(R.id.iv_fragmnetcapp_nodata_error);
         fl_fragmentcapp_nodata_error = (FrameLayout) view.findViewById(R.id.fl_fragmentcapp_nodata_error);
 
     }
@@ -96,6 +99,7 @@ public class FragmentCApp extends BaseLazyFragment implements IFragmentCAppView,
 
     @Override
     public void getFragmentCAppComplete() {
+        iv_fragmnetcapp_nodata_error.setImageResource(R.drawable.empty_view);
         fl_fragmentcapp_nodata_error.setVisibility(View.GONE);
         //预加载效果停止
         PreLoader.getInstance(getActivity()).stop();
@@ -105,6 +109,7 @@ public class FragmentCApp extends BaseLazyFragment implements IFragmentCAppView,
 
     @Override
     public void getFragmentCAppError() {
+        iv_fragmnetcapp_nodata_error.setImageResource(R.drawable.error_view);
         fl_fragmentcapp_nodata_error.setVisibility(View.VISIBLE);
         //预加载效果停止
         PreLoader.getInstance(getActivity()).stop();

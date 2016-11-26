@@ -30,7 +30,7 @@ public class ItemDetailActivity extends BaseSwipActivity {
 
     @Override
     public String setToolBarTitle() {
-        return "RxOp";
+        return "This a Activity";
     }
 
     @Override

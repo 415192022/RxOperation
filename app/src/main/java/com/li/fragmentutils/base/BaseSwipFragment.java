@@ -21,13 +21,13 @@ import rxop.li.com.rxoperation.R;
 
 public abstract class BaseSwipFragment extends SwipeBackFragment {
     private OnLockDrawLayoutListener mListener;
-
+    private Toolbar toolBar=null;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(ftagmentLayout(), container, false);
         initView(view);
-        Toolbar toolBar = (Toolbar) view.findViewById(R.id.detail_toolbar);
+         toolBar = (Toolbar) view.findViewById(R.id.detail_toolbar);
         if (null != toolBar) {
             toolBar.setTitle(setToolBarTitle());
         }
@@ -108,5 +108,10 @@ public abstract class BaseSwipFragment extends SwipeBackFragment {
     //设置左上角logo
     public abstract int setLeftCornerLogo();
 
-
+    //设置ToolBar标题文字
+    protected void setToolBarTitle(String str){
+        if (null != toolBar) {
+            toolBar.setTitle(str);
+        }
+    }
 }

@@ -15,9 +15,16 @@ import java.io.File;
  */
 
 public class App extends Application {
+    private static App app;
+
+    public static synchronized App getInstance() {
+        return app;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
+        app = this;
         DiskCacheConfig diskCacheConfig = DiskCacheConfig.newBuilder(this)
                 .setBaseDirectoryPath(new File(Environment.getExternalStorageDirectory() + "/111LMW"))
                 .build();
