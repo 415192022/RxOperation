@@ -8,7 +8,7 @@ import android.widget.ImageView;
 
 import com.li.fragmentutils.base.BaseLazyFragment;
 import com.li.pro.adapter.FragmentHomeVPAdapter;
-import com.li.utils.animathionutils.TableAnimationUtils;
+import com.li.utils.animathionutils.AnimationUtilsForRO;
 import com.li.utils.ui.widget.XViewPager;
 
 import rxop.li.com.rxoperation.R;
@@ -56,22 +56,22 @@ public class HomeFragment extends BaseLazyFragment {
                 switch (position) {
                     case 0:
                         view.findViewById(R.id.collapsing_toolbar).setBackgroundColor(ContextCompat.getColor(getContext(), R.color.blue_deep));
-                        TableAnimationUtils.getInstance().setImageWithFade((ImageView) view.findViewById(R.id.iv_main_header), R.drawable.sky);
+                        AnimationUtilsForRO.getInstance().setImageWithFade((ImageView) view.findViewById(R.id.iv_main_header), R.drawable.sky);
                         setToolBarTitle("全部");
                         break;
                     case 1:
                         view.findViewById(R.id.collapsing_toolbar).setBackgroundColor(ContextCompat.getColor(getContext(), R.color.red));
-                        TableAnimationUtils.getInstance().setImageWithFade((ImageView) view.findViewById(R.id.iv_main_header), R.drawable.sun);
+                        AnimationUtilsForRO.getInstance().setImageWithFade((ImageView) view.findViewById(R.id.iv_main_header), R.drawable.sun);
                         setToolBarTitle("App");
                         break;
                     case 2:
                         view.findViewById(R.id.collapsing_toolbar).setBackgroundColor(ContextCompat.getColor(getContext(), R.color.light_purple));
-                        TableAnimationUtils.getInstance().setImageWithFade((ImageView) view.findViewById(R.id.iv_main_header), R.drawable.train);
+                        AnimationUtilsForRO.getInstance().setImageWithFade((ImageView) view.findViewById(R.id.iv_main_header), R.drawable.train);
                         setToolBarTitle("拓展资源");
                         break;
                     case 3:
                         view.findViewById(R.id.collapsing_toolbar).setBackgroundColor(ContextCompat.getColor(getContext(), R.color.dark_purple));
-                        TableAnimationUtils.getInstance().setImageWithFade((ImageView) view.findViewById(R.id.iv_main_header), R.drawable.arsenal);
+                        AnimationUtilsForRO.getInstance().setImageWithFade((ImageView) view.findViewById(R.id.iv_main_header), R.drawable.arsenal);
                         setToolBarTitle("前端");
                         break;
                     case 4:

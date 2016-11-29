@@ -1,117 +1,138 @@
 package com.li.utils.ui.pathanim;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
-import android.graphics.Color;
+import android.graphics.DashPathEffect;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PathEffect;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
+import android.graphics.PathMeasure;
 import android.util.AttributeSet;
-import android.view.MotionEvent;
 import android.view.View;
 
+import rxop.li.com.rxoperation.R;
+
 /**
- * Created by Administrator on 2016/11/3 0003.
+ * Created by Mingwei Li on 2016/11/3 0003.
  */
 
 public class PathAnimationDemo extends View {
-    private Paint mPaint;
-    private Path mPath;
-    private float phase = 0;
-    private PathEffect[] effects = new PathEffect[7];
-    private int[] colors;
+
+    Paint mPaint;
+    Path mPath;
+    int mStrokeColor;
+    float mStrokeWidth;
+
+    float mProgress = 0f;
+    float mPathLength = 0f;
+
+
     public PathAnimationDemo(Context context) {
-        super(context);
+        this(context, null);
         init();
     }
 
     public PathAnimationDemo(Context context, AttributeSet attrs) {
-        super(context, attrs);
+        this(context, attrs, 0);
         init();
     }
 
-    public PathAnimationDemo(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
+    public PathAnimationDemo(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
+
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.AnimatedPathView);
+        mStrokeColor = a.getColor(R.styleable.AnimatedPathView_strokeColor, 0xff00ff00);
+        mStrokeWidth = a.getFloat(R.styleable.AnimatedPathView_strokeWidth, 8.0f);
+        a.recycle();
+
         init();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public PathAnimationDemo(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-        init();
+    private void init(){
+        mPaint = new Paint();
+        mPaint.setColor(mStrokeColor);
+        mPaint.setStyle(Paint.Style.STROKE);
+        mPaint.setStrokeWidth(mStrokeWidth);
+        mPaint.setAntiAlias(true);
+
+        setPath(new Path());
     }
-     void init(){
-         mPath=new Path();
-         mPath.lineTo(0,500);
-         mPaint=new Paint(Paint.ANTI_ALIAS_FLAG);
-         mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
-         mPaint.setStrokeWidth(10);
-     }
+
+    public void setPath(Path p){
+        mPath = p;
+        PathMeasure measure = new PathMeasure(mPath, false);
+        mPathLength = measure.getLength();
+    }
+
+    /**
+     * Set the drawn path using an array of array of floats. First is x parameter, second is y.
+     * @param points The points to set on
+     */
+    public void setPath(float[]... points){
+        if(points.length == 0)
+            throw new IllegalArgumentException("Cannot have zero points in the line");
+
+        Path p = new Path();
+        p.moveTo(points[0][0], points[0][1]);
+
+        for(int i=1; i < points.length; i++){
+            p.lineTo(points[i][0], points[i][1]);
+        }
+
+        setPath(p);
+    }
+
+    public void setPercentage(float percentage){
+        if(percentage < 0.0f || percentage > 1.0f)
+            throw new IllegalArgumentException("setPercentage not between 0.0f and 1.0f");
+
+        mProgress = percentage;
+        invalidate();
+    }
+
+    public void scalePathBy(float x, float y){
+        Matrix m = new Matrix();
+        m.postScale(x, y);
+        mPath.transform(m);
+        PathMeasure measure = new PathMeasure(mPath, false);
+        mPathLength = measure.getLength();
+    }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.translate(0,500);
-        canvas.drawColor(Color.WHITE);
-        mPaint.setColor(Color.BLUE);
-        canvas.drawPath(mPath,mPaint);
-    }
-    //    //初始化画笔
-//    private void init() {
-//        mPaint = new Paint(Paint.ANTI_ALIAS_FLAG); //抗锯齿
-//        mPaint.setStyle(Paint.Style.STROKE);       //绘画风格:空心
-//        mPaint.setStrokeWidth(5);                  //笔触粗细
-//        mPath = new Path();
-//        mPath.moveTo(0, 0);
-//        for (int i = 1; i <= 15; i++) {
-//            // 生成15个点，随机生成它们的坐标，并将它们连成一条Path
-//            mPath.lineTo(i * 40, (float) Math.random() * 100);
-//        }
-//        // 初始化7个颜色
-//        colors = new int[] { Color.RED, Color.BLUE, Color.GREEN,
-//                Color.YELLOW, Color.BLACK, Color.MAGENTA, Color.CYAN };
-//    }
 
-//    @Override
-//    protected void onDraw(Canvas canvas) {
-//        super.onDraw(canvas);
-//        canvas.drawColor(Color.WHITE);
-//        //初始化其中路径效果：
-//        effects[0] = null;                                    //无效果
-//        effects[1] = new CornerPathEffect(10);                //CornerPathEffect
-//        effects[2] = new DiscretePathEffect(3.0f, 5.0f);      //DiscretePathEffect
-//        effects[3] = new DashPathEffect(new float[] { 20, 10, 5, 10 },phase);   //DashPathEffect
-//        Path p = new Path();
-//        p.addRect(0, 0, 8, 8, Path.Direction.CCW);
-//        effects[4] = new PathDashPathEffect(p, 12, phase,
-//                PathDashPathEffect.Style.ROTATE);             //PathDashPathEffect
-//        effects[5] = new ComposePathEffect(effects[2], effects[4]);    //ComposePathEffect
-//        effects[6] = new SumPathEffect(effects[2], effects[4]);   //SumPathEffect
-//        // 将画布移动到(10,10)处开始绘制
-//        canvas.translate(10, 10);
-//        // 依次使用7中不同的路径效果、7中不同的颜色来绘制路径
-//        for (int i = 0; i < effects.length; i++) {
-//            mPaint.setPathEffect(effects[i]);
-//            mPaint.setColor(colors[i]);
-//            canvas.drawPath(mPath, mPaint);
-//            canvas.translate(0, 60);
-//        }
-//        // 改变phase值，形成动画效果
-//        phase += 2;
-//        invalidate();
-//    }
+        PathEffect pathEffect = new DashPathEffect(new float[]{mPathLength, mPathLength}, (mPathLength - mPathLength * mProgress));
+        mPaint.setPathEffect(pathEffect);
+
+        canvas.save();
+        canvas.translate(getPaddingLeft(), getPaddingTop());
+        canvas.drawPath(mPath, mPaint);
+        canvas.restore();
+    }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        switch (event.getAction()){
-            case MotionEvent.ACTION_DOWN :
-                mPath.reset();
-                init();
-                invalidate();
-                break;
-        }
-        return super.onTouchEvent(event);
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        int widthSize = MeasureSpec.getSize(widthMeasureSpec);
+        int heightSize = MeasureSpec.getSize(heightMeasureSpec);
+        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
+        int heightMode = MeasureSpec.getMode(widthMeasureSpec);
+
+        int measuredWidth, measuredHeight;
+
+        if(widthMode == MeasureSpec.AT_MOST)
+            throw new IllegalStateException("AnimatedPathView cannot have a WRAP_CONTENT property");
+        else
+            measuredWidth = widthSize;
+
+        if(heightMode == MeasureSpec.AT_MOST)
+            throw new IllegalStateException("AnimatedPathView cannot have a WRAP_CONTENT property");
+        else
+            measuredHeight = heightSize;
+
+        setMeasuredDimension(measuredWidth, measuredHeight);
     }
 }

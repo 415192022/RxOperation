@@ -1,11 +1,12 @@
 package com.li.pro.view.activity;
 
+import android.animation.ObjectAnimator;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.View;
+import android.view.animation.LinearInterpolator;
 
 import com.li.fragmentutils.base.BaseSwipActivity;
+import com.li.utils.ui.pathanim.PathAnimationDemo;
 
 import rxop.li.com.rxoperation.R;
 
@@ -17,12 +18,36 @@ public class ItemDetailActivity extends BaseSwipActivity {
 
     @Override
     public void doBusiness(Bundle savedInstanceState) {
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        final PathAnimationDemo view = (PathAnimationDemo) findViewById(R.id.animated_path);
+//        ViewTreeObserver observer = view.getViewTreeObserver();
+//        if (observer != null) {
+//            observer.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+//                @Override
+//                public void onGlobalLayout() {
+//                    view.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+//
+//                    float[][] points = new float[][]{
+//                            {0, 0},
+//                            {view.getWidth(), 0},
+//                            {view.getWidth(), view.getHeight()},
+//                            {0, view.getHeight()},
+//                            {0, 0},
+//                            {view.getWidth(), view.getHeight()},
+//                            {view.getWidth(), 0},
+//                            {0, view.getHeight()}
+//                    };
+//                    view.setPath(points);
+//                }
+//            });
+//        }
+
+        view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own detail action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                ObjectAnimator anim = ObjectAnimator.ofFloat(view, "percentage", 0.0f, 1.0f);
+                anim.setDuration(5000);
+                anim.setInterpolator(new LinearInterpolator());
+                anim.start();
             }
         });
 

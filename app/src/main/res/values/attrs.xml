@@ -50,5 +50,9 @@
         <attr name="bbn_animationDuration" format="integer" />
         <attr name="bbn_scrollEnabled" format="boolean" />
     </declare-styleable>
-
+    <!--PathAnimation-->
+    <declare-styleable name="AnimatedPathView">
+        <attr name="strokeColor" format="color"/>
+        <attr name="strokeWidth" format="float"/>
+    </declare-styleable>
 </resources>

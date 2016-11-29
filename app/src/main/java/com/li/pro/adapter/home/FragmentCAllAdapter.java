@@ -83,9 +83,10 @@ public class FragmentCAllAdapter extends RecyclerView.Adapter<FragmentCAllAdapte
             @Override
             public void onClick(View v) {
                 FragmentCAdapterDetails fragmentCAdapterDetails = new FragmentCAdapterDetails();
-                Bundle bundle=new Bundle();
-                bundle.putString("URL",beanHomeResultses.get(position).getUrl());
+                Bundle bundle = new Bundle();
+                bundle.putString("URL", beanHomeResultses.get(position).getUrl());
                 fragmentCAdapterDetails.setArguments(bundle);
+                fragmentCAdapterDetails.startInitAnimation((SupportActivity) context, v, R.id.fl_mainroot);
                 Fragmentation.getInstance((SupportActivity) context).loadRootTransaction(((SupportActivity) context).getSupportFragmentManager(), R.id.fl_mainroot, fragmentCAdapterDetails);
             }
         });

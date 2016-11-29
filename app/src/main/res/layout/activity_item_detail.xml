@@ -3,33 +3,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     android:fitsSystemWindows="true"
     tools:context="com.li.pro.view.activity.ItemDetailActivity"
-    android:background="@color/colorPrimary"
     tools:ignore="MergeRootFrame">
 
     <FrameLayout
-        android:background="#FFFFFF"
         android:id="@+id/fl_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <com.li.utils.ui.pathanim.PathAnimationDemo
-            android:layout_gravity="center"
-            android:layout_width="300dp"
-            android:layout_height="300dp" />
-    </FrameLayout>
-
-    <include
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        layout="@layout/toolbar"></include>
-
-    <android.support.v4.widget.NestedScrollView
-        android:id="@+id/item_detail_container"
-        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" >
-    </android.support.v4.widget.NestedScrollView>
+        android:background="#FFFFFF">
+
+        <com.li.utils.ui.pathanim.PathAnimationDemo
+
+            android:id="@+id/animated_path"
+            android:layout_width="300dp"
+            android:layout_height="500dp"
+            app:strokeColor="@color/colorPrimary"
+            app:strokeWidth="100" />
+    </FrameLayout>
+    <include
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></include>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
@@ -40,5 +36,13 @@
         app:layout_anchor="@+id/item_detail_container"
         app:layout_anchorGravity="top|end"
         app:srcCompat="@android:drawable/stat_notify_chat" />
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/item_detail_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    </android.support.v4.widget.NestedScrollView>
 
 </android.support.design.widget.CoordinatorLayout>

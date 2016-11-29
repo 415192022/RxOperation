@@ -131,9 +131,9 @@
         app:layout_anchor="@+id/dl_nva"
         app:layout_anchorGravity="top|right"
         app:srcCompat="@android:drawable/stat_notify_chat" />
-    <FrameLayout
+    <com.li.utils.ui.widget.XFrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/fl_mainroot"
-        ></FrameLayout>
+        ></com.li.utils.ui.widget.XFrameLayout>
 </android.support.design.widget.CoordinatorLayout>

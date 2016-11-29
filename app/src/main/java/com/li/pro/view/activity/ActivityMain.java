@@ -77,6 +77,8 @@ public class ActivityMain extends BaseActivity implements NavigationView.OnNavig
             public void onItemClick(View view, int position, String str) {
                 switch (position) {
                     case 0:
+                        FragmentRxJava fragmentRxJava=new FragmentRxJava();
+                        fragmentRxJava.startInitAnimation(ActivityMain.this, view, R.id.fl_mainroot);
                         Fragmentation.getInstance(ActivityMain.this).loadRootTransaction(getSupportFragmentManager(), R.id.fl_mainroot, new FragmentRxJava());
                         drawer.closeDrawers();
                         break;
