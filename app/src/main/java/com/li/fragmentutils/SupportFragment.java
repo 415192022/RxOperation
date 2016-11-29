@@ -3,6 +3,7 @@ package com.li.fragmentutils;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.IntDef;
 import android.support.annotation.Nullable;
@@ -16,6 +17,8 @@ import android.view.inputmethod.InputMethodManager;
 import com.li.fragmentutils.anim.FragmentAnimator;
 import com.li.fragmentutils.helper.FragmentResultRecord;
 import com.li.fragmentutils.helper.OnEnterAnimEndListener;
+import com.li.utils.animathionutils.AnimationUtilsForRO;
+import com.li.utils.ui.xlayout.IXLayout;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -53,11 +56,35 @@ public class SupportFragment extends Fragment implements ISupportFragment {
     private boolean mEnterAnimFlag = false; // 用于记录无动画时 直接 解除防抖动处理
 
     private int mContainerId;   // 该Fragment所处的Container的id
-
+    /**
+     * 扩散动画
+     *
+     * @param supportActivity
+     * @param view
+     * @param xFrameLayout
+     */
+    public <T extends IXLayout> void startInitAnimation(SupportActivity supportActivity, View view, int xFrameLayout) {
+        T xf = (T) supportActivity.findViewById(xFrameLayout);
+        ((View) xf).addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+            @Override
+            public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+                v.removeOnLayoutChangeListener(this);
+                int cy = 0;
+                int cx = 0;
+                if (null != view) {
+                    Rect rect = new Rect();
+                    view.getGlobalVisibleRect(rect);
+                    cy = rect.centerY();
+                    cx = rect.centerX();
+                }
+                // get the hypothenuse so the mRadius is from one corner to the other
+                float radius = (float) Math.hypot(right, bottom);
+                AnimationUtilsForRO.getInstance().createCheckoutRevealAnimator(xf, cx, cy, 28f, radius).start();
+            }
+        });
+    }
     public void onMAttach(Context context) {
     }
-
-    ;
 
     @Override
     public void onAttach(Activity activity) {

@@ -88,6 +88,7 @@ public class FragmentCAllAdapter extends RecyclerView.Adapter<FragmentCAllAdapte
                 fragmentCAdapterDetails.setArguments(bundle);
                 fragmentCAdapterDetails.startInitAnimation((SupportActivity) context, v, R.id.fl_mainroot);
                 Fragmentation.getInstance((SupportActivity) context).loadRootTransaction(((SupportActivity) context).getSupportFragmentManager(), R.id.fl_mainroot, fragmentCAdapterDetails);
+
             }
         });
 //        objectAnimator.setFloatValues(0f,1f);

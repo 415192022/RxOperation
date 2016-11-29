@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.os.Build;
 import android.support.annotation.DrawableRes;
+import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
@@ -11,7 +12,7 @@ import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 
-import com.li.utils.ui.widget.XFrameLayout;
+import com.li.utils.ui.xlayout.IXLayout;
 
 /**
  * Created by Mingwei Li on 2016/11/26 0026.
@@ -60,13 +61,13 @@ public class AnimationUtilsForRO {
     }
 
 
-    public Animator createCheckoutRevealAnimator(final XFrameLayout view, float x, float y, float startRadius, float endRadius) {
+    public Animator createCheckoutRevealAnimator(final IXLayout view, int x, int y, float startRadius, float endRadius) {
         Animator retAnimator;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            retAnimator = ViewAnimationUtils.createCircularReveal(view, (int) x, (int) y, startRadius, endRadius);
+            retAnimator = ViewAnimationUtils.createCircularReveal((View) view, x, y, startRadius, endRadius);
         } else {
             view.setClipOutLines(true);
-            view.setClipCenter((int) x, (int) y);
+            view.setClipCenter(x, y);
             view.setClipRadius(startRadius);
             retAnimator = ObjectAnimator.ofFloat(view, "clipRadius", startRadius, endRadius);
         }

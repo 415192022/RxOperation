@@ -1,6 +1,7 @@
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.li.utils.ui.xlayout.XCoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/xcl_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
@@ -15,10 +16,10 @@
         android:background="#FFFFFF">
 
         <com.li.utils.ui.pathanim.PathAnimationDemo
-
+            android:layout_gravity="center"
             android:id="@+id/animated_path"
             android:layout_width="300dp"
-            android:layout_height="500dp"
+            android:layout_height="200dp"
             app:strokeColor="@color/colorPrimary"
             app:strokeWidth="100" />
     </FrameLayout>
@@ -45,4 +46,4 @@
 
     </android.support.v4.widget.NestedScrollView>
 
-</android.support.design.widget.CoordinatorLayout>
+</com.li.utils.ui.xlayout.XCoordinatorLayout>

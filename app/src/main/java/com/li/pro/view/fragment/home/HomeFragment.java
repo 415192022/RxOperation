@@ -57,32 +57,44 @@ public class HomeFragment extends BaseLazyFragment {
                     case 0:
                         view.findViewById(R.id.collapsing_toolbar).setBackgroundColor(ContextCompat.getColor(getContext(), R.color.blue_deep));
                         AnimationUtilsForRO.getInstance().setImageWithFade((ImageView) view.findViewById(R.id.iv_main_header), R.drawable.sky);
-                        setToolBarTitle("全部");
                         break;
                     case 1:
                         view.findViewById(R.id.collapsing_toolbar).setBackgroundColor(ContextCompat.getColor(getContext(), R.color.red));
                         AnimationUtilsForRO.getInstance().setImageWithFade((ImageView) view.findViewById(R.id.iv_main_header), R.drawable.sun);
-                        setToolBarTitle("App");
                         break;
                     case 2:
                         view.findViewById(R.id.collapsing_toolbar).setBackgroundColor(ContextCompat.getColor(getContext(), R.color.light_purple));
                         AnimationUtilsForRO.getInstance().setImageWithFade((ImageView) view.findViewById(R.id.iv_main_header), R.drawable.train);
-                        setToolBarTitle("拓展资源");
                         break;
                     case 3:
                         view.findViewById(R.id.collapsing_toolbar).setBackgroundColor(ContextCompat.getColor(getContext(), R.color.dark_purple));
                         AnimationUtilsForRO.getInstance().setImageWithFade((ImageView) view.findViewById(R.id.iv_main_header), R.drawable.arsenal);
-                        setToolBarTitle("前端");
+
                         break;
                     case 4:
+                        view.findViewById(R.id.collapsing_toolbar).setBackgroundColor(ContextCompat.getColor(getContext(), R.color.a));
+                        AnimationUtilsForRO.getInstance().setImageWithFade((ImageView) view.findViewById(R.id.iv_main_header), R.drawable.a);
+
                         break;
                     case 5:
+                        view.findViewById(R.id.collapsing_toolbar).setBackgroundColor(ContextCompat.getColor(getContext(), R.color.b));
+                        AnimationUtilsForRO.getInstance().setImageWithFade((ImageView) view.findViewById(R.id.iv_main_header), R.drawable.b);
+
                         break;
                     case 6:
+                        view.findViewById(R.id.collapsing_toolbar).setBackgroundColor(ContextCompat.getColor(getContext(), R.color.c));
+                        AnimationUtilsForRO.getInstance().setImageWithFade((ImageView) view.findViewById(R.id.iv_main_header), R.drawable.c);
+
                         break;
                     case 7:
+                        view.findViewById(R.id.collapsing_toolbar).setBackgroundColor(ContextCompat.getColor(getContext(), R.color.d));
+                        AnimationUtilsForRO.getInstance().setImageWithFade((ImageView) view.findViewById(R.id.iv_main_header), R.drawable.d);
+
                         break;
                     case 8:
+                        view.findViewById(R.id.collapsing_toolbar).setBackgroundColor(ContextCompat.getColor(getContext(), R.color.e));
+                        AnimationUtilsForRO.getInstance().setImageWithFade((ImageView) view.findViewById(R.id.iv_main_header), R.drawable.e);
+
                         break;
                 }
             }

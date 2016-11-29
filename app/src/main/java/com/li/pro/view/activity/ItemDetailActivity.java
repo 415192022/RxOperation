@@ -16,6 +16,7 @@ public class ItemDetailActivity extends BaseSwipActivity {
         return R.layout.activity_item_detail;
     }
 
+
     @Override
     public void doBusiness(Bundle savedInstanceState) {
         final PathAnimationDemo view = (PathAnimationDemo) findViewById(R.id.animated_path);

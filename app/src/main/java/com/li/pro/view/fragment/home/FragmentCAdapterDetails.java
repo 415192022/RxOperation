@@ -1,6 +1,7 @@
 package com.li.pro.view.fragment.home;
 
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.li.fragmentutils.anim.FragmentAnimator;
@@ -14,6 +15,7 @@ import rxop.li.com.rxoperation.R;
  */
 
 public class FragmentCAdapterDetails extends BaseLazySwipFragment {
+    private String url;
 
     @Override
     protected FragmentAnimator onCreateFragmentAnimator() {
@@ -28,7 +30,6 @@ public class FragmentCAdapterDetails extends BaseLazySwipFragment {
     @Override
     protected void lazyFetchData() {
         super.lazyFetchData();
-
     }
 
     @Override
@@ -36,15 +37,20 @@ public class FragmentCAdapterDetails extends BaseLazySwipFragment {
         return R.layout.layout_details;
     }
 
+    private XProgressWebView xProgressWebView;
+
     @Override
     public void initView(View view) {
-        ((XProgressWebView) view.findViewById(R.id.wv_details)).
+        url = getArguments().getString("URL");
+        xProgressWebView = ((XProgressWebView) view.findViewById(R.id.wv_details));
+        xProgressWebView.
                 //初始化
-                init().
+                        init().
                 //关联Progress
-                withProgress((ProgressBar) view.findViewById(R.id.pb_detail)).
+                        withProgress((ProgressBar) view.findViewById(R.id.pb_detail)).
                 //加载网站
-                loadUrl(getArguments().getString("URL"));
+                        loadUrl(url);
+        ((ImageView) view.findViewById(R.id.iv_header)).setImageResource(R.drawable.b);
     }
 
     @Override
@@ -65,5 +71,14 @@ public class FragmentCAdapterDetails extends BaseLazySwipFragment {
     @Override
     public int setLeftCornerLogo() {
         return 0;
+    }
+
+    @Override
+    public boolean onBackPressedSupport() {
+        if (xProgressWebView.getOriginalUrl().equals(url)) {
+            return super.onBackPressedSupport();
+        }
+        xProgressWebView.goBackPage();
+        return !super.onBackPressedSupport();
     }
 }

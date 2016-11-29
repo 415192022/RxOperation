@@ -63,6 +63,7 @@ public class XProgressWebView extends WebView {
     }
 
     public XProgressWebView init() {
+
         setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {

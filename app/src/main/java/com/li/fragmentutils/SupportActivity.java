@@ -1,5 +1,6 @@
 package com.li.fragmentutils;
 
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -9,12 +10,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.li.fragmentutils.anim.DefaultVerticalAnimator;
 import com.li.fragmentutils.anim.FragmentAnimator;
 import com.li.fragmentutils.debug.DebugFragmentRecord;
 import com.li.fragmentutils.debug.DebugHierarchyViewContainer;
+import com.li.utils.animathionutils.AnimationUtilsForRO;
+import com.li.utils.ui.xlayout.IXLayout;
 
 import java.util.List;
 
@@ -30,6 +34,35 @@ public class SupportActivity extends AppCompatActivity implements ISupport {
     private boolean mFragmentClickable = true;
 
     private Handler mHandler;
+
+
+    /**
+     * 扩散动画
+     *
+     * @param supportActivity
+     * @param view
+     * @param xFrameLayout
+     */
+    public <T extends IXLayout> void startInitAnimation(SupportActivity supportActivity, View view, int xFrameLayout) {
+        T xf = (T) supportActivity.findViewById(xFrameLayout);
+        ((View) xf).addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+            @Override
+            public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+                v.removeOnLayoutChangeListener(this);
+                int cy = 0;
+                int cx = 0;
+                if (null != view) {
+                    Rect rect = new Rect();
+                    view.getGlobalVisibleRect(rect);
+                    cy = rect.centerY();
+                    cx = rect.centerX();
+                }
+                // get the hypothenuse so the mRadius is from one corner to the other
+                float radius = (float) Math.hypot(right, bottom);
+                AnimationUtilsForRO.getInstance().createCheckoutRevealAnimator(xf, cx, cy, 28f, radius).start();
+            }
+        });
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

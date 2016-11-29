@@ -12,8 +12,6 @@ import android.view.ViewGroup;
 
 import com.li.fragmentutils.SupportFragment;
 import com.li.utils.SystemBarHelper;
-import com.li.utils.animathionutils.AnimationUtilsForRO;
-import com.li.utils.ui.widget.XFrameLayout;
 
 import rxop.li.com.rxoperation.R;
 
@@ -24,22 +22,6 @@ import rxop.li.com.rxoperation.R;
 public abstract class BaseFragment extends SupportFragment {
     private OnLockDrawLayoutListener mListener;
     private Toolbar toolBar = null;
-
-    public void startInitAnimation(View view, int xFrameLayout) {
-        float cx = view.getX() / 2;
-        float cy = view.getY() / 2;
-        XFrameLayout xf = (XFrameLayout) getActivity().findViewById(xFrameLayout);
-        xf.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
-            @Override
-            public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
-                v.removeOnLayoutChangeListener(this);
-                // get the hypothenuse so the mRadius is from one corner to the other
-                float radius = (float) Math.hypot(right, bottom);
-                AnimationUtilsForRO.getInstance().createCheckoutRevealAnimator(xf, cx, cy, 28f, radius).start();
-            }
-        });
-
-    }
 
     @Nullable
     @Override

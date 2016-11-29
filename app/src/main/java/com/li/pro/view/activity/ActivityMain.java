@@ -28,7 +28,6 @@ import com.li.pro.view.fragment.home.HomeFragment2;
 import com.li.pro.view.fragment.home.HomeFragment3;
 import com.li.pro.view.fragment.home.HomeFragment4;
 import com.li.pro.view.fragment.rxjava.FragmentRxJava;
-import com.li.skipAnimation.main.TransitionsHeleper;
 import com.li.utils.AdbUtilS;
 import com.li.utils.ui.mdbottom.BottomNavigation;
 
@@ -36,9 +35,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import rx.Observable;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.schedulers.Schedulers;
 import rxop.li.com.rxoperation.R;
 
-public class ActivityMain extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener, BottomNavigation.OnMenuItemSelectionListener, BaseLazySwipFragment.OnBackToFirstListener,BaseLazyFragment.OnBackToFirstListener {
+public class ActivityMain extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener, BottomNavigation.OnMenuItemSelectionListener, BaseLazySwipFragment.OnBackToFirstListener, BaseLazyFragment.OnBackToFirstListener {
 
     private CoordinatorLayout cdl_root;
     private RecyclerView rv_nav;
@@ -77,10 +81,25 @@ public class ActivityMain extends BaseActivity implements NavigationView.OnNavig
             public void onItemClick(View view, int position, String str) {
                 switch (position) {
                     case 0:
-                        FragmentRxJava fragmentRxJava=new FragmentRxJava();
-                        fragmentRxJava.startInitAnimation(ActivityMain.this, view, R.id.fl_mainroot);
-                        Fragmentation.getInstance(ActivityMain.this).loadRootTransaction(getSupportFragmentManager(), R.id.fl_mainroot, new FragmentRxJava());
-                        drawer.closeDrawers();
+                        Observable.
+                                create(new Observable.OnSubscribe<Object>() {
+                                    @Override
+                                    public void call(Subscriber<? super Object> subscriber) {
+                                        FragmentRxJava fragmentRxJava = new FragmentRxJava();
+                                        fragmentRxJava.startInitAnimation(ActivityMain.this, view, R.id.fl_mainroot);
+                                        Fragmentation.getInstance(ActivityMain.this).loadRootTransaction(getSupportFragmentManager(), R.id.fl_mainroot, new FragmentRxJava());
+                                        subscriber.onNext(null);
+                                        subscriber.onCompleted();
+                                    }
+                                }).
+                                subscribeOn(Schedulers.io()).
+                                observeOn(AndroidSchedulers.mainThread()).
+                                subscribe(new Action1<Object>() {
+                                    @Override
+                                    public void call(Object o) {
+                                        drawer.closeDrawers();
+                                    }
+                                });
                         break;
                     case 1:
                         //开启ADB wifi调试
@@ -137,14 +156,14 @@ public class ActivityMain extends BaseActivity implements NavigationView.OnNavig
 
         //加载默认Fregment
         if (savedInstanceState == null) {
-            HomeFragment homeFragment=new HomeFragment();
-            HomeFragment2 homeFragment2=new HomeFragment2();
-            HomeFragment3 homeFragment3=new HomeFragment3();
-            HomeFragment4 homeFragment4=new HomeFragment4();
-            loadRootFragment( R.id.fl_home_root,homeFragment4);
-            loadRootFragment( R.id.fl_home_root,homeFragment3);
-            loadRootFragment( R.id.fl_home_root,homeFragment2);
-            loadRootFragment( R.id.fl_home_root,homeFragment);
+            HomeFragment homeFragment = new HomeFragment();
+            HomeFragment2 homeFragment2 = new HomeFragment2();
+            HomeFragment3 homeFragment3 = new HomeFragment3();
+            HomeFragment4 homeFragment4 = new HomeFragment4();
+            loadRootFragment(R.id.fl_home_root, homeFragment4);
+            loadRootFragment(R.id.fl_home_root, homeFragment3);
+            loadRootFragment(R.id.fl_home_root, homeFragment2);
+            loadRootFragment(R.id.fl_home_root, homeFragment);
 //            loadMultipleRootFragment( R.id.fl_home_root, 0, homeFragment, homeFragment2);
             fragments.add(homeFragment);
             fragments.add(homeFragment2);
@@ -158,11 +177,7 @@ public class ActivityMain extends BaseActivity implements NavigationView.OnNavig
             public void onClick(View view) {
                 //跳转到可滑动关闭的Activity
                 Intent intent = new Intent(ActivityMain.this, ItemDetailActivity.class);
-                TransitionsHeleper.startActivity(ActivityMain.this, intent, fab);
-                //跳转到主页Fragment
-                HomeFragment homeFragment = Fragmentation.getInstance(ActivityMain.this).findStackFragment(HomeFragment.class, getSupportFragmentManager(), true);
-                Fragmentation.getInstance(ActivityMain.this)
-                        .showHideFragment(getSupportFragmentManager(), homeFragment, homeFragment);
+                startActivity(intent);
             }
         });
 

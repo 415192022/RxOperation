@@ -39,7 +39,7 @@
     <color name="purple">#9B26AF</color>
     <color name="semi_transparent_white">#AAFFFFFF</color>
     <color name="orange_red">#F86E4D</color>
-    <color name="red">#ff3333</color>
+    <color name="red">#fa5656</color>
     <color name="white_pressed">#f1f1f1</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
@@ -58,4 +58,9 @@
 
     <color name="bottom_bar">#C5CAE9</color>
     <color name="dark_purple">#171142</color>
+    <color name="a">#075E72</color>
+    <color name="b">#F6CE8A</color>
+    <color name="c">#2E5F80</color>
+    <color name="d">#318688</color>
+    <color name="e">#692D56</color>
 </resources>

@@ -1,4 +1,4 @@
-package com.li.utils.ui.widget;
+package com.li.utils.ui.xlayout;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -10,7 +10,7 @@ import android.widget.FrameLayout;
  * Created by Mingwei Li on 2016/11/28 0028.
  */
 
-public class XFrameLayout extends FrameLayout {
+public class XFrameLayout extends FrameLayout implements IXLayout {
     private Path mRevealPath;
     boolean mClipOutlines;
     float mCenterX;
@@ -32,29 +32,16 @@ public class XFrameLayout extends FrameLayout {
         init();
     }
 
-    private void init(){
+    private void init() {
         mRevealPath = new Path();
         mClipOutlines = false;
         setWillNotDraw(false);
     }
 
-    public void setClipOutLines(boolean shouldClip){
-        mClipOutlines = shouldClip;
-    }
-
-    public void setClipCenter(final int x, final int y){
-        mCenterX = x;
-        mCenterY = y;
-    }
-
-    public void setClipRadius(final float radius){
-        mRadius = radius;
-        invalidate();
-    }
 
     @Override
     public void draw(Canvas canvas) {
-        if(!mClipOutlines){
+        if (!mClipOutlines) {
             super.draw(canvas);
             return;
         }
@@ -64,5 +51,22 @@ public class XFrameLayout extends FrameLayout {
         canvas.clipPath(mRevealPath);
         super.draw(canvas);
         canvas.restoreToCount(state);
+    }
+
+    @Override
+    public void setClipOutLines(boolean shouldClip) {
+        mClipOutlines = shouldClip;
+    }
+
+    @Override
+    public void setClipCenter(int x, int y) {
+        mCenterX = x;
+        mCenterY = y;
+    }
+
+    @Override
+    public void setClipRadius(float radius) {
+        mRadius = radius;
+        invalidate();
     }
 }

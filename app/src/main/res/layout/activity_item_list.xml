@@ -11,9 +11,9 @@
     tools:context="com.li.pro.view.activity.ActivityMain">
 
     <LinearLayout
-        android:background="#FFFFFF"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#FFFFFF"
         android:orientation="vertical">
 
         <include
@@ -35,8 +35,7 @@
                 android:id="@+id/fl_home_root"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:context=".flow.MainActivity">
-            </FrameLayout>
+                tools:context=".flow.MainActivity"></FrameLayout>
 
             <android.support.design.widget.NavigationView
                 android:id="@+id/nav_view"
@@ -54,22 +53,21 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="160dp"
-                        android:background="@drawable/shape_nav"
                         android:gravity="bottom"
                         android:orientation="vertical"
                         android:paddingBottom="16dp"
                         android:paddingLeft="16dp"
                         android:paddingRight="16dp"
                         android:paddingTop="16dp"
+                        android:background="@drawable/head"
                         android:theme="@style/ThemeOverlay.AppCompat.Dark">
-
+                        <!--android:background="@drawable/shape_nav"-->
                         <ImageView
                             android:id="@+id/img_nav"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingTop="16dp"
-                            android:src="@android:drawable/sym_def_app_icon"
-                            />
+                            android:src="@android:drawable/sym_def_app_icon" />
 
                         <TextView
                             android:id="@+id/tv_name"
@@ -96,8 +94,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:background="#FFFFFF"
-                        ></android.support.v7.widget.RecyclerView>
+                        android:background="#FFFFFF"></android.support.v7.widget.RecyclerView>
 
                 </LinearLayout>
             </android.support.design.widget.NavigationView>
@@ -109,19 +106,20 @@
         android:id="@+id/bn_home_bottombar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/bbn_default_view_behavior"
+        android:layout_gravity="bottom"
         app:bbn_badgeProvider="@string/bbn_badgeProvider"
         app:bbn_entries="@menu/bottombar_menu_4items"
-        android:layout_gravity="bottom"
-        ></com.li.utils.ui.mdbottom.BottomNavigation>
+        app:layout_behavior="@string/bbn_default_view_behavior"></com.li.utils.ui.mdbottom.BottomNavigation>
+
     <com.li.utils.ui.bottombar.BottomBar
-        android:visibility="invisible"
         android:id="@+id/bb_root"
         android:layout_width="match_parent"
         android:layout_height="54dp"
-        android:layout_gravity="bottom|end">
+        android:layout_gravity="bottom|end"
+        android:visibility="invisible">
 
     </com.li.utils.ui.bottombar.BottomBar>
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
@@ -131,9 +129,9 @@
         app:layout_anchor="@+id/dl_nva"
         app:layout_anchorGravity="top|right"
         app:srcCompat="@android:drawable/stat_notify_chat" />
-    <com.li.utils.ui.widget.XFrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+
+    <com.li.utils.ui.xlayout.XFrameLayout
         android:id="@+id/fl_mainroot"
-        ></com.li.utils.ui.widget.XFrameLayout>
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></com.li.utils.ui.xlayout.XFrameLayout>
 </android.support.design.widget.CoordinatorLayout>
