@@ -38,7 +38,6 @@ import java.util.List;
 import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 import rxop.li.com.rxoperation.R;
 
@@ -85,19 +84,33 @@ public class ActivityMain extends BaseActivity implements NavigationView.OnNavig
                                 create(new Observable.OnSubscribe<Object>() {
                                     @Override
                                     public void call(Subscriber<? super Object> subscriber) {
+                                        subscriber.onStart();
                                         FragmentRxJava fragmentRxJava = new FragmentRxJava();
                                         fragmentRxJava.startInitAnimation(ActivityMain.this, view, R.id.fl_mainroot);
-                                        Fragmentation.getInstance(ActivityMain.this).loadRootTransaction(getSupportFragmentManager(), R.id.fl_mainroot, new FragmentRxJava());
-                                        subscriber.onNext(null);
+                                        Fragmentation.getInstance(ActivityMain.this).loadRootTransaction(getSupportFragmentManager(), R.id.fl_mainroot, fragmentRxJava);
                                         subscriber.onCompleted();
                                     }
                                 }).
                                 subscribeOn(Schedulers.io()).
                                 observeOn(AndroidSchedulers.mainThread()).
-                                subscribe(new Action1<Object>() {
+                                subscribe(new Subscriber<Object>() {
                                     @Override
-                                    public void call(Object o) {
+                                    public void onStart() {
+                                        super.onStart();
                                         drawer.closeDrawers();
+                                    }
+
+                                    @Override
+                                    public void onCompleted() {
+                                    }
+
+                                    @Override
+                                    public void onError(Throwable e) {
+
+                                    }
+
+                                    @Override
+                                    public void onNext(Object o) {
                                     }
                                 });
                         break;

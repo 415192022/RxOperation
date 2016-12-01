@@ -90,6 +90,8 @@ public class FragmentCAll extends BaseLazyFragment implements IFragmentCAllView,
         PreLoader.getInstance(getActivity()).stop();
         iv_fragmnetcall_nodata_error.setImageResource(R.drawable.error_view);
         fl_fragmentcall_nodata_error.setVisibility(View.VISIBLE);
+        xsrl_home_all.setRefreshing(false);
+        xsrl_home_all.setLoading(false);
     }
 
     int page = 1;

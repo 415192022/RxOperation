@@ -2,17 +2,12 @@ package com.li.pro.view.fragment.rxjava;
 
 import android.view.View;
 
-import com.li.fragmentutils.SupportFragment;
 import com.li.fragmentutils.anim.FragmentAnimator;
 import com.li.fragmentutils.base.BaseLazySwipFragment;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import rx.Observable;
+import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 import rxop.li.com.rxoperation.R;
 
@@ -63,59 +58,43 @@ public class FragmentRxJava extends BaseLazySwipFragment {
     @Override
     protected void lazyFetchData() {
 
-        //加载一个不可替换的Fragment根
-        loadRootFragment(R.id.fl_rxjava_left, new FragmentRxJavaList());
-//        //必须先预加载所有Fragment才能通过find找到Fragment对象
-//        loadMultipleRootFragment(R.id.fl_rxjava_right, 0,
-//                new FragmentRxBaseOp(),
-//                new FragmentRxMap(),
-//                new FragmentRxSchedu(),
-//                new FragmentRxFlatMap(),
-//                new FragmentRxmerge(),
-//                new FragmentRxBinding(),
-//                new FragmentRxFilter(),
-//                new FragmentRxTakeDoNextOn(),
-//                new FragmentRxInterval(),
-//                new FragmentRxToSocredList()
-//        );
-        Observable.
-                empty().
-                flatMap(new Func1<Object, Observable<SupportFragment>>() {
+        Observable.create(new Observable.OnSubscribe<Object>() {
+            @Override
+            public void call(Subscriber<? super Object> subscriber) {
+                subscriber.onNext(null);
+                subscriber.onCompleted();
+            }
+        }).subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<Object>() {
                     @Override
-                    public Observable<SupportFragment> call(Object o) {
-                        List<SupportFragment> fragmentList = new ArrayList();
-                        fragmentList.add(new FragmentRxJavaList());
+                    public void onCompleted() {
 
-                        fragmentList.add(new FragmentRxBaseOp());
-                        fragmentList.add(new FragmentRxMap());
-                        fragmentList.add(new FragmentRxSchedu());
-                        fragmentList.add(new FragmentRxFlatMap());
-                        fragmentList.add(new FragmentRxmerge());
-                        fragmentList.add(new FragmentRxBinding());
-                        fragmentList.add(new FragmentRxFilter());
-                        fragmentList.add(new FragmentRxTakeDoNextOn());
-                        fragmentList.add(new FragmentRxInterval());
-                        fragmentList.add(new FragmentRxToSocredList());
-
-                        return Observable.from(fragmentList);
                     }
-                }).
-                map(new Func1<SupportFragment, SupportFragment>() {
+
                     @Override
-                    public SupportFragment call(SupportFragment supportFragment) {
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(Object o) {
                         //加载一个不可替换的Fragment根
-                        loadRootFragment(R.id.fl_rxjava_right, supportFragment);
-                        return supportFragment;
-                    }
-                }).
-                subscribeOn(Schedulers.newThread()).
-                observeOn(AndroidSchedulers.mainThread()).
-                subscribe(new Action1<SupportFragment>() {
-                    @Override
-                    public void call(SupportFragment supportFragment) {
+                        loadRootFragment(R.id.fl_rxjava_left, new FragmentRxJavaList());
+        //必须先预加载所有Fragment才能通过find找到Fragment对象
+                        loadMultipleRootFragment(R.id.fl_rxjava_right, 0,
+                                new FragmentRxBaseOp(),
+                                new FragmentRxMap(),
+                                new FragmentRxSchedu(),
+                                new FragmentRxFlatMap(),
+                                new FragmentRxmerge(),
+                                new FragmentRxBinding(),
+                                new FragmentRxFilter(),
+                                new FragmentRxTakeDoNextOn(),
+                                new FragmentRxInterval(),
+                                new FragmentRxToSocredList()
+                        );
                     }
                 });
-
 //        //加载一个可替换的Fragment根并默认加载哪个Fragment(调用Replace时必须加载,show/hide不用)
 //        replaceLoadRootFragment(R.id.fl_rxjava_right, new FragmentRxBaseOp(), true);
     }
