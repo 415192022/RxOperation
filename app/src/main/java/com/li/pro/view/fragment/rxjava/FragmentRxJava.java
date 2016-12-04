@@ -28,7 +28,7 @@ public class FragmentRxJava extends BaseLazySwipFragment {
 
     @Override
     public int ftagmentLayout() {
-        return R.layout.layout_activit_rxjava;
+        return R.layout.layout_fragment_rxjava;
     }
 
     @Override

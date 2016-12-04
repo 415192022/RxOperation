@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.li.utils.ui.xlayout.XFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/xfl_fragment_c_all_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFF"
@@ -27,4 +28,4 @@
             android:layout_height="match_parent"></com.li.utils.ui.widget.XRecyclerView>
     </com.li.utils.ui.widget.SwipeRefreshLoadMore>
 
-</FrameLayout>
+</com.li.utils.ui.xlayout.XFrameLayout>

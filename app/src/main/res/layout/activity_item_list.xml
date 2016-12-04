@@ -116,7 +116,8 @@
         android:layout_width="match_parent"
         android:layout_height="54dp"
         android:layout_gravity="bottom|end"
-        android:visibility="invisible">
+        android:visibility="invisible"
+        >
 
     </com.li.utils.ui.bottombar.BottomBar>
 

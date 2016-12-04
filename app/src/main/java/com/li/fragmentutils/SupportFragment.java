@@ -77,7 +77,6 @@ public class SupportFragment extends Fragment implements ISupportFragment {
                     cy = rect.centerY();
                     cx = rect.centerX();
                 }
-                // get the hypothenuse so the mRadius is from one corner to the other
                 float radius = (float) Math.hypot(right, bottom);
                 AnimationUtilsForRO.getInstance().createCheckoutRevealAnimator(xf, cx, cy, 28f, radius).start();
             }

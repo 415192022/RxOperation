@@ -27,6 +27,7 @@ import com.li.pro.view.fragment.home.HomeFragment;
 import com.li.pro.view.fragment.home.HomeFragment2;
 import com.li.pro.view.fragment.home.HomeFragment3;
 import com.li.pro.view.fragment.home.HomeFragment4;
+import com.li.pro.view.fragment.rxjava.FragmentFileTransfer;
 import com.li.pro.view.fragment.rxjava.FragmentRxJava;
 import com.li.utils.AdbUtilS;
 import com.li.utils.ui.mdbottom.BottomNavigation;
@@ -74,7 +75,7 @@ public class ActivityMain extends BaseActivity implements NavigationView.OnNavig
         rv_nav.setLayoutManager(mLayoutManager);
         NavRecycleViewAdapter.getInstance().init(this).clearAll();
         rv_nav.setAdapter(NavRecycleViewAdapter.getInstance()
-                .init(this).addItem("RXJava", "开启wifi调试(需要Root)"));
+                .init(this).addItem("RXJava", "开启wifi调试(需要Root)", "文件互传"));
         NavRecycleViewAdapter.getInstance().setOnNavRecycleViewItemClickListener(new NavRecycleViewAdapter.OnNavRecycleViewItemClickListener() {
             @Override
             public void onItemClick(View view, int position, String str) {
@@ -88,6 +89,7 @@ public class ActivityMain extends BaseActivity implements NavigationView.OnNavig
                                         FragmentRxJava fragmentRxJava = new FragmentRxJava();
                                         fragmentRxJava.startInitAnimation(ActivityMain.this, view, R.id.fl_mainroot);
                                         Fragmentation.getInstance(ActivityMain.this).loadRootTransaction(getSupportFragmentManager(), R.id.fl_mainroot, fragmentRxJava);
+
                                         subscriber.onCompleted();
                                     }
                                 }).
@@ -123,6 +125,14 @@ public class ActivityMain extends BaseActivity implements NavigationView.OnNavig
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
+                        break;
+
+                    case 2:
+                        //打开文件互传页面
+                        FragmentFileTransfer fragmentFileTransfer = new FragmentFileTransfer();
+                        fragmentFileTransfer.startInitAnimation(ActivityMain.this, view, R.id.fl_mainroot);
+                        Fragmentation.getInstance(ActivityMain.this).loadRootTransaction(getSupportFragmentManager(), R.id.fl_mainroot, fragmentFileTransfer);
+                        drawer.closeDrawers();
                         break;
                 }
             }
