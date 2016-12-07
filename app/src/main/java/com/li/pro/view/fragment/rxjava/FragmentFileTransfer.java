@@ -24,7 +24,7 @@ public class FragmentFileTransfer extends BaseLazySwipFragment {
 
     @Override
     public int ftagmentLayout() {
-        return R.layout.layout_fragment_file_transfer;
+        return 0;
     }
 
     @Override
