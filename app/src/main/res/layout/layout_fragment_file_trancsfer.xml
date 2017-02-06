@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cdl_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fitsSystemWindows="true"
+    tools:context="com.li.pro.view.fragment.rxjava.FragmentRxJava"
+    tools:ignore="RtlHardcoded">
+
+    <include layout="@layout/toolbartop"></include>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cv_card"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        app:behavior_overlapTop="30dp"
+        app:cardElevation="2dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+
+                <com.li.utils.ui.widget.XRecyclerView
+                    android:id="@+id/xrv_uer_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"></com.li.utils.ui.widget.XRecyclerView>
+
+
+                <Button
+                    android:id="@+id/btn_sendfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/xrv_uer_list"
+                    android:layout_gravity="bottom"
+                    android:background="@color/white"
+                    android:text="正在运行"
+                    android:textColor="@color/colorPrimary"
+                    android:visibility="gone" />
+
+            </RelativeLayout>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3">
+
+                <FrameLayout
+                    android:id="@+id/file_path_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </FrameLayout>
+
+                <com.li.utils.ui.fablayout.FABRevealLayout
+                    android:id="@+id/fab_reveal_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="invisible"
+                    app:fab_color="@color/colorAccent">
+
+                    <!--<com.li.utils.ui.progressbar.FreshDownloadView-->
+                    <!--android:id="@+id/fdv_progress"-->
+                    <!--android:layout_width="80dp"-->
+                    <!--android:layout_height="80dp"-->
+                    <!--android:clickable="false"-->
+                    <!--android:fitsSystemWindows="true"-->
+                    <!--android:scaleType="centerCrop"-->
+                    <!--app:circular_color="@color/colorPrimaryDark"-->
+                    <!--app:circular_progress_color="@color/pink_pressed"-->
+                    <!--app:circular_width="6dp"-->
+                    <!--app:layout_behavior="com.li.utils.ui.behavior.AvatarImageBehavior2"-->
+                    <!--app:progress_text_size="15sp" />-->
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <com.li.utils.ui.progressbar.FreshDownloadView
+                            android:id="@+id/fdv_progress2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_gravity="center"
+                            android:clickable="false"
+                            android:fitsSystemWindows="true"
+                            android:paddingTop="20dp"
+                            android:scaleType="centerCrop"
+                            app:circular_color="@color/blue3"
+                            app:circular_progress_color="@color/colorPrimaryDark"
+                            app:circular_radius="30dp" />
+                    </RelativeLayout>
+
+
+                </com.li.utils.ui.fablayout.FABRevealLayout>
+            </FrameLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+
+
+
+    <!--<ImageView
+        android:layout_gravity="center"
+        app:layout_behavior="com.li.utils.ui.behavior.AvatarImageBehavior2"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/ic_launcher"
+        />-->
+    <include layout="@layout/toolbarbottom"></include>
+
+    <com.li.utils.ui.progressbar.FreshDownloadView
+        android:id="@+id/fdv_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:clickable="false"
+        android:fitsSystemWindows="true"
+        app:circular_width="9dp"
+        app:circular_radius="70dp"
+        app:circular_color="@color/white"
+        app:circular_progress_color="@color/pink"
+        app:layout_behavior="com.li.utils.ui.behavior.AvatarImageBehavior2"
+        app:progress_text_size="15sp" />
+    <!--<de.hdodenhof.circleimageview.CircleImageView-->
+    <!--android:layout_width="@dimen/image_width"-->
+    <!--android:layout_height="@dimen/image_width"-->
+    <!--android:layout_gravity="center_horizontal"-->
+    <!--android:src="@drawable/ic_launcher"-->
+    <!--app:finalHeight="40dp"-->
+    <!--app:layout_behavior="com.li.utils.ui.behavior.AvatarImageBehavior2" />-->
+</android.support.design.widget.CoordinatorLayout>

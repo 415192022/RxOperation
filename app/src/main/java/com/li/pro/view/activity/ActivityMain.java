@@ -16,6 +16,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.li.fragmentutils.Fragmentation;
 import com.li.fragmentutils.SupportFragment;
@@ -23,11 +24,11 @@ import com.li.fragmentutils.base.BaseActivity;
 import com.li.fragmentutils.base.BaseLazyFragment;
 import com.li.fragmentutils.base.BaseLazySwipFragment;
 import com.li.pro.adapter.NavRecycleViewAdapter;
+import com.li.pro.view.fragment.filetransfer.FragmentFileTransfer;
 import com.li.pro.view.fragment.home.HomeFragment;
 import com.li.pro.view.fragment.home.HomeFragment2;
 import com.li.pro.view.fragment.home.HomeFragment3;
 import com.li.pro.view.fragment.home.HomeFragment4;
-import com.li.pro.view.fragment.rxjava.FragmentFileTransfer;
 import com.li.pro.view.fragment.rxjava.FragmentRxJava;
 import com.li.utils.AdbUtilS;
 import com.li.utils.ui.mdbottom.BottomNavigation;
@@ -42,7 +43,14 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import rxop.li.com.rxoperation.R;
 
-public class ActivityMain extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener, BottomNavigation.OnMenuItemSelectionListener, BaseLazySwipFragment.OnBackToFirstListener, BaseLazyFragment.OnBackToFirstListener {
+public class ActivityMain
+        extends
+        BaseActivity
+        implements
+        NavigationView.OnNavigationItemSelectedListener,
+        BottomNavigation.OnMenuItemSelectionListener,
+        BaseLazySwipFragment.OnBackToFirstListener,
+        BaseLazyFragment.OnBackToFirstListener {
 
     private CoordinatorLayout cdl_root;
     private RecyclerView rv_nav;
@@ -65,7 +73,6 @@ public class ActivityMain extends BaseActivity implements NavigationView.OnNavig
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void doBusiness(Bundle savedInstanceState) {
-
         drawer = (DrawerLayout) findViewById(R.id.dl_nva);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         rv_nav = (RecyclerView) navigationView.
@@ -277,6 +284,9 @@ public class ActivityMain extends BaseActivity implements NavigationView.OnNavig
 
     @Override
     public void onBackToFirstFragment() {
-
+        Toast.makeText(this, "服务启动成功", Toast.LENGTH_LONG).show();
+        System.out.println("服务启动成功");
     }
+
+
 }

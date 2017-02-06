@@ -1,49 +1,60 @@
-<com.li.utils.ui.xlayout.XCoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/xcl_root"
+    android:id="@+id/cdl_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:fitsSystemWindows="true"
-    tools:context="com.li.pro.view.activity.ItemDetailActivity"
-    tools:ignore="MergeRootFrame">
+    tools:context="com.li.pro.view.fragment.rxjava.FragmentRxJava">
 
-    <FrameLayout
-        android:id="@+id/fl_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#FFFFFF">
-
-        <com.li.utils.ui.pathanim.PathAnimationDemo
-            android:layout_gravity="center"
-            android:id="@+id/animated_path"
-            android:layout_width="300dp"
-            android:layout_height="200dp"
-            app:strokeColor="@color/colorPrimary"
-            app:strokeWidth="100" />
-    </FrameLayout>
     <include
-        layout="@layout/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"></include>
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical|start"
-        android:layout_margin="@dimen/fab_margin"
-        app:layout_anchor="@+id/item_detail_container"
-        app:layout_anchorGravity="top|end"
-        app:srcCompat="@android:drawable/stat_notify_chat" />
-
-    <android.support.v4.widget.NestedScrollView
-        android:id="@+id/item_detail_container"
+        android:id="@+id/include_toolbar"
+        layout="@layout/toolbar"></include>
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:background="@color/background"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        >
 
-    </android.support.v4.widget.NestedScrollView>
+        <com.li.utils.ui.fablayout.FABRevealLayout
+            android:id="@+id/fab_reveal_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-</com.li.utils.ui.xlayout.XCoordinatorLayout>
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab_action"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_home_white_24dp"
+                app:backgroundTint="@color/colorPrimary" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tv_click"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="asdasdasd"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+
+        </com.li.utils.ui.fablayout.FABRevealLayout>
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>
+
+

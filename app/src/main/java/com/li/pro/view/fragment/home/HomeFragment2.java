@@ -1,9 +1,11 @@
 package com.li.pro.view.fragment.home;
 
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
 import com.li.fragmentutils.base.BaseFragment;
-import com.li.utils.ui.widget.XViewPager;
+import com.li.pro.adapter.RxJavaListAdapter;
+import com.li.utils.ui.widget.XRecyclerView;
 
 import rxop.li.com.rxoperation.R;
 
@@ -12,7 +14,7 @@ import rxop.li.com.rxoperation.R;
  */
 
 public class HomeFragment2 extends BaseFragment {
-    private XViewPager xvp_fragment_home;
+    private XRecyclerView rv_test;
 
     @Override
     public int ftagmentLayout() {
@@ -21,6 +23,10 @@ public class HomeFragment2 extends BaseFragment {
 
     @Override
     public void initView(View view) {
+        rv_test = (XRecyclerView) view.findViewById(R.id.rv_test);
+        rv_test.setHasFixedSize(true);
+        rv_test.setLayoutManager(new LinearLayoutManager(getActivity()));
+        rv_test.setAdapter(RxJavaListAdapter.getInstance().init(getActivity()).add("基本操作流程", "map", "线程调度", "flatMap", "merge", "RxBinding", "Filter", "Take、DoOnNext", "Interval、取消订阅", "toSortedList", "...", "...", "...", "...", "...", "...", "...", "...", "...", "..."));
     }
 
     @Override

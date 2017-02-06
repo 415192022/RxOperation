@@ -238,12 +238,16 @@ public class SystemBarHelper {
         setTranslucentView(decorView, alpha);
     }
 
-    /** 设置状态栏darkMode,字体颜色及icon变黑(目前支持MIUI6以上,Flyme4以上,Android M以上) */
+    /**
+     * 设置状态栏darkMode,字体颜色及icon变黑(目前支持MIUI6以上,Flyme4以上,Android M以上)
+     */
     public static void setStatusBarDarkMode(Activity activity) {
         setStatusBarDarkMode(activity.getWindow());
     }
 
-    /** 设置状态栏darkMode,字体颜色及icon变黑(目前支持MIUI6以上,Flyme4以上,Android M以上) */
+    /**
+     * 设置状态栏darkMode,字体颜色及icon变黑(目前支持MIUI6以上,Flyme4以上,Android M以上)
+     */
     public static void setStatusBarDarkMode(Window window) {
         if (isFlyme4Later()) {
             setStatusBarDarkModeForFlyme4(window, true);
@@ -257,7 +261,9 @@ public class SystemBarHelper {
 
     //------------------------->
 
-    /** android 6.0设置字体颜色 */
+    /**
+     * android 6.0设置字体颜色
+     */
     @TargetApi(Build.VERSION_CODES.M)
     public static void setStatusBarDarkModeForM(Window window) {
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -319,7 +325,9 @@ public class SystemBarHelper {
         }
     }
 
-    /** 创建假的状态栏View */
+    /**
+     * 创建假的状态栏View
+     */
     private static void setStatusBar(ViewGroup container, @ColorInt int statusBarColor, boolean visible, boolean addToFirst) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             View statusBarView = container.findViewById(R.id.statusbar_view);
@@ -340,12 +348,16 @@ public class SystemBarHelper {
         }
     }
 
-    /** 创建假的状态栏View */
+    /**
+     * 创建假的状态栏View
+     */
     private static void setStatusBar(ViewGroup container, @ColorInt int statusBarColor, boolean visible) {
         setStatusBar(container, statusBarColor, visible, false);
     }
 
-    /** 创建假的透明栏 */
+    /**
+     * 创建假的透明栏
+     */
     private static void setTranslucentView(ViewGroup container,
                                            @FloatRange(from = 0.0, to = 1.0) float alpha) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -363,7 +375,9 @@ public class SystemBarHelper {
     }
 
 
-    /** 获取状态栏高度 */
+    /**
+     * 获取状态栏高度
+     */
     public static int getStatusBarHeight(Context context) {
         int result = 0;
         int resId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
@@ -373,14 +387,18 @@ public class SystemBarHelper {
         return result;
     }
 
-    /** 判断是否Flyme4以上 */
+    /**
+     * 判断是否Flyme4以上
+     */
     public static boolean isFlyme4Later() {
         return Build.FINGERPRINT.contains("Flyme_OS_4")
                 || Build.VERSION.INCREMENTAL.contains("Flyme_OS_4")
                 || Pattern.compile("Flyme OS [4|5]", Pattern.CASE_INSENSITIVE).matcher(Build.DISPLAY).find();
     }
 
-    /** 判断是否为MIUI6以上 */
+    /**
+     * 判断是否为MIUI6以上
+     */
     public static boolean isMIUI6Later() {
         try {
             Class<?> clz = Class.forName("android.os.SystemProperties");
@@ -394,7 +412,9 @@ public class SystemBarHelper {
         }
     }
 
-    /** 增加View的高度以及paddingTop,增加的值为状态栏高度.一般是在沉浸式全屏给ToolBar用的 */
+    /**
+     * 增加View的高度以及paddingTop,增加的值为状态栏高度.一般是在沉浸式全屏给ToolBar用的
+     */
     public static void setHeightAndPadding(Context context, View view) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             ViewGroup.LayoutParams lp = view.getLayoutParams();
@@ -404,7 +424,9 @@ public class SystemBarHelper {
         }
     }
 
-    /** 增加View的paddingTop,增加的值为状态栏高度 */
+    /**
+     * 增加View的paddingTop,增加的值为状态栏高度
+     */
     public static void setPadding(Context context, View view) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             view.setPadding(view.getPaddingLeft(), view.getPaddingTop() + getStatusBarHeight(context),
@@ -412,17 +434,23 @@ public class SystemBarHelper {
         }
     }
 
-    /** 强制rootView下面的子View的FitsSystemWindows为false */
+    /**
+     * 强制rootView下面的子View的FitsSystemWindows为false
+     */
     public static void forceFitsSystemWindows(Activity activity) {
         forceFitsSystemWindows(activity.getWindow());
     }
 
-    /** 强制rootView下面的子View的FitsSystemWindows为false */
+    /**
+     * 强制rootView下面的子View的FitsSystemWindows为false
+     */
     public static void forceFitsSystemWindows(Window window) {
         forceFitsSystemWindows((ViewGroup) window.getDecorView().findViewById(Window.ID_ANDROID_CONTENT));
     }
 
-    /** 强制rootView下面的子View的FitsSystemWindows为false */
+    /**
+     * 强制rootView下面的子View的FitsSystemWindows为false
+     */
     public static void forceFitsSystemWindows(ViewGroup viewGroup) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             int count = viewGroup.getChildCount();
@@ -438,4 +466,16 @@ public class SystemBarHelper {
             }
         }
     }
+
+    public static int px2dip(Context context, float pxValue) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (pxValue / scale + 0.5f);
+    }
+
+    public static int dip2px(Context context, float dipValue) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (dipValue * scale + 0.5f);
+    }
+
+
 }

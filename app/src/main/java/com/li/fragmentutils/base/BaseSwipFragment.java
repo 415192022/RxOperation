@@ -39,26 +39,29 @@ public abstract class BaseSwipFragment extends SwipeBackFragment {
         //状态栏透明
         SystemBarHelper.immersiveStatusBar(getActivity());
         //状态栏间隔高度
-        SystemBarHelper.setHeightAndPadding(getActivity(), view.findViewById(R.id.app_bar));
-        ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
-        if (actionBar != null) {
-            //是否显示返回箭头
-            if (isShowBackArrow()) {
-                actionBar.setDisplayHomeAsUpEnabled(true);
+        if (null != view.findViewById(R.id.app_bar)) {
+            SystemBarHelper.setHeightAndPadding(getActivity(), view.findViewById(R.id.app_bar));
+            ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+            if (actionBar != null) {
+                //是否显示返回箭头
+                if (isShowBackArrow()) {
+                    actionBar.setDisplayHomeAsUpEnabled(true);
+                }
+                //隐藏ActionBar
+                if (isHideActionBar()) {
+                    actionBar.hide();
+                }
+                //在使用v7包的时候显示icon和标题需指定一下属性。
+                actionBar.setDisplayShowHomeEnabled(true);
+                //设置ActionBar logo
+                actionBar.setLogo(setLeftCornerLogo());
+                //是否显示ActivonBar logo
+                actionBar.setDisplayUseLogoEnabled(true);
+                // 左侧图标点击事件使能
+                actionBar.setHomeButtonEnabled(true);
             }
-            //隐藏ActionBar
-            if (isHideActionBar()) {
-                actionBar.hide();
-            }
-            //在使用v7包的时候显示icon和标题需指定一下属性。
-            actionBar.setDisplayShowHomeEnabled(true);
-            //设置ActionBar logo
-            actionBar.setLogo(setLeftCornerLogo());
-            //是否显示ActivonBar logo
-            actionBar.setDisplayUseLogoEnabled(true);
-            // 左侧图标点击事件使能
-            actionBar.setHomeButtonEnabled(true);
         }
+
         return attachToSwipeBack(view);
     }
 

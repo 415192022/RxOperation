@@ -66,4 +66,5 @@ public class XRecyclerView extends RecyclerView  {
     public interface OnScrollViewScrollListener {
         public void onScrollChanged(int x, int y, int oldX, int oldY);
     }
+
 }

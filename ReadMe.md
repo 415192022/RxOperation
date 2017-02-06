@@ -11,6 +11,7 @@
 ####9、图文预加载结构缩略图
 ####10、ViewPager+Fragment => LazyLoad 
 ####11、Fragment加载时的扩散动画 
+####12、局域网内文件互传
 ####    不断更新中.....
 ## Screenshots
 <img src="images/1.png" width="30%" />

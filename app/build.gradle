@@ -84,4 +84,7 @@ dependencies {
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
     testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
     //\leakcanary
+    compile 'com.race604.flyrefresh:library:2.0.0'
+
+    compile 'de.hdodenhof:circleimageview:1.3.0'
 }

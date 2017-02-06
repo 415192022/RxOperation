@@ -33,6 +33,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.li.pro.view.activity.ActivityMain" />
         </activity>
+        <service android:name="com.li.pro.service.FileReceiverService"></service>
     </application>
 
 </manifest>

@@ -52,7 +52,65 @@
     </declare-styleable>
     <!--PathAnimation-->
     <declare-styleable name="AnimatedPathView">
-        <attr name="strokeColor" format="color"/>
-        <attr name="strokeWidth" format="float"/>
+        <attr name="strokeColor" format="color" />
+        <attr name="strokeWidth" format="float" />
+    </declare-styleable>
+
+
+    <!--进度条-->
+    <declare-styleable name="FreshDownloadView">
+        <attr name="circular_radius" format="dimension" />
+        <attr name="circular_color" format="color" />
+        <attr name="circular_progress_color" format="color" />
+        <attr name="circular_width" format="dimension" />
+        <attr name="progress_text_size" format="dimension" />
+    </declare-styleable>
+    <!--ProgressLayout-->
+    <declare-styleable name="progressLayout">
+        <attr name="emptyColor" format="color" />
+        <attr name="loadedColor" format="color" />
+        <attr name="maxProgress" format="integer" />
+        <attr name="autoProgress" format="boolean" />
+    </declare-styleable>
+
+
+    <!--SmoothCheckBox-->
+    <declare-styleable name="SmoothCheckBox">
+        <attr name="duration" format="integer" />
+        <attr name="stroke_width" format="dimension" />
+        <attr name="color_tick" format="color" />
+        <attr name="color_checked" format="color" />
+        <attr name="color_unchecked" format="color" />
+        <attr name="color_unchecked_stroke" format="color" />
+        <attr name="drawable_bitmap" format="reference" />
+    </declare-styleable>
+
+    <!--RippleLayout-->
+    <declare-styleable name="MaterialRippleLayout">
+        <attr name="mrl_rippleColor" format="color" localization="suggested" />
+        <attr name="mrl_rippleDimension" format="dimension" localization="suggested" />
+        <attr name="mrl_rippleOverlay" format="boolean" localization="suggested" />
+        <attr name="mrl_rippleAlpha" format="float" localization="suggested" />
+        <attr name="mrl_rippleDuration" format="integer" localization="suggested" />
+        <attr name="mrl_rippleFadeDuration" format="integer" localization="suggested" />
+        <attr name="mrl_rippleHover" format="boolean" localization="suggested" />
+        <attr name="mrl_rippleBackground" format="color" localization="suggested" />
+        <attr name="mrl_rippleDelayClick" format="boolean" localization="suggested" />
+        <attr name="mrl_ripplePersistent" format="boolean" localization="suggested" />
+        <attr name="mrl_rippleInAdapter" format="boolean" localization="suggested" />
+        <attr name="mrl_rippleRoundedCorners" format="dimension" localization="suggested" />
+    </declare-styleable>
+    <!--FABRevealLayout-->
+    <declare-styleable name="FABRevealLayout">
+        <attr name="fab_color" format="color" />
+    </declare-styleable>
+
+
+    <declare-styleable name="AvatarImageBehavior">
+        <attr name="finalYPosition" format="dimension"/>
+        <attr name="startXPosition" format="dimension"/>
+        <attr name="startToolbarPosition" format="dimension"/>
+        <attr name="startHeight" format="dimension"/>
+        <attr name="finalHeight" format="dimension"/>
     </declare-styleable>
 </resources>

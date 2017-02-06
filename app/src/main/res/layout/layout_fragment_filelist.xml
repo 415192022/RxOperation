@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fitsSystemWindows="true">
+
+
+    <com.li.utils.ui.widget.XSwipeRefreshLayout
+        android:id="@+id/xsrl_file_path_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_fragment_filelist"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbarStyle="insideInset"
+            android:scrollbars="vertical"
+            android:verticalScrollbarPosition="right"></android.support.v7.widget.RecyclerView>
+
+    </com.li.utils.ui.widget.XSwipeRefreshLayout>
+    <!--<include
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></include>-->
+
+</android.support.design.widget.CoordinatorLayout>

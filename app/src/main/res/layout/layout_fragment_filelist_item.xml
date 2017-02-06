@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.li.utils.ui.ripplelayout.MaterialRippleLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:mrl_rippleBackground="@color/white"
+    app:mrl_rippleColor="@color/colorPrimaryDark"
+    android:id="@+id/rl_item_fragment3_root"
+    android:layout_width="match_parent"
+    android:layout_height="82dp"
+    android:paddingBottom="5dp"
+    android:minHeight="82dp"
+    android:paddingTop="5dp">
+
+    <!--<RelativeLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:minHeight="72dp"-->
+    <!--android:clickable="true"-->
+    <!--android:paddingLeft="16dp"-->
+    <!--android:gravity="right"-->
+    <!--android:paddingRight="16dp"-->
+    <!--&gt;-->
+    <!--<FrameLayout-->
+    <!--android:id="@+id/iconframe"-->
+    <!--android:layout_centerVertical="true"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginRight="16dp">-->
+    <!--<ImageView-->
+    <!--android:layout_width="40dp"-->
+    <!--android:layout_height="40dp"-->
+    <!--android:padding="8dp"-->
+    <!--android:background="@drawable/circle_shape"-->
+    <!--android:layout_gravity="center_vertical"-->
+    <!--android:id="@+id/icon"/>-->
+    <!--<ImageView-->
+    <!--android:layout_width="40dp"-->
+    <!--android:layout_height="40dp"-->
+    <!--android:scaleType="centerCrop"-->
+    <!--android:layout_gravity="center"-->
+    <!--android:id="@+id/bicon"/>-->
+    <!--<com.li.rr.widget.roundimageview.RoundedImageView-->
+    <!--android:layout_margin="10dp"-->
+    <!--android:id="@+id/riv_dirIcon"-->
+    <!--android:layout_width="40dp"-->
+    <!--android:layout_height="40dp"-->
+    <!--android:scaleType="centerCrop"-->
+    <!--android:contentDescription="icon" />-->
+    <!--<com.li.rr.widget.smoothcheckbox.SmoothCheckBox-->
+    <!--android:visibility="gone"-->
+    <!--app:color_checked="@color/sr_color_primary"-->
+    <!--android:id="@+id/scb_item_fragment3_checked"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_margin="10dp" />-->
+    <!--<TextView-->
+    <!--android:layout_width="40dp"-->
+    <!--android:layout_height="40dp"-->
+    <!--android:textSize="12dp"-->
+    <!--android:singleLine="true"-->
+    <!--android:textStyle="bold"-->
+    <!--android:layout_gravity="center"-->
+    <!--android:gravity="center"-->
+    <!--android:id="@+id/generictext"-->
+    <!--android:textColor="@android:color/white"-->
+    <!--/>-->
+    <!--</FrameLayout>-->
+
+    <!--<ImageButton-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:id="@+id/properties"-->
+    <!--android:background="@drawable/ripple"-->
+    <!--android:layout_alignParentRight="true"-->
+    <!--android:layout_centerVertical="true"-->
+    <!--android:layout_marginLeft="16dp"-->
+    <!--android:padding="8dp"-->
+    <!--android:clickable="true"-->
+    <!--android:src="@drawable/ic_more_vert_black_48dp"/>-->
+
+    <!--<RelativeLayout-->
+    <!--android:layout_toRightOf="@id/iconframe"-->
+    <!--android:layout_toLeftOf="@id/properties"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_centerVertical="true">-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/firstline"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:gravity="center_vertical"-->
+    <!--android:singleLine="true"-->
+    <!--android:ellipsize="middle"-->
+    <!--android:clickable="false"-->
+    <!--android:textColor="@android:color/black"-->
+    <!--android:textSize="17sp" />-->
+
+    <!--<RelativeLayout-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_below="@id/firstline"-->
+    <!--android:layout_marginTop="5dp">-->
+
+
+    <!--<TextView-->
+    <!--android:id="@+id/date"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:textSize="13sp"-->
+    <!--android:layout_alignParentLeft="true"-->
+    <!--android:textColor="?android:attr/textColorTertiary"-->
+    <!--/>-->
+    <!--<TextView-->
+    <!--android:id="@+id/secondLine"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_toRightOf="@id/date"-->
+    <!--android:layout_marginLeft="10dip"-->
+    <!--android:textSize="13sp"-->
+    <!--android:textColor="?android:attr/textColorTertiary"-->
+    <!--/>-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/permis"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_alignParentRight="true"-->
+    <!--android:textColor="?android:attr/textColorTertiary"-->
+    <!--android:textSize="13sp"-->
+    <!--/>-->
+
+    <!--</RelativeLayout>-->
+
+    <!--</RelativeLayout>-->
+
+    <!--</RelativeLayout>-->
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_margin="10dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp">
+            <com.li.utils.ui.smoothcheckbox.SmoothCheckBox
+                app:stroke_width="3dp"
+                app:color_checked="@color/colorPrimaryDark"
+                app:color_unchecked="@color/colorPrimaryDark"
+                app:color_unchecked_stroke="@color/colorPrimaryDark"
+                android:id="@+id/scb_item_fragment3_checked"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="10dp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:gravity="center_vertical"
+                android:id="@+id/tv_path"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:singleLine="true"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                >
+                <TextView
+                    android:gravity="center_vertical"
+                    android:id="@+id/tv_date"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:textSize="13sp"
+                    android:layout_alignParentLeft="true"
+                    android:textColor="@color/colorPrimaryDark"
+                    />
+                <TextView
+                    android:gravity="center_vertical"
+                    android:id="@+id/tv_size"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:textSize="13sp"
+                    android:layout_alignParentLeft="true"
+                    android:textColor="@color/colorPrimaryDark"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+        <ImageButton
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ib_dir_properties"
+            android:background="@drawable/ripple"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:padding="8dp"
+            android:clickable="true"
+            android:src="@drawable/ic_more_vert_black_48dp"/>
+    </LinearLayout>
+</com.li.utils.ui.ripplelayout.MaterialRippleLayout>

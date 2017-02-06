@@ -49,4 +49,22 @@
 
     <dimen name="bbn_badge_size">8dp</dimen>
     <!--MD Bottom-->
+
+
+<!--进度条-->
+    <dimen name="default_radius">30dp</dimen>
+
+    <color name="default_circular_color">#4c99d9</color>
+    <color name="default_circular_progress_color">#ffffff</color>
+    <dimen name="default_circular_width">3.5dp</dimen>
+    <dimen name="edge">10dp</dimen>
+    <dimen name="default_text_size">150sp</dimen>
+
+    <dimen name="image_final_width">32dp</dimen>
+    <dimen name="spacing_normal">16dp</dimen>
+    <dimen name="image_width">120dp</dimen>
+    <dimen name="title_margin">20dp</dimen>
+
+
+    <dimen name="aib">60dp</dimen>
 </resources>

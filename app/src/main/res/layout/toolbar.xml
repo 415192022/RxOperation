@@ -33,7 +33,8 @@
             android:layout_height="?attr/actionBarSize"
             app:layout_collapseMode="pin"
             app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
-            app:title="XXXXX" />
+            app:title="XXXXX"
+            />
     </android.support.design.widget.CollapsingToolbarLayout>
 
 </android.support.design.widget.AppBarLayout>
